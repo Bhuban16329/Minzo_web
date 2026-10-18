@@ -159,7 +159,7 @@
                 🚚 Fast Nationwide Delivery: <span class="text-gold font-semibold">Inside Dhaka ৳70</span> | <span class="text-gold font-semibold">Outside Dhaka ৳130</span> (Cash on Delivery Available)
             </p>
             <div class="hidden sm:flex items-center gap-4 text-xs">
-                <a href="tel:+8801711009988" class="hover:text-gold transition flex items-center gap-1"><i class="ph ph-phone"></i> 01967-232742</a>
+                <a href="tel:+8801711009988" class="hover:text-gold transition flex items-center gap-1"><i class="ph ph-phone"></i> +880 1711-009988</a>
                 <button type="button" onclick="window.openTrackOrderModal()" class="hover:text-gold transition underline underline-offset-4 font-semibold cursor-pointer">Track Order</button>
             </div>
         </div>
@@ -183,8 +183,8 @@
                         <i class="ph-fill ph-lamp text-xl"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-forest leading-none">MINZO</span>
-                        <span class="text-[10px] uppercase tracking-[0.25em] text-terracotta font-semibold mt-0.5">Dhaka,Bangladesh</span>
+                        <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-forest leading-none">MINZO DECOR</span>
+                        <span class="text-[10px] uppercase tracking-[0.25em] text-terracotta font-semibold mt-0.5">Dhaka • Artisanal Living</span>
                     </div>
                 </a>
 
@@ -535,11 +535,20 @@
         <!-- Top Manager Banner -->
         <div class="bg-forest text-cream rounded-3xl p-6 sm:p-8 mb-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-lg border border-gold/30">
             <div>
-                <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-gold font-semibold mb-1">
-                    <i class="ph-fill ph-shield-check"></i> Authenticated Store Manager Studio
+                <div class="flex flex-wrap items-center gap-2.5 mb-2">
+                    <span class="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-gold font-semibold">
+                        <i class="ph-fill ph-shield-check"></i> Authenticated Store Manager Studio
+                    </span>
+                    <span id="cloud-sync-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-bold text-cream">
+                        <span id="cloud-sync-dot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span id="cloud-sync-text">Connecting Cloud Sync...</span>
+                    </span>
+                    <span id="sheets-sync-badge" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-semibold text-gold">
+                        <i class="ph-fill ph-table"></i> <span id="sheets-sync-text">Google Sheets Ready</span>
+                    </span>
                 </div>
-                <h1 class="font-serif text-3xl sm:text-4xl font-bold">Minzo Decor — Multi-Color Photo Studio & Order Portal</h1>
-                <p class="text-xs sm:text-sm text-cream/75 mt-1">Add/edit products, manage color shades & multiple photos per color (URL or PC/Phone upload), and fulfill customer orders.</p>
+                <h1 class="font-serif text-3xl sm:text-4xl font-bold">Minzo Decor — Live Cloud Studio & Order Portal</h1>
+                <p class="text-xs sm:text-sm text-cream/75 mt-1">Real-time Cloud Sync across all devices + Automatic Google Sheets row logging & Instant WhatsApp invoices.</p>
             </div>
             <div class="flex flex-wrap items-center gap-3">
                 <button type="button" onclick="window.switchView('store')" class="px-5 py-2.5 rounded-full bg-cream text-forest hover:bg-sand text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-sm">
@@ -559,7 +568,7 @@
                 <span id="admin-stat-shades" class="text-[11px] text-emerald-700 font-medium">Multi-color enabled</span>
             </div>
             <div class="bg-white p-5 rounded-2xl border border-sand shadow-soft">
-                <span class="text-xs text-gray-500 font-medium">Customer Orders</span>
+                <span class="text-xs text-gray-500 font-medium">Customer Orders (Live Sync)</span>
                 <div id="admin-stat-orders" class="font-serif text-3xl font-bold text-forest mt-1">0</div>
                 <span id="admin-stat-pending" class="text-[11px] text-terracotta font-medium">0 Pending/Confirmed</span>
             </div>
@@ -581,10 +590,10 @@
                 <i class="ph-fill ph-palette text-gold text-base"></i> 1. Products & Multi-Color Photo Studio
             </button>
             <button type="button" onclick="window.switchAdminTab('orders')" id="tab-btn-orders" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2">
-                <i class="ph-fill ph-shopping-bag-open text-terracotta text-base"></i> 2. Customer Orders
+                <i class="ph-fill ph-shopping-bag-open text-terracotta text-base"></i> 2. Customer Orders (Cloud + Sheets)
             </button>
             <button type="button" onclick="window.switchAdminTab('settings')" id="tab-btn-settings" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2">
-                <i class="ph-fill ph-gear text-forest text-base"></i> 3. Security & WhatsApp Settings
+                <i class="ph-fill ph-cloud-check text-forest text-base"></i> 3. Cloud Sync, Google Sheets & Security
             </button>
         </div>
 
@@ -677,7 +686,7 @@
 
                         <div class="flex gap-2 pt-2">
                             <button type="submit" class="flex-1 py-3.5 rounded-full bg-terracotta hover:bg-forest text-white font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer">
-                                Save Product & Color Galleries
+                                Save & Sync Product Live
                             </button>
                             <button type="button" onclick="window.resetAdminForm()" class="px-4 py-3.5 rounded-full border border-sand text-gray-600 hover:bg-sand text-xs font-semibold transition">
                                 Reset
@@ -693,7 +702,7 @@
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-sand">
                         <div>
                             <h3 class="font-serif text-2xl font-bold text-forest">Live Catalog Inventory</h3>
-                            <p class="text-xs text-gray-500">Click "Edit Colors & Photos" on any item to add new color shades or change pictures.</p>
+                            <p class="text-xs text-gray-500">Changes sync automatically to Cloud Firestore and all customer devices.</p>
                         </div>
                         <button type="button" onclick="window.resetDemoData()" class="px-3.5 py-1.5 rounded-full border border-terracotta/40 text-terracotta hover:bg-terracotta hover:text-white text-xs font-bold transition">
                             Restore Default 8 Products
@@ -707,79 +716,184 @@
             </div>
         </div>
 
-        <!-- TAB 2: CUSTOMER ORDERS -->
+        <!-- TAB 2: CUSTOMER ORDERS (Cloud Sync + CSV Export + WhatsApp) -->
         <div id="admin-tab-orders" class="modal-hidden">
             <div class="bg-white rounded-3xl border border-sand p-6 sm:p-8 shadow-soft">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-sand">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-4 border-b border-sand">
                     <div>
-                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-forest">Customer Order Fulfillment</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">View ordered color shades, update delivery status, or message customers directly on WhatsApp.</p>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-forest">Customer Order Fulfillment (Real-Time Sync)</h3>
+                        <p class="text-xs text-gray-500 mt-0.5">Orders placed on any phone appear here automatically, log to Google Sheets, and can be exported to Excel/CSV.</p>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <label for="admin-order-filter" class="text-xs font-bold text-forest uppercase">Status:</label>
-                        <select id="admin-order-filter" onchange="window.filterAdminOrders(this.value)" class="bg-cream border border-sand rounded-xl px-3.5 py-2 text-xs font-semibold text-forest focus:outline-none focus:border-terracotta">
-                            <option value="All">All Orders</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Confirmed">Confirmed</option>
-                            <option value="Shipped">Shipped</option>
-                            <option value="Delivered">Delivered</option>
-                            <option value="Cancelled">Cancelled</option>
-                        </select>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button type="button" onclick="window.exportOrdersToCSV()" class="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-xs cursor-pointer">
+                            <i class="ph-bold ph-download-simple text-sm"></i> Export Orders to CSV / Excel
+                        </button>
+                        <div class="flex items-center gap-2">
+                            <label for="admin-order-filter" class="text-xs font-bold text-forest uppercase">Status:</label>
+                            <select id="admin-order-filter" onchange="window.filterAdminOrders(this.value)" class="bg-cream border border-sand rounded-xl px-3.5 py-2 text-xs font-semibold text-forest focus:outline-none focus:border-terracotta">
+                                <option value="All">All Orders</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Confirmed">Confirmed</option>
+                                <option value="Shipped">Shipped</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div id="admin-orders-container" class="space-y-4"></div>
             </div>
         </div>
 
-        <!-- TAB 3: SECURITY & WHATSAPP SETTINGS -->
-        <div id="admin-tab-settings" class="modal-hidden">
+        <!-- TAB 3: CLOUD SYNC (OPTION B), GOOGLE SHEETS WEBHOOK (OPTION A) & SECURITY -->
+        <div id="admin-tab-settings" class="modal-hidden space-y-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <div class="lg:col-span-7 bg-white rounded-3xl border border-sand p-6 sm:p-8 shadow-soft">
-                    <h3 class="font-serif text-2xl font-bold text-forest mb-1">Manager Security & WhatsApp Order Number</h3>
-                    <p class="text-xs text-gray-500 mb-6">Update your manager login credentials and the Bangladesh WhatsApp number that receives customer invoices.</p>
-
-                    <form onsubmit="window.saveManagerSettings(event)" class="space-y-4 text-sm">
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Current Manager Password *</label>
-                            <input type="password" id="set-curr-pass" required placeholder="Enter current password to confirm changes" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-sand">
+                
+                <!-- Left Column: Option A (Google Sheets Webhook + Auto-WhatsApp) & Security -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <!-- Option A Card: Google Sheets Webhook & Instant WhatsApp -->
+                    <div class="bg-white rounded-3xl border border-sand p-6 sm:p-8 shadow-soft space-y-5">
+                        <div class="flex items-start justify-between gap-4 border-b border-sand pb-4">
                             <div>
-                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">New Manager Username / Email *</label>
-                                <input type="text" id="set-new-user" required placeholder="admin@minzodecor.com" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-terracotta">Option A • Automated Spreadsheet & WhatsApp</span>
+                                <h3 class="font-serif text-2xl font-bold text-forest mt-0.5">Google Sheets Webhook & Instant WhatsApp</h3>
+                                <p class="text-xs text-gray-500 mt-1">Automatically add a new row to your Google Sheet and launch a WhatsApp invoice every time a customer orders.</p>
                             </div>
+                            <i class="ph-fill ph-google-logo text-3xl text-emerald-700 shrink-0"></i>
+                        </div>
+
+                        <form onsubmit="window.saveIntegrationSettings(event)" class="space-y-4 text-xs sm:text-sm">
                             <div>
-                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">New Manager Password *</label>
-                                <input type="text" id="set-new-pass" required minlength="4" placeholder="Minzo@2026" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Google Apps Script Web App URL (Optional)</label>
+                                <input 
+                                    type="url" 
+                                    id="set-sheets-url" 
+                                    placeholder="https://script.google.com/macros/s/AKfycb.../exec" 
+                                    class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 text-xs font-mono focus:outline-none focus:border-terracotta"
+                                >
+                                <p class="text-[11px] text-gray-500 mt-1">When configured, every order automatically posts JSON row data to your Google Sheet.</p>
                             </div>
-                        </div>
 
-                        <div class="pt-2 border-t border-sand">
-                            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Store WhatsApp Number (Country Code 880) *</label>
-                            <input type="text" id="set-whatsapp" required placeholder="8801711009988" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                        </div>
+                            <div class="flex flex-wrap items-center gap-2 pt-1">
+                                <button type="button" onclick="window.copyGoogleAppsScriptCode()" class="px-3.5 py-2 rounded-xl bg-sand hover:bg-forest hover:text-cream text-forest font-bold text-xs transition flex items-center gap-1.5 cursor-pointer">
+                                    <i class="ph-bold ph-copy"></i> 1. Copy Ready-to-Use Google Apps Script Code
+                                </button>
+                                <button type="button" onclick="window.testGoogleSheetWebhook()" class="px-3.5 py-2 rounded-xl border border-emerald-700 text-emerald-800 hover:bg-emerald-700 hover:text-white font-bold text-xs transition flex items-center gap-1.5 cursor-pointer">
+                                    <i class="ph-bold ph-paper-plane-tilt"></i> 2. Send Test Row to Google Sheet
+                                </button>
+                            </div>
 
-                        <button type="submit" class="px-6 py-3 rounded-full bg-forest hover:bg-terracotta text-cream text-xs font-bold uppercase tracking-wider transition shadow-md">
-                            Save Security & WhatsApp Settings
-                        </button>
-                    </form>
+                            <div class="pt-3 border-t border-sand space-y-3">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Store WhatsApp Number (Country Code 880) *</label>
+                                    <input type="text" id="set-whatsapp" required placeholder="8801711009988" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                </div>
+
+                                <label class="flex items-center gap-3 p-3.5 rounded-2xl bg-cream border border-sand cursor-pointer">
+                                    <input type="checkbox" id="set-auto-whatsapp" class="w-4 h-4 accent-forest rounded">
+                                    <div>
+                                        <span class="text-xs font-bold text-forest block">Auto-Launch WhatsApp Invoice on Customer Order Submit</span>
+                                        <span class="text-[11px] text-gray-500">Automatically opens WhatsApp with the pre-filled order invoice as soon as the customer clicks Confirm Order.</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-full bg-forest hover:bg-terracotta text-cream text-xs font-bold uppercase tracking-wider transition shadow-md cursor-pointer">
+                                Save Google Sheets & WhatsApp Settings
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Manager Credentials Form -->
+                    <div class="bg-white rounded-3xl border border-sand p-6 sm:p-8 shadow-soft">
+                        <h3 class="font-serif text-2xl font-bold text-forest mb-1">Manager Login Security</h3>
+                        <p class="text-xs text-gray-500 mb-5">Update the username and password required to unlock this Store Manager Studio.</p>
+
+                        <form onsubmit="window.saveManagerSettings(event)" class="space-y-4 text-sm">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Current Manager Password *</label>
+                                <input type="password" id="set-curr-pass" required placeholder="Enter current password (default: Minzo@2026)" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-sand">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">New Manager Username / Email *</label>
+                                    <input type="text" id="set-new-user" required placeholder="admin@minzodecor.com" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">New Manager Password *</label>
+                                    <input type="text" id="set-new-pass" required minlength="4" placeholder="Minzo@2026" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="px-6 py-3 rounded-full bg-terracotta hover:bg-forest text-white text-xs font-bold uppercase tracking-wider transition shadow-md cursor-pointer">
+                                Update Manager Credentials
+                            </button>
+                        </form>
+                    </div>
                 </div>
 
-                <div class="lg:col-span-5">
+                <!-- Right Column: Option B (Firebase Real-Time Cloud Sync) & Reset -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-white rounded-3xl border border-sand p-6 shadow-soft space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Option B • Real-Time Cloud Database</span>
+                                <h3 class="font-serif text-2xl font-bold text-forest mt-0.5">Cloud Firestore Live Sync</h3>
+                            </div>
+                            <i class="ph-fill ph-cloud-check text-3xl text-gold"></i>
+                        </div>
+
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Your store is pre-wired with <strong>Firebase Cloud Firestore</strong> real-time listeners (`onSnapshot`). When Cloud Sync is active, any new product, color photo, or customer order syncs live across every phone and laptop.
+                        </p>
+
+                        <div class="p-3.5 rounded-2xl bg-cream border border-sand text-xs space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-forest">Current Cloud Status:</span>
+                                <span id="settings-cloud-status" class="font-bold text-emerald-700">Checking...</span>
+                            </div>
+                            <div class="text-[11px] text-gray-500">
+                                Session ID: <code id="settings-user-uid" class="font-mono text-forest">Authenticating...</code>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Custom Firebase Config JSON (Optional for External Hosting)</label>
+                            <textarea 
+                                id="set-custom-firebase" 
+                                rows="4" 
+                                placeholder='{"apiKey":"...","authDomain":"...","projectId":"...","appId":"..."}'
+                                class="w-full px-3.5 py-2 rounded-xl border border-sand bg-cream/50 text-[11px] font-mono focus:outline-none focus:border-terracotta"
+                            ></textarea>
+                            <p class="text-[11px] text-gray-500 mt-1">Leave blank to use built-in cloud sync, or paste your own Firebase project config JSON if hosting on Netlify/GitHub Pages.</p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <button type="button" onclick="window.saveCustomFirebaseConfig()" class="px-4 py-2.5 rounded-full bg-forest hover:bg-terracotta text-cream text-xs font-bold uppercase tracking-wider transition cursor-pointer">
+                                Save & Reconnect Cloud
+                            </button>
+                            <button type="button" onclick="window.pushLocalCatalogToCloud()" class="px-4 py-2.5 rounded-full border border-forest text-forest hover:bg-forest hover:text-cream text-xs font-bold uppercase tracking-wider transition cursor-pointer">
+                                Force Sync Catalog to Cloud
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="bg-sand/70 rounded-3xl border border-sand p-6 space-y-3">
                         <div class="flex items-center gap-2 text-forest font-serif text-xl font-bold">
                             <i class="ph-fill ph-arrows-counter-clockwise text-terracotta text-2xl"></i>
-                            <span>Restore Default Catalog & Settings</span>
+                            <span>Restore Default 8 Products</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">
-                            Resetting restores all 8 signature Minzo Decor products with their multi-color photo galleries and resets the login credentials to <code class="font-mono">admin@minzodecor.com</code> / <code class="font-mono">Minzo@2026</code>.
+                            Restores all 8 signature Minzo Decor products with their multi-color photo galleries both locally and in the cloud database.
                         </p>
-                        <button type="button" onclick="window.resetDemoData()" class="px-5 py-2.5 rounded-full bg-terracotta hover:bg-terracottaDark text-white text-xs font-bold uppercase tracking-wider transition">
-                            Restore Defaults Now
+                        <button type="button" onclick="window.resetDemoData()" class="px-5 py-2.5 rounded-full bg-terracotta hover:bg-terracottaDark text-white text-xs font-bold uppercase tracking-wider transition cursor-pointer">
+                            Restore Default Catalog Now
                         </button>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -1095,7 +1209,7 @@
                             <span>Total Payable</span>
                             <span id="chk-total" class="text-terracotta text-lg">৳ 0</span>
                         </div>
-                        <button type="submit" class="w-full mt-3 py-4 rounded-full bg-terracotta hover:bg-terracottaDark text-white font-bold text-xs uppercase tracking-widest transition shadow-lg">
+                        <button type="submit" id="chk-submit-btn" class="w-full mt-3 py-4 rounded-full bg-terracotta hover:bg-terracottaDark text-white font-bold text-xs uppercase tracking-widest transition shadow-lg cursor-pointer">
                             Confirm & Place Order
                         </button>
                     </div>
@@ -1107,9 +1221,14 @@
                 <div id="printable-receipt" class="bg-white p-6 rounded-2xl border border-sand space-y-5">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-sand pb-4">
                         <div>
-                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
-                                <i class="ph-fill ph-check-circle"></i> Order Confirmed
-                            </span>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+                                    <i class="ph-fill ph-check-circle"></i> Order Confirmed
+                                </span>
+                                <span id="rcpt-sync-pill" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-forest/10 text-forest text-[11px] font-semibold">
+                                    <i class="ph-fill ph-cloud-check text-terracotta"></i> Saved to Live Cloud
+                                </span>
+                            </div>
                             <h3 class="font-serif text-2xl sm:text-3xl font-bold text-forest mt-1">Thank You for Your Order!</h3>
                         </div>
                         <div class="text-left sm:text-right">
@@ -2459,6 +2578,9 @@
                 document.getElementById('set-new-user').value = managerConfig.username || 'admin@minzodecor.com';
                 document.getElementById('set-new-pass').value = managerConfig.password || 'Minzo@2026';
                 document.getElementById('set-whatsapp').value = managerConfig.whatsapp || '8801711009988';
+                document.getElementById('set-sheets-url').value = managerConfig.sheetsWebhookUrl || '';
+                document.getElementById('set-auto-whatsapp').checked = Boolean(managerConfig.autoLaunchWhatsApp);
+                document.getElementById('set-custom-firebase').value = localStorage.getItem('minzo_custom_firebase_config') || '';
             }
         };
 
@@ -2586,7 +2708,7 @@
             window.renderEditorVariants();
         };
 
-        // Compress uploaded image via Canvas so localStorage never overflows
+        // Compress uploaded image via Canvas so localStorage and Cloud Firestore (1MB limit) never overflow
         window.handleLocalPhotoUpload = function(event, vIdx) {
             const files = Array.from(event.target.files || []);
             if (files.length === 0) return;
@@ -2597,7 +2719,7 @@
                     const img = new Image();
                     img.onload = function() {
                         const canvas = document.createElement('canvas');
-                        const maxDim = 800;
+                        const maxDim = 750;
                         let w = img.width;
                         let h = img.height;
                         if (w > h && w > maxDim) {
@@ -2611,7 +2733,7 @@
                         canvas.height = h;
                         const ctx = canvas.getContext('2d');
                         ctx.drawImage(img, 0, 0, w, h);
-                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.78);
 
                         if (editorVariants[vIdx].images.length === 1 && !editorVariants[vIdx].images[0].trim()) {
                             editorVariants[vIdx].images[0] = compressedDataUrl;
@@ -2668,7 +2790,7 @@
             window.showToast('Loaded "' + prod.name + '" into Multi-Color Photo Studio');
         };
 
-        window.saveAdminProduct = function(e) {
+        window.saveAdminProduct = async function(e) {
             e.preventDefault();
             const editId = document.getElementById('admin-prod-id').value;
 
@@ -2696,30 +2818,39 @@
                 material: document.getElementById('admin-prod-material').value.trim(),
                 dimensions: document.getElementById('admin-prod-dims').value.trim(),
                 description: document.getElementById('admin-prod-desc').value.trim(),
-                variants: cleanedVariants
+                variants: cleanedVariants,
+                updatedAt: Date.now()
             };
 
             if (editId) {
                 const idx = products.findIndex(function(p) { return p.id === editId; });
                 if (idx > -1) products[idx] = newProd;
-                window.showToast('Updated "' + newProd.name + '" & all color galleries!');
             } else {
                 products.unshift(newProd);
-                window.showToast('Added "' + newProd.name + '" to catalog!');
             }
 
             localStorage.setItem('minzo_products_v3', JSON.stringify(products));
             window.resetAdminForm();
             window.renderCatalog();
             window.renderAdminPortal();
+
+            if (typeof window.syncProductToCloud === 'function') {
+                await window.syncProductToCloud(newProd);
+            } else {
+                window.showToast('Saved "' + newProd.name + '"!');
+            }
         };
 
-        window.deleteAdminProduct = function(productId) {
+        window.deleteAdminProduct = async function(productId) {
             products = products.filter(function(p) { return p.id !== productId; });
             localStorage.setItem('minzo_products_v3', JSON.stringify(products));
             window.renderCatalog();
             window.renderAdminPortal();
-            window.showToast('Product removed from catalog.', 'info');
+            if (typeof window.deleteProductFromCloud === 'function') {
+                await window.deleteProductFromCloud(productId);
+            } else {
+                window.showToast('Product removed from catalog.', 'info');
+            }
         };
 
         window.renderAdminPortal = function() {
@@ -2736,6 +2867,14 @@
             const rev = orders.filter(function(o) { return o.status !== 'Cancelled'; }).reduce(function(s, o) { return s + Number(o.total || 0); }, 0);
             document.getElementById('admin-stat-revenue').textContent = window.formatBDT(rev);
             document.getElementById('admin-stat-lowstock').textContent = products.filter(function(p) { return p.stock <= 5; }).length;
+
+            // Update Google Sheets Status Badge
+            const sheetsTextEl = document.getElementById('sheets-sync-text');
+            if (sheetsTextEl) {
+                sheetsTextEl.textContent = managerConfig.sheetsWebhookUrl
+                    ? 'Google Sheets Webhook Active'
+                    : 'CSV Export & WhatsApp Active';
+            }
 
             // Render Inventory List
             const invContainer = document.getElementById('admin-inventory-list');
@@ -2798,11 +2937,12 @@
                                     <span class="text-gray-400">• ${o.date}</span>
                                     <span class="px-2.5 py-0.5 rounded-full bg-forest text-gold font-bold text-[10px]">${o.status}</span>
                                     <span class="px-2.5 py-0.5 rounded-full bg-sand text-charcoal font-semibold">${o.paymentMethod}</span>
+                                    ${o.syncedToCloud ? `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">☁️ Cloud Synced</span>` : ''}
                                 </div>
                                 <p class="font-bold text-sm text-charcoal">${o.customer} — <span class="text-terracotta">${o.phone}</span></p>
                                 <p class="text-gray-600">${o.address}, ${o.city} (${o.zone})</p>
                                 <p class="text-forest font-medium pt-1">
-                                    <strong>Ordered Shades:</strong> ${o.items.map(function(i) { return i.name + ' [' + (i.colorName || 'Classic') + '] ×' + i.qty; }).join(', ')}
+                                    <strong>Ordered Shades:</strong> ${(o.items || []).map(function(i) { return i.name + ' [' + (i.colorName || 'Classic') + '] ×' + i.qty; }).join(', ')}
                                 </p>
                             </div>
                             <div class="flex flex-wrap md:flex-col items-center md:items-end justify-between gap-2 shrink-0">
@@ -2811,7 +2951,7 @@
                                     <a href="https://wa.me/${waPhone}?text=${waMsg}" target="_blank" class="px-3 py-1.5 rounded-lg bg-[#25D366] text-white font-bold flex items-center gap-1">
                                         <i class="ph-fill ph-whatsapp-logo"></i> WhatsApp
                                     </a>
-                                    <select onchange="window.updateOrderStatus(${o.originalIndex}, this.value)" class="px-2.5 py-1.5 rounded-lg border border-sand bg-white text-xs font-bold text-forest">
+                                    <select onchange="window.updateOrderStatus('${o.orderId}', this.value)" class="px-2.5 py-1.5 rounded-lg border border-sand bg-white text-xs font-bold text-forest">
                                         ${['Pending', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled'].map(function(s) {
                                             return `<option value="${s}" ${o.status === s ? 'selected' : ''}>${s}</option>`;
                                         }).join('')}
@@ -2829,12 +2969,159 @@
             window.renderAdminPortal();
         };
 
-        window.updateOrderStatus = function(orderIdx, newStatus) {
-            if (!orders[orderIdx]) return;
-            orders[orderIdx].status = newStatus;
+        window.updateOrderStatus = async function(orderId, newStatus) {
+            const ord = orders.find(function(o) { return o.orderId === orderId; });
+            if (!ord) return;
+            ord.status = newStatus;
             localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
             window.renderAdminPortal();
-            window.showToast('Order ' + orders[orderIdx].orderId + ' updated to ' + newStatus);
+            if (typeof window.syncOrderStatusToCloud === 'function') {
+                await window.syncOrderStatusToCloud(ord);
+            } else {
+                window.showToast('Order ' + orderId + ' updated to ' + newStatus);
+            }
+        };
+
+        // --- OPTION A HELPERS: GOOGLE SHEETS WEBHOOK + CSV/EXCEL EXPORT ---
+        window.postOrderToGoogleSheets = async function(orderObj) {
+            if (!managerConfig.sheetsWebhookUrl) return false;
+            try {
+                const payload = {
+                    orderId: orderObj.orderId,
+                    date: orderObj.date,
+                    customer: orderObj.customer,
+                    phone: orderObj.phone,
+                    city: orderObj.city,
+                    address: orderObj.address,
+                    zone: orderObj.zone,
+                    paymentMethod: orderObj.paymentMethod,
+                    trxId: orderObj.trxId,
+                    itemsSummary: (orderObj.items || []).map(function(i) {
+                        return i.name + ' (' + (i.colorName || 'Classic') + ') x' + i.qty;
+                    }).join('; '),
+                    subtotal: orderObj.subtotal,
+                    shipping: orderObj.shipping,
+                    total: orderObj.total,
+                    status: orderObj.status
+                };
+
+                await fetch(managerConfig.sheetsWebhookUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+                return true;
+            } catch (err) {
+                console.warn('Google Sheets Webhook warning:', err);
+                return false;
+            }
+        };
+
+        window.exportOrdersToCSV = function() {
+            if (!orders || orders.length === 0) {
+                window.showToast('No orders to export yet.', 'info');
+                return;
+            }
+            const headers = ['Order ID', 'Date', 'Customer Name', 'Phone', 'City', 'Address', 'Delivery Zone', 'Payment Method', 'TrxID', 'Ordered Items & Shades', 'Subtotal (BDT)', 'Shipping (BDT)', 'Total (BDT)', 'Status'];
+            const rows = orders.map(function(o) {
+                const itemsText = (o.items || []).map(function(i) {
+                    return i.name + ' [' + (i.colorName || 'Classic') + '] x' + i.qty;
+                }).join(' | ');
+                return [
+                    o.orderId,
+                    o.date,
+                    o.customer,
+                    o.phone,
+                    o.city,
+                    o.address,
+                    o.zone,
+                    o.paymentMethod,
+                    o.trxId || 'N/A',
+                    itemsText,
+                    o.subtotal,
+                    o.shipping,
+                    o.total,
+                    o.status
+                ].map(function(cell) {
+                    return '"' + String(cell ?? '').replace(/"/g, '""') + '"';
+                }).join(',');
+            });
+
+            const csvContent = '\uFEFF' + [headers.join(',')].concat(rows).join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Minzo_Decor_Orders_' + new Date().toISOString().slice(0, 10) + '.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            window.showToast('Exported ' + orders.length + ' orders to CSV / Excel!');
+        };
+
+        window.copyGoogleAppsScriptCode = function() {
+            const scriptCode = [
+                "// Paste this into Extensions > Apps Script inside your Google Sheet, then click Deploy > New Deployment > Web App (Anyone)",
+                "function doPost(e) {",
+                "  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();",
+                "  if (sheet.getLastRow() === 0) {",
+                "    sheet.appendRow(['Order ID', 'Date', 'Customer', 'Phone', 'City', 'Address', 'Zone', 'Payment', 'TrxID', 'Items & Shades', 'Total BDT', 'Status']);",
+                "  }",
+                "  var data = JSON.parse(e.postData.contents);",
+                "  sheet.appendRow([data.orderId, data.date, data.customer, data.phone, data.city, data.address, data.zone, data.paymentMethod, data.trxId, data.itemsSummary, data.total, data.status]);",
+                "  return ContentService.createTextOutput(JSON.stringify({result: 'success'})).setMimeType(ContentService.MimeType.JSON);",
+                "}"
+            ].join('\n');
+
+            const tempArea = document.createElement('textarea');
+            tempArea.value = scriptCode;
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempArea);
+            window.showToast('Copied Google Apps Script code to clipboard!');
+        };
+
+        window.testGoogleSheetWebhook = async function() {
+            const urlInput = document.getElementById('set-sheets-url').value.trim();
+            if (!urlInput) {
+                window.showToast('Paste your Google Apps Script Web App URL first!', 'error');
+                return;
+            }
+            managerConfig.sheetsWebhookUrl = urlInput;
+            localStorage.setItem('minzo_manager_config', JSON.stringify(managerConfig));
+
+            const sampleOrder = {
+                orderId: 'MZ-TEST-' + Math.floor(100 + Math.random() * 900),
+                date: new Date().toLocaleString('en-GB'),
+                customer: 'Test Customer (Minzo Decor)',
+                phone: '01711009988',
+                city: 'Dhaka',
+                address: 'Road 11, Banani',
+                zone: 'Inside Dhaka (৳70)',
+                paymentMethod: 'Cash on Delivery',
+                trxId: 'N/A',
+                items: [{ name: 'Vintage Pleated Table Lamp', colorName: 'Warm Cream', qty: 1, price: 1650 }],
+                subtotal: 1650,
+                shipping: 70,
+                total: 1720,
+                status: 'Pending'
+            };
+
+            await window.postOrderToGoogleSheets(sampleOrder);
+            window.showToast('Test order sent to your Google Sheet Webhook!');
+        };
+
+        window.saveIntegrationSettings = function(e) {
+            e.preventDefault();
+            managerConfig.sheetsWebhookUrl = document.getElementById('set-sheets-url').value.trim();
+            managerConfig.whatsapp = document.getElementById('set-whatsapp').value.trim() || '8801711009988';
+            managerConfig.autoLaunchWhatsApp = document.getElementById('set-auto-whatsapp').checked;
+            localStorage.setItem('minzo_manager_config', JSON.stringify(managerConfig));
+            window.renderAdminPortal();
+            window.showToast('Saved Google Sheets & WhatsApp automation settings!');
         };
 
         window.saveManagerSettings = function(e) {
@@ -2846,19 +3133,164 @@
             }
             managerConfig.username = document.getElementById('set-new-user').value.trim();
             managerConfig.password = document.getElementById('set-new-pass').value.trim();
-            managerConfig.whatsapp = document.getElementById('set-whatsapp').value.trim();
             localStorage.setItem('minzo_manager_config', JSON.stringify(managerConfig));
             document.getElementById('set-curr-pass').value = '';
-            window.showToast('Security credentials & WhatsApp number updated!');
+            window.showToast('Manager login credentials updated!');
         };
 
-        window.resetDemoData = function() {
+        window.resetDemoData = async function() {
             localStorage.removeItem('minzo_products_v3');
             products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS)).map(window.normalizeProduct);
             localStorage.setItem('minzo_products_v3', JSON.stringify(products));
             window.renderCatalog();
             if (isManagerAuthenticated) window.renderAdminPortal();
-            window.showToast('Restored all 8 default multi-color products!');
+            if (typeof window.pushLocalCatalogToCloud === 'function') {
+                await window.pushLocalCatalogToCloud();
+            } else {
+                window.showToast('Restored all 8 default multi-color products!');
+            }
+        };
+
+        // Override submitOrder so every order saves to Cloud Firestore (Option B) AND Google Sheets + Auto-WhatsApp (Option A)
+        window.submitOrder = async function(e) {
+            e.preventDefault();
+            if (cart.length === 0) return;
+
+            const submitBtn = document.getElementById('chk-submit-btn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processing & Syncing Order...';
+            }
+
+            const name = document.getElementById('chk-name').value.trim();
+            const phone = document.getElementById('chk-phone').value.trim();
+            const city = document.getElementById('chk-city').value.trim();
+            const address = document.getElementById('chk-address').value.trim();
+            const shipping = Number(document.querySelector('input[name="deliveryZone"]:checked').value);
+            const zoneLabel = shipping === 70 ? 'Inside Dhaka (৳70)' : 'Outside Dhaka (৳130)';
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const trxId = document.getElementById('chk-trxid').value.trim() || 'N/A';
+
+            const subtotal = window.getCartSubtotal();
+            const total = subtotal + shipping;
+            const orderId = 'MZ-' + Math.floor(10000 + Math.random() * 90000);
+            const dateStr = new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' });
+
+            const orderItems = cart.map(function(item) {
+                const prod = products.find(function(p) { return p.id === item.id; });
+                if (prod) {
+                    prod.stock = Math.max(0, prod.stock - item.qty);
+                    if (typeof window.syncProductToCloud === 'function') {
+                        window.syncProductToCloud(prod, true);
+                    }
+                }
+                return {
+                    id: item.id,
+                    name: item.name,
+                    colorName: item.colorName || 'Signature Shade',
+                    qty: item.qty,
+                    price: item.price
+                };
+            });
+
+            const newOrder = {
+                orderId: orderId,
+                createdAt: Date.now(),
+                date: dateStr,
+                customer: name,
+                phone: phone,
+                city: city,
+                address: address,
+                zone: zoneLabel,
+                paymentMethod: paymentMethod,
+                trxId: trxId,
+                items: orderItems,
+                subtotal: subtotal,
+                shipping: shipping,
+                total: total,
+                status: 'Pending',
+                syncedToCloud: false
+            };
+
+            orders.unshift(newOrder);
+            localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
+            localStorage.setItem('minzo_products_v3', JSON.stringify(products));
+
+            // 1. Option B: Sync Order to Cloud Firestore in Real Time
+            let cloudOk = false;
+            if (typeof window.syncNewOrderToCloud === 'function') {
+                cloudOk = await window.syncNewOrderToCloud(newOrder);
+            }
+
+            // 2. Option A: Post Order to Google Sheets Webhook if configured
+            const sheetsOk = await window.postOrderToGoogleSheets(newOrder);
+
+            cart = [];
+            localStorage.setItem('minzo_cart_v3', JSON.stringify(cart));
+            window.updateCartUI();
+            window.renderCatalog();
+            if (isManagerAuthenticated) {
+                window.renderAdminPortal();
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirm & Place Order';
+            }
+
+            // Populate Printable Receipt
+            const syncPill = document.getElementById('rcpt-sync-pill');
+            if (syncPill) {
+                syncPill.innerHTML = cloudOk
+                    ? '<i class="ph-fill ph-cloud-check text-emerald-700"></i> Live Cloud Synced' + (sheetsOk ? ' + Google Sheet Logged' : '')
+                    : '<i class="ph-fill ph-check-circle text-terracotta"></i> Saved & Ready for WhatsApp';
+            }
+
+            document.getElementById('rcpt-order-id').textContent = 'Order #' + orderId;
+            document.getElementById('rcpt-date').textContent = dateStr;
+            document.getElementById('rcpt-customer').textContent = name;
+            document.getElementById('rcpt-phone').textContent = 'Phone: ' + phone;
+            document.getElementById('rcpt-address').textContent = address + ', ' + city;
+            document.getElementById('rcpt-payment').textContent = paymentMethod + (trxId !== 'N/A' ? ' (TrxID: ' + trxId + ')' : '');
+            document.getElementById('rcpt-zone').textContent = zoneLabel;
+
+            document.getElementById('rcpt-items-tbody').innerHTML = orderItems.map(function(i) {
+                return `
+                    <tr>
+                        <td class="py-2 font-medium text-forest">${i.name} <span class="text-gray-500">(${i.colorName})</span></td>
+                        <td class="py-2 text-center">${i.qty}</td>
+                        <td class="py-2 text-right font-bold">${window.formatBDT(i.price * i.qty)}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            document.getElementById('rcpt-subtotal').textContent = window.formatBDT(subtotal);
+            document.getElementById('rcpt-shipping').textContent = window.formatBDT(shipping);
+            document.getElementById('rcpt-total').textContent = window.formatBDT(total);
+
+            const buildWhatsAppUrl = function() {
+                const itemsLines = orderItems.map(function(i) {
+                    return '• ' + i.name + ' [' + i.colorName + '] x' + i.qty + ' = ৳' + (i.price * i.qty);
+                }).join('%0A');
+                const text = '*New Minzo Decor Order ' + orderId + '*%0A*Customer:* ' + name + '%0A*Phone:* ' + phone + '%0A*Address:* ' + address + ', ' + city + '%0A*Zone:* ' + zoneLabel + '%0A*Payment:* ' + paymentMethod + '%0A*Items:*%0A' + itemsLines + '%0A*Total Payable:* ৳' + total;
+                return 'https://wa.me/' + managerConfig.whatsapp + '?text=' + text;
+            };
+
+            const waBtn = document.getElementById('rcpt-whatsapp-btn');
+            waBtn.onclick = function() {
+                window.open(buildWhatsAppUrl(), '_blank');
+            };
+
+            document.getElementById('checkout-form-step').classList.add('modal-hidden');
+            document.getElementById('checkout-receipt-step').classList.remove('modal-hidden');
+            window.showToast('Order #' + orderId + ' confirmed!');
+
+            // Auto-launch WhatsApp if enabled by manager
+            if (managerConfig.autoLaunchWhatsApp) {
+                setTimeout(function() {
+                    window.open(buildWhatsAppUrl(), '_blank');
+                }, 600);
+            }
         };
 
         // --- 8. UI HELPERS ---
@@ -2883,6 +3315,242 @@
         };
 
         window.addEventListener('DOMContentLoaded', window.initStore);
+    </script>
+
+    <!-- ========================================================== -->
+    <!-- OPTION B: FIREBASE CLOUD FIRESTORE REAL-TIME SYNC ENGINE   -->
+    <!-- ========================================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'minzo-decor-bd';
+
+        function setCloudBadgeState(isOnline, message) {
+            const dot = document.getElementById('cloud-sync-dot');
+            const text = document.getElementById('cloud-sync-text');
+            const settingsStatus = document.getElementById('settings-cloud-status');
+            if (dot) {
+                dot.className = isOnline
+                    ? 'w-2 h-2 rounded-full bg-emerald-400'
+                    : 'w-2 h-2 rounded-full bg-amber-400';
+            }
+            if (text) text.textContent = message;
+            if (settingsStatus) {
+                settingsStatus.textContent = message;
+                settingsStatus.className = isOnline ? 'font-bold text-emerald-700' : 'font-bold text-amber-600';
+            }
+        }
+
+        async function initFirebaseCloudSync() {
+            try {
+                let rawConfig = typeof __firebase_config !== 'undefined' ? __firebase_config : localStorage.getItem('minzo_custom_firebase_config');
+                if (!rawConfig) {
+                    setCloudBadgeState(false, 'Local Mode (Paste Firebase Config in Tab 3 for External Cloud)');
+                    return;
+                }
+
+                const firebaseConfig = typeof rawConfig === 'string' ? JSON.parse(rawConfig) : rawConfig;
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // RULE 3: Authenticate FIRST before any Firestore queries
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                onAuthStateChanged(auth, function(user) {
+                    currentUser = user;
+                    const uidEl = document.getElementById('settings-user-uid');
+                    if (uidEl && user) {
+                        uidEl.textContent = user.uid;
+                    }
+                    if (user) {
+                        startRealtimeListeners();
+                    }
+                });
+            } catch (err) {
+                console.warn('Cloud sync fallback to local storage:', err);
+                setCloudBadgeState(false, 'Local + WhatsApp Mode Ready');
+            }
+        }
+
+        function startRealtimeListeners() {
+            if (!currentUser || !db) return;
+
+            // RULE 1: Strict public collection paths
+            const productsCol = collection(db, 'artifacts', appId, 'public', 'data', 'products');
+            const ordersCol = collection(db, 'artifacts', appId, 'public', 'data', 'orders');
+
+            // 1. Real-time Products & Multi-Color Galleries Listener
+            onSnapshot(productsCol, function(snapshot) {
+                setCloudBadgeState(true, '🟢 Cloud Live Sync Active');
+                if (snapshot.empty) {
+                    // Seed default 8 products to Cloud Firestore on first run
+                    window.pushLocalCatalogToCloud(true);
+                    return;
+                }
+
+                const cloudProds = [];
+                snapshot.forEach(function(docSnap) {
+                    const data = docSnap.data();
+                    if (data && data.id) {
+                        let parsedVariants = data.variants;
+                        if (typeof data.variantsJson === 'string') {
+                            try { parsedVariants = JSON.parse(data.variantsJson); } catch (e) {}
+                        }
+                        cloudProds.push(window.normalizeProduct(Object.assign({}, data, { variants: parsedVariants })));
+                    }
+                });
+
+                if (cloudProds.length > 0) {
+                    cloudProds.sort(function(a, b) {
+                        return String(a.id).localeCompare(String(b.id));
+                    });
+                    products = cloudProds;
+                    localStorage.setItem('minzo_products_v3', JSON.stringify(products));
+                    window.renderCatalog();
+                    window.renderAdminPortal();
+                }
+            }, function(err) {
+                console.warn('Products snapshot error:', err);
+                setCloudBadgeState(false, 'Local Storage Active');
+            });
+
+            // 2. Real-time Customer Orders Listener
+            onSnapshot(ordersCol, function(snapshot) {
+                if (snapshot.empty) return;
+
+                const cloudOrders = [];
+                snapshot.forEach(function(docSnap) {
+                    const data = docSnap.data();
+                    if (data && data.orderId) {
+                        let parsedItems = data.items;
+                        if (typeof data.itemsJson === 'string') {
+                            try { parsedItems = JSON.parse(data.itemsJson); } catch (e) {}
+                        }
+                        cloudOrders.push(Object.assign({}, data, {
+                            items: parsedItems || [],
+                            syncedToCloud: true
+                        }));
+                    }
+                });
+
+                if (cloudOrders.length > 0) {
+                    // Sort in JS memory (RULE 2: No orderBy in Firestore query)
+                    cloudOrders.sort(function(a, b) {
+                        return (Number(b.createdAt) || 0) - (Number(a.createdAt) || 0);
+                    });
+                    orders = cloudOrders;
+                    localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
+                    window.renderAdminPortal();
+                }
+            }, function(err) {
+                console.warn('Orders snapshot error:', err);
+            });
+        }
+
+        // Expose Cloud Write Helpers to Global Window
+        window.syncProductToCloud = async function(prod, silent) {
+            if (!currentUser || !db) return false;
+            try {
+                const prodDoc = doc(db, 'artifacts', appId, 'public', 'data', 'products', String(prod.id));
+                const payload = Object.assign({}, prod, {
+                    variantsJson: JSON.stringify(prod.variants || [])
+                });
+                await setDoc(prodDoc, payload);
+                if (!silent) window.showToast('Synced "' + prod.name + '" to Live Cloud!');
+                return true;
+            } catch (err) {
+                console.warn('Cloud product sync error:', err);
+                if (!silent) window.showToast('Saved locally (photo size large for cloud)', 'info');
+                return false;
+            }
+        };
+
+        window.deleteProductFromCloud = async function(productId) {
+            if (!currentUser || !db) return false;
+            try {
+                const prodDoc = doc(db, 'artifacts', appId, 'public', 'data', 'products', String(productId));
+                await deleteDoc(prodDoc);
+                window.showToast('Deleted product from Live Cloud!');
+                return true;
+            } catch (err) {
+                console.warn('Delete cloud product error:', err);
+                return false;
+            }
+        };
+
+        window.pushLocalCatalogToCloud = async function(silent) {
+            if (!currentUser || !db) {
+                if (!silent) window.showToast('Cloud not connected yet.', 'info');
+                return;
+            }
+            for (const prod of products) {
+                await window.syncProductToCloud(prod, true);
+            }
+            if (!silent) window.showToast('All ' + products.length + ' products synced to Live Cloud!');
+        };
+
+        window.syncNewOrderToCloud = async function(orderObj) {
+            if (!currentUser || !db) return false;
+            try {
+                const orderDoc = doc(db, 'artifacts', appId, 'public', 'data', 'orders', String(orderObj.orderId));
+                const payload = Object.assign({}, orderObj, {
+                    itemsJson: JSON.stringify(orderObj.items || []),
+                    syncedToCloud: true
+                });
+                await setDoc(orderDoc, payload);
+                orderObj.syncedToCloud = true;
+                return true;
+            } catch (err) {
+                console.warn('Order cloud sync error:', err);
+                return false;
+            }
+        };
+
+        window.syncOrderStatusToCloud = async function(orderObj) {
+            if (!currentUser || !db) return false;
+            try {
+                const orderDoc = doc(db, 'artifacts', appId, 'public', 'data', 'orders', String(orderObj.orderId));
+                await setDoc(orderDoc, Object.assign({}, orderObj, {
+                    itemsJson: JSON.stringify(orderObj.items || []),
+                    syncedToCloud: true
+                }));
+                window.showToast('Order ' + orderObj.orderId + ' status synced to Cloud (' + orderObj.status + ')!');
+                return true;
+            } catch (err) {
+                console.warn('Order status cloud sync error:', err);
+                return false;
+            }
+        };
+
+        window.saveCustomFirebaseConfig = function() {
+            const val = document.getElementById('set-custom-firebase').value.trim();
+            if (!val) {
+                localStorage.removeItem('minzo_custom_firebase_config');
+                window.showToast('Cleared custom Firebase config. Reloading...');
+                setTimeout(function() { location.reload(); }, 800);
+                return;
+            }
+            try {
+                JSON.parse(val);
+                localStorage.setItem('minzo_custom_firebase_config', val);
+                window.showToast('Saved Firebase Config! Reconnecting...');
+                setTimeout(function() { location.reload(); }, 800);
+            } catch (e) {
+                window.showToast('Invalid JSON format. Please copy the exact firebaseConfig object.', 'error');
+            }
+        };
+
+        initFirebaseCloudSync();
     </script>
 </body>
 </html>
