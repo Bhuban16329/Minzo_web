@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Minzo Decor | Luxury Minimalist Home Decor & Ambient Lighting in Bangladesh</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -55,12 +55,19 @@
             --charcoal: #232323;
         }
 
-        body {
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
             background-color: var(--cream);
             color: var(--charcoal);
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             overflow-x: hidden;
+            width: 100%;
             margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: 100%;
         }
 
         h1, h2, h3, h4, .font-serif {
@@ -112,7 +119,7 @@
             background: #C86D51;
         }
 
-        /* Smooth Product Card Image Zoom */
+        /* Smooth Product Card Image Zoom & Consistent Aspect Ratio */
         .product-card .product-img {
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -128,131 +135,133 @@
             animation: fadeIn 0.25s ease-out forwards;
         }
 
-        /* Print Styles for Receipt */
+        /* =========================================================
+           FIXED SINGLE-PAGE PRINT RECEIPT STYLES (No 7-page bug!)
+           ========================================================= */
+        #dedicated-print-area {
+            display: none;
+        }
+
         @media print {
-            body * {
-                visibility: hidden;
+            @page {
+                size: A4 portrait;
+                margin: 12mm;
             }
-            #printable-receipt, #printable-receipt * {
-                visibility: visible;
+            html, body {
+                background: #ffffff !important;
+                color: #1E352F !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                height: auto !important;
+                overflow: visible !important;
             }
-            #printable-receipt {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                box-shadow: none !important;
-                border: 1px solid #ccc !important;
+            body > *:not(#dedicated-print-area) {
+                display: none !important;
+            }
+            #dedicated-print-area {
+                display: block !important;
+                width: 100% !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
+                background: #ffffff !important;
             }
         }
     </style>
 </head>
 <body class="antialiased selection:bg-terracotta selection:text-white">
 
+    <!-- Dedicated Single-Page Print Container (Populated dynamically on Print) -->
+    <div id="dedicated-print-area"></div>
+
     <!-- Top Announcement Bar -->
-    <div class="bg-forest text-cream text-xs py-2.5 px-4 text-center tracking-wide border-b border-white/10">
+    <div class="bg-forest text-cream text-[11px] sm:text-xs py-2 px-4 text-center tracking-wide border-b border-white/10">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-            <span class="hidden md:inline-flex items-center gap-1.5 text-gold font-medium">
+            <span class="hidden lg:inline-flex items-center gap-1.5 text-gold font-medium whitespace-nowrap">
                 <i class="ph-fill ph-sparkle"></i> Curated Aesthetic Lighting & Accents across Bangladesh
             </span>
-            <p class="mx-auto md:mx-0 font-medium">
-                🚚 Fast Nationwide Delivery: <span class="text-gold font-semibold">Inside Dhaka ৳70</span> | <span class="text-gold font-semibold">Outside Dhaka ৳130</span> (Cash on Delivery Available)
+            <p class="mx-auto lg:mx-0 font-medium truncate">
+                🚚 Fast Nationwide Delivery: <span class="text-gold font-semibold">Inside Dhaka ৳70</span> | <span class="text-gold font-semibold">Outside Dhaka ৳130</span> (COD Available)
             </p>
-            <div class="hidden sm:flex items-center gap-4 text-xs">
-                <a href="tel:+8801711009988" class="hover:text-gold transition flex items-center gap-1"><i class="ph ph-phone"></i> +880 1711-009988</a>
+            <div class="hidden sm:flex items-center gap-4 text-xs whitespace-nowrap shrink-0">
+                <a href="tel:+8801967232742" class="hover:text-gold transition flex items-center gap-1"><i class="ph ph-phone"></i> +880 1967-232742</a>
                 <button type="button" onclick="window.openTrackOrderModal()" class="hover:text-gold transition underline underline-offset-4 font-semibold cursor-pointer">Track Order</button>
             </div>
         </div>
     </div>
 
-    <!-- Sticky Main Header -->
+    <!-- Sticky Main Header (Fixed Non-Wrapping Responsive Layout for All Aspect Ratios) -->
     <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-sand transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20 gap-3">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between min-h-[72px] sm:min-h-[80px] py-2 gap-2 sm:gap-4">
                 
-                <!-- Mobile Menu Trigger -->
-                <div class="flex items-center lg:hidden">
+                <!-- Mobile & Tablet Menu Trigger -->
+                <div class="flex items-center xl:hidden shrink-0">
                     <button type="button" onclick="window.toggleMobileMenu()" class="p-2 rounded-xl text-forest hover:bg-sand transition" aria-label="Menu">
                         <i class="ph ph-list text-2xl"></i>
                     </button>
                 </div>
 
-                <!-- Brand Logo -->
-                <a href="#home" onclick="window.switchView('store'); window.filterByCategory('All');" class="flex items-center gap-2.5 group focus:outline-none">
-                    <div class="w-10 h-10 rounded-full bg-forest flex items-center justify-center text-gold border border-gold/40 shadow-sm group-hover:bg-terracotta group-hover:text-cream transition duration-300">
-                        <i class="ph-fill ph-lamp text-xl"></i>
+                <!-- Brand Logo (Locked Single-Line Aspect Ratio) -->
+                <a href="#home" onclick="window.switchView('store'); window.filterByCategory('All');" class="flex items-center gap-2.5 group focus:outline-none shrink-0">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-forest flex items-center justify-center text-gold border border-gold/40 shadow-sm group-hover:bg-terracotta group-hover:text-cream transition duration-300 shrink-0">
+                        <i class="ph-fill ph-lamp text-lg sm:text-xl"></i>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-forest leading-none">MINZO DECOR</span>
-                        <span class="text-[10px] uppercase tracking-[0.25em] text-terracotta font-semibold mt-0.5">Dhaka • Artisanal Living</span>
+                    <div class="flex flex-col justify-center">
+                        <span class="font-serif text-xl sm:text-2xl lg:text-[26px] font-bold tracking-tight text-forest leading-none whitespace-nowrap">MINZO DECOR</span>
+                        <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.18em] text-terracotta font-semibold mt-1 leading-none whitespace-nowrap">Dhaka • Artisanal Living</span>
                     </div>
                 </a>
 
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-charcoal/90">
-                    <a href="#home" onclick="window.switchView('store'); window.filterByCategory('All')" class="hover:text-terracotta transition py-2">Home</a>
-                    <a href="#catalog" onclick="window.switchView('store'); window.filterByCategory('All')" class="hover:text-terracotta transition py-2">Shop Collection</a>
+                <!-- Desktop Navigation Links (Strictly Non-Wrapping) -->
+                <nav class="hidden xl:flex items-center space-x-5 2xl:space-x-7 text-sm font-medium text-charcoal/90 shrink-0">
+                    <a href="#home" onclick="window.switchView('store'); window.filterByCategory('All')" class="hover:text-terracotta transition py-2 whitespace-nowrap">Home</a>
+                    <a href="#catalog" onclick="window.switchView('store'); window.filterByCategory('All')" class="hover:text-terracotta transition py-2 whitespace-nowrap">Shop Collection</a>
                     
-                    <!-- Categories Dropdown -->
+                    <!-- Dynamic Categories Dropdown -->
                     <div class="relative group py-2">
-                        <button type="button" class="flex items-center gap-1 hover:text-terracotta transition focus:outline-none">
+                        <button type="button" class="flex items-center gap-1 hover:text-terracotta transition focus:outline-none whitespace-nowrap">
                             <span>Categories</span>
                             <i class="ph ph-caret-down text-xs transition-transform group-hover:rotate-180"></i>
                         </button>
-                        <div class="absolute left-0 mt-2 w-56 rounded-2xl bg-white shadow-floating border border-sand py-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                            <button type="button" onclick="window.switchView('store'); window.filterByCategory('Table Lamps')" class="w-full text-left px-4 py-2.5 text-sm hover:bg-cream hover:text-terracotta flex items-center justify-between transition">
-                                <span><i class="ph ph-lamp mr-2 text-terracotta"></i>Table Lamps</span>
-                                <span class="text-xs text-gray-400">Ambient</span>
-                            </button>
-                            <button type="button" onclick="window.switchView('store'); window.filterByCategory('Candle Holders')" class="w-full text-left px-4 py-2.5 text-sm hover:bg-cream hover:text-terracotta flex items-center justify-between transition">
-                                <span><i class="ph ph-flame mr-2 text-terracotta"></i>Candle Holders</span>
-                                <span class="text-xs text-gray-400">Vintage</span>
-                            </button>
-                            <button type="button" onclick="window.switchView('store'); window.filterByCategory('Wall Decor')" class="w-full text-left px-4 py-2.5 text-sm hover:bg-cream hover:text-terracotta flex items-center justify-between transition">
-                                <span><i class="ph ph-frame-corners mr-2 text-terracotta"></i>Wall Decor</span>
-                                <span class="text-xs text-gray-400">Artisanal</span>
-                            </button>
-                            <button type="button" onclick="window.switchView('store'); window.filterByCategory('Vases & Accents')" class="w-full text-left px-4 py-2.5 text-sm hover:bg-cream hover:text-terracotta flex items-center justify-between transition">
-                                <span><i class="ph ph-flower-lotus mr-2 text-terracotta"></i>Vases & Accents</span>
-                                <span class="text-xs text-gray-400">Nordic</span>
-                            </button>
+                        <div id="desktop-category-dropdown" class="absolute left-0 mt-2 w-60 rounded-2xl bg-white shadow-floating border border-sand py-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <!-- Populated dynamically via JS -->
                         </div>
                     </div>
 
-                    <a href="#about" onclick="window.switchView('store')" class="hover:text-terracotta transition py-2">Our Story</a>
-                    <a href="#faq" onclick="window.switchView('store')" class="hover:text-terracotta transition py-2">Shipping & FAQ</a>
+                    <a href="#about" onclick="window.switchView('store')" class="hover:text-terracotta transition py-2 whitespace-nowrap">Our Story</a>
+                    <a href="#faq" onclick="window.switchView('store')" class="hover:text-terracotta transition py-2 whitespace-nowrap">Shipping & FAQ</a>
                 </nav>
 
-                <!-- Search, Wishlist, Cart & Active Manager Badge -->
-                <div class="flex items-center space-x-2 sm:space-x-3">
+                <!-- Search, Wishlist, Cart & Active Manager Badge (Locked Single-Line) -->
+                <div class="flex items-center space-x-2 sm:space-x-2.5 shrink-0">
                     <!-- Desktop Search Input -->
                     <div class="hidden md:flex items-center bg-sand/80 focus-within:bg-white border border-sand rounded-full px-3.5 py-1.5 transition-all duration-200 focus-within:border-terracotta">
-                        <i class="ph ph-magnifying-glass text-gray-500 mr-2"></i>
+                        <i class="ph ph-magnifying-glass text-gray-500 mr-2 shrink-0"></i>
                         <input 
                             type="text" 
                             id="header-search" 
-                            placeholder="Search lamps, vases, colors..." 
+                            placeholder="Search lamps, vases..." 
                             oninput="window.handleSearch(this.value)"
-                            class="bg-transparent text-xs sm:text-sm focus:outline-none w-36 lg:w-44 text-charcoal placeholder-gray-400"
+                            class="bg-transparent text-xs sm:text-sm focus:outline-none w-28 lg:w-40 2xl:w-48 text-charcoal placeholder-gray-400"
                         >
                     </div>
 
                     <!-- Wishlist Trigger -->
-                    <button type="button" onclick="window.toggleWishlist()" class="relative p-2.5 rounded-full hover:bg-sand text-forest transition" title="Saved Wishlist">
+                    <button type="button" onclick="window.toggleWishlist()" class="relative p-2 sm:p-2.5 rounded-full hover:bg-sand text-forest transition shrink-0" title="Saved Wishlist">
                         <i class="ph ph-heart text-xl"></i>
                         <span id="wishlist-badge" class="modal-hidden absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-gold text-forest text-[11px] font-bold flex items-center justify-center shadow-sm">0</span>
                     </button>
 
                     <!-- Shopping Bag Trigger -->
-                    <button type="button" onclick="window.toggleCart()" class="relative flex items-center gap-2 bg-forest hover:bg-terracotta text-cream px-4 py-2.5 rounded-full transition shadow-sm" title="Shopping Bag">
-                        <i class="ph ph-handbag text-lg text-gold"></i>
+                    <button type="button" onclick="window.toggleCart()" class="relative flex items-center gap-1.5 sm:gap-2 bg-forest hover:bg-terracotta text-cream px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full transition shadow-sm whitespace-nowrap shrink-0" title="Shopping Bag">
+                        <i class="ph ph-handbag text-lg text-gold shrink-0"></i>
                         <span class="hidden sm:inline text-xs font-semibold tracking-wider uppercase">Bag</span>
-                        <span id="cart-badge" class="w-5 h-5 rounded-full bg-terracotta text-white text-[11px] font-bold flex items-center justify-center">0</span>
+                        <span id="cart-badge" class="w-5 h-5 rounded-full bg-terracotta text-white text-[11px] font-bold flex items-center justify-center shrink-0">0</span>
                     </button>
 
-                    <!-- Active Manager Session Badge (Strictly hidden unless logged in) -->
-                    <button type="button" onclick="window.requestAdminAccess()" id="header-manager-badge" class="modal-hidden items-center gap-1.5 px-3 py-2 rounded-full bg-gold/25 border border-gold text-forest text-xs font-bold hover:bg-forest hover:text-cream transition" title="Open Store Manager Studio">
-                        <i class="ph-fill ph-shield-check text-terracotta"></i>
+                    <!-- Active Manager Session Badge (Strictly single-line & compact) -->
+                    <button type="button" onclick="window.requestAdminAccess()" id="header-manager-badge" class="modal-hidden items-center gap-1.5 px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-full bg-gold/25 border border-gold text-forest text-xs font-bold hover:bg-forest hover:text-cream transition whitespace-nowrap shrink-0 cursor-pointer" title="Open Store Manager Studio">
+                        <i class="ph-fill ph-shield-check text-terracotta text-sm shrink-0"></i>
                         <span class="hidden sm:inline">Manager Studio</span>
                     </button>
                 </div>
@@ -273,23 +282,20 @@
             </div>
         </div>
 
-        <!-- Mobile Slide-Down Menu -->
-        <div id="mobile-menu" class="modal-hidden lg:hidden bg-cream border-b border-sand px-4 pt-2 pb-6 space-y-2 animate-fade-in">
+        <!-- Mobile & Tablet Slide-Down Menu -->
+        <div id="mobile-menu" class="modal-hidden xl:hidden bg-cream border-b border-sand px-4 pt-2 pb-6 space-y-2 animate-fade-in">
             <a href="#home" onclick="window.toggleMobileMenu(); window.switchView('store'); window.filterByCategory('All')" class="block px-3 py-2.5 rounded-xl font-medium hover:bg-sand">Home</a>
             <a href="#catalog" onclick="window.toggleMobileMenu(); window.switchView('store'); window.filterByCategory('All')" class="block px-3 py-2.5 rounded-xl font-medium hover:bg-sand">Shop All Collection</a>
             <div class="px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-gray-400">Categories</div>
-            <div class="grid grid-cols-2 gap-2 px-2">
-                <button type="button" onclick="window.toggleMobileMenu(); window.switchView('store'); window.filterByCategory('Table Lamps')" class="text-left p-2.5 rounded-xl bg-sand/70 hover:bg-sand text-sm font-medium">✨ Table Lamps</button>
-                <button type="button" onclick="window.toggleMobileMenu(); window.switchView('store'); window.filterByCategory('Candle Holders')" class="text-left p-2.5 rounded-xl bg-sand/70 hover:bg-sand text-sm font-medium">🕯️ Candle Holders</button>
-                <button type="button" onclick="window.toggleMobileMenu(); window.switchView('store'); window.filterByCategory('Wall Decor')" class="text-left p-2.5 rounded-xl bg-sand/70 hover:bg-sand text-sm font-medium">🖼️ Wall Decor</button>
-                <button type="button" onclick="window.toggleMobileMenu(); window.switchView('store'); window.filterByCategory('Vases & Accents')" class="text-left p-2.5 rounded-xl bg-sand/70 hover:bg-sand text-sm font-medium">🏺 Vases & Accents</button>
+            <div id="mobile-category-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2 px-2">
+                <!-- Populated dynamically via JS -->
             </div>
             <div class="pt-2 border-t border-sand flex items-center justify-between px-3">
                 <button type="button" onclick="window.toggleMobileMenu(); window.openTrackOrderModal()" class="text-sm font-semibold text-terracotta flex items-center gap-1">
                     <i class="ph ph-package"></i> Track My Order
                 </button>
-                <a href="tel:+8801711009988" class="text-xs text-forest font-semibold flex items-center gap-1">
-                    <i class="ph ph-phone"></i> +880 1711-009988
+                <a href="tel:+8801967232742" class="text-xs text-forest font-semibold flex items-center gap-1">
+                    <i class="ph ph-phone"></i> +880 1967-232742
                 </a>
             </div>
         </div>
@@ -300,104 +306,104 @@
     <!-- ========================================== -->
     <main id="storefront-view">
 
-        <!-- HERO SECTION -->
+        <!-- HERO SECTION (Balanced Aspect Ratios Across Mobile, Tablet, Laptop & Wide Monitors) -->
         <section id="home" class="relative overflow-hidden bg-forest text-cream">
             <div class="absolute -top-24 -left-24 w-96 h-96 bg-terracotta/20 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gold/15 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     
                     <!-- Left Copy -->
-                    <div class="lg:col-span-6 space-y-6 text-center lg:text-left z-10">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-gold/30 text-gold text-xs uppercase tracking-widest font-semibold">
+                    <div class="lg:col-span-6 space-y-5 sm:space-y-6 text-center lg:text-left z-10">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-gold/30 text-gold text-[11px] sm:text-xs uppercase tracking-widest font-semibold">
                             <i class="ph-fill ph-palette"></i> Multi-Color Swatches & Multi-Angle Gallery
                         </div>
 
-                        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.12] tracking-tight text-cream">
+                        <h1 class="font-serif text-3xl sm:text-5xl xl:text-6xl font-semibold leading-[1.12] tracking-tight text-cream">
                             Warm Ambient Corners, <span class="italic font-normal text-gold">Curated in Your Shade.</span>
                         </h1>
 
-                        <p class="text-cream/80 text-base sm:text-lg font-light max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        <p class="text-cream/80 text-sm sm:text-base lg:text-lg font-light max-w-xl mx-auto lg:mx-0 leading-relaxed">
                             From pleated bedside table lamps to Nordic ceramic vases and vintage candle holders—tap any color swatch to preview every shade and angle before bringing warmth to your Bangladeshi home.
                         </p>
 
-                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                            <a href="#catalog" class="w-full sm:w-auto px-8 py-4 rounded-full bg-terracotta hover:bg-terracottaDark text-white font-semibold text-sm tracking-wide transition shadow-lg flex items-center justify-center gap-2 group">
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-1">
+                            <a href="#catalog" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-terracotta hover:bg-terracottaDark text-white font-semibold text-sm tracking-wide transition shadow-lg flex items-center justify-center gap-2 group whitespace-nowrap">
                                 <span>Explore Collection</span>
                                 <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
                             </a>
-                            <button type="button" onclick="window.filterByCategory('Table Lamps')" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 text-cream border border-cream/20 font-medium text-sm tracking-wide transition flex items-center justify-center gap-2">
+                            <button type="button" onclick="window.filterByCategory('Table Lamps')" class="w-full sm:w-auto px-7 py-3.5 sm:py-4 rounded-full bg-white/10 hover:bg-white/20 text-cream border border-cream/20 font-medium text-sm tracking-wide transition flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer">
                                 <i class="ph ph-lamp text-gold text-lg"></i>
                                 <span>Shop Table Lamps</span>
                             </button>
                         </div>
 
                         <!-- Trust Metrics -->
-                        <div class="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-left">
+                        <div class="pt-5 border-t border-white/10 grid grid-cols-3 gap-3 sm:gap-4 max-w-lg mx-auto lg:mx-0 text-left">
                             <div>
-                                <div class="font-serif text-2xl sm:text-3xl font-bold text-gold">4.9 ★</div>
-                                <div class="text-xs text-cream/70">2,400+ Happy Homes</div>
+                                <div class="font-serif text-xl sm:text-3xl font-bold text-gold">4.9 ★</div>
+                                <div class="text-[11px] sm:text-xs text-cream/70">2,400+ Happy Homes</div>
                             </div>
                             <div>
-                                <div class="font-serif text-2xl sm:text-3xl font-bold text-gold">100%</div>
-                                <div class="text-xs text-cream/70">Break-Proof Packing</div>
+                                <div class="font-serif text-xl sm:text-3xl font-bold text-gold">100%</div>
+                                <div class="text-[11px] sm:text-xs text-cream/70">Break-Proof Packing</div>
                             </div>
                             <div>
-                                <div class="font-serif text-2xl sm:text-3xl font-bold text-gold">24-72h</div>
-                                <div class="text-xs text-cream/70">All Bangladesh COD</div>
+                                <div class="font-serif text-xl sm:text-3xl font-bold text-gold">24-72h</div>
+                                <div class="text-[11px] sm:text-xs text-cream/70">All Bangladesh COD</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Hero Showcase -->
+                    <!-- Right Hero Showcase (Responsive Aspect-Ratio Grid) -->
                     <div class="lg:col-span-6 relative z-10">
-                        <div class="grid grid-cols-12 gap-4 items-stretch">
-                            <div class="col-span-7 relative rounded-3xl overflow-hidden shadow-2xl border border-white/15 group cursor-pointer" onclick="window.openQuickView('minzo-1', 0)">
+                        <div class="grid grid-cols-12 gap-3 sm:gap-4 items-stretch">
+                            <div class="col-span-7 relative rounded-3xl overflow-hidden shadow-2xl border border-white/15 group cursor-pointer aspect-[4/5]" onclick="window.openQuickView('minzo-1', 0)">
                                 <img 
-                                    src="https://img.alicdn.com/img/ibank/O1CN01Kwyz1C1UG0weo2h04_!!2217837962489-0-cib.jpg" 
+                                    src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=85" 
                                     alt="Vintage Pleated Table Lamp" 
-                                    onerror="this.src='https://placehold.co/600x800/1E352F/C5A059?text=Minzo+Pleated+Lamp'"
-                                    class="w-full h-80 sm:h-[420px] object-cover group-hover:scale-105 transition duration-700"
+                                    onerror="this.src='https://placehold.co/600x750/1E352F/C5A059?text=Minzo+Pleated+Lamp'"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                                 >
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent flex flex-col justify-end p-5">
-                                    <span class="text-[11px] uppercase tracking-widest text-gold font-semibold">Bestseller • 3 Color Shades</span>
-                                    <h3 class="font-serif text-xl sm:text-2xl text-white font-medium">Vintage Pleated Lamp</h3>
-                                    <div class="flex items-center justify-between mt-1">
-                                        <span class="text-sm font-semibold text-cream">৳ 1,650</span>
-                                        <span class="text-xs bg-white/20 hover:bg-terracotta backdrop-blur-md text-white px-3 py-1 rounded-full transition">
-                                            View 3 Shades →
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent flex flex-col justify-end p-4 sm:p-5">
+                                    <span class="text-[10px] sm:text-[11px] uppercase tracking-widest text-gold font-semibold">Bestseller • 3 Shades</span>
+                                    <h3 class="font-serif text-lg sm:text-2xl text-white font-medium leading-tight">Vintage Pleated Lamp</h3>
+                                    <div class="flex items-center justify-between mt-1.5 gap-2">
+                                        <span class="text-xs sm:text-sm font-semibold text-cream">৳ 1,650</span>
+                                        <span class="text-[10px] sm:text-xs bg-white/20 hover:bg-terracotta backdrop-blur-md text-white px-2.5 py-1 rounded-full transition whitespace-nowrap">
+                                            View Shades →
                                         </span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-span-5 flex flex-col justify-between gap-4">
-                                <div class="relative rounded-3xl overflow-hidden shadow-xl border border-white/15 flex-1 group cursor-pointer" onclick="window.openQuickView('minzo-6', 0)">
+                            <div class="col-span-5 flex flex-col justify-between gap-3 sm:gap-4">
+                                <div class="relative rounded-3xl overflow-hidden shadow-xl border border-white/15 flex-1 group cursor-pointer min-h-[140px]" onclick="window.openQuickView('minzo-6', 0)">
                                     <img 
                                         src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80" 
                                         alt="Iron Ginkgo Leaf Wall Decor" 
                                         onerror="this.src='https://placehold.co/500x400/C86D51/FAF7F2?text=Ginkgo+Wall+Art'"
-                                        class="w-full h-36 sm:h-48 object-cover group-hover:scale-105 transition duration-700"
+                                        class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                                     >
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-4">
-                                        <span class="text-[10px] text-gold uppercase tracking-wider">2 Metallic Finishes</span>
-                                        <p class="font-serif text-base sm:text-lg text-white leading-tight">Ginkgo Leaf Wall Art</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-3.5 sm:p-4">
+                                        <span class="text-[9px] sm:text-[10px] text-gold uppercase tracking-wider">2 Metallic Finishes</span>
+                                        <p class="font-serif text-sm sm:text-lg text-white leading-tight">Ginkgo Leaf Wall Art</p>
                                     </div>
                                 </div>
 
-                                <div class="rounded-3xl bg-cream text-charcoal p-5 shadow-xl flex flex-col justify-between border border-gold/30">
-                                    <div class="flex items-center justify-between">
-                                        <span class="px-2.5 py-1 rounded-full bg-terracotta/15 text-terracotta text-[10px] font-bold uppercase">Rechargeable</span>
-                                        <i class="ph-fill ph-sparkle text-gold text-xl"></i>
+                                <div class="rounded-3xl bg-cream text-charcoal p-4 sm:p-5 shadow-xl flex flex-col justify-between border border-gold/30">
+                                    <div class="flex items-center justify-between gap-1">
+                                        <span class="px-2 py-0.5 rounded-full bg-terracotta/15 text-terracotta text-[9px] sm:text-[10px] font-bold uppercase">Rechargeable</span>
+                                        <i class="ph-fill ph-sparkle text-gold text-lg"></i>
                                     </div>
-                                    <div class="my-2">
-                                        <h4 class="font-serif text-lg sm:text-xl font-bold text-forest leading-snug">Crystal Retro Lamp</h4>
-                                        <p class="text-xs text-gray-600 mt-1">Available in Champagne Gold & Crystal Rose.</p>
+                                    <div class="my-1.5 sm:my-2">
+                                        <h4 class="font-serif text-base sm:text-xl font-bold text-forest leading-snug">Crystal Retro Lamp</h4>
+                                        <p class="text-[11px] sm:text-xs text-gray-600 mt-0.5 line-clamp-2">Champagne Gold & Crystal Rose.</p>
                                     </div>
                                     <div class="flex items-center justify-between pt-2 border-t border-sand">
-                                        <span class="font-bold text-forest text-sm">৳ 1,890</span>
-                                        <button type="button" onclick="window.openQuickView('minzo-3', 0)" class="text-xs font-semibold text-terracotta hover:underline">Inspect Angles →</button>
+                                        <span class="font-bold text-forest text-xs sm:text-sm">৳ 1,890</span>
+                                        <button type="button" onclick="window.openQuickView('minzo-3', 0)" class="text-[11px] sm:text-xs font-semibold text-terracotta hover:underline cursor-pointer">Inspect →</button>
                                     </div>
                                 </div>
                             </div>
@@ -409,7 +415,7 @@
         </section>
 
         <!-- PRODUCT CATALOG & COLOR SWATCH GRID -->
-        <section id="catalog" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="catalog" class="py-12 sm:py-16 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">Interactive Color & Angle Preview</span>
@@ -420,27 +426,13 @@
                 </p>
             </div>
 
-            <!-- Filter & Sort Controls -->
-            <div class="bg-sand/60 border border-sand rounded-2xl p-4 mb-8 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+            <!-- Filter & Sort Controls (Dynamic Category Tabs) -->
+            <div class="bg-sand/60 border border-sand rounded-2xl p-3.5 sm:p-4 mb-8 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
                 <div class="flex items-center gap-2 overflow-x-auto pb-1 lg:pb-0" id="category-tabs">
-                    <button type="button" onclick="window.filterByCategory('All')" data-cat="All" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-forest text-cream shadow-sm">
-                        All Pieces
-                    </button>
-                    <button type="button" onclick="window.filterByCategory('Table Lamps')" data-cat="Table Lamps" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition whitespace-nowrap bg-cream text-charcoal hover:bg-white">
-                        Table Lamps
-                    </button>
-                    <button type="button" onclick="window.filterByCategory('Candle Holders')" data-cat="Candle Holders" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition whitespace-nowrap bg-cream text-charcoal hover:bg-white">
-                        Candle Holders
-                    </button>
-                    <button type="button" onclick="window.filterByCategory('Wall Decor')" data-cat="Wall Decor" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition whitespace-nowrap bg-cream text-charcoal hover:bg-white">
-                        Wall Decor
-                    </button>
-                    <button type="button" onclick="window.filterByCategory('Vases & Accents')" data-cat="Vases & Accents" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition whitespace-nowrap bg-cream text-charcoal hover:bg-white">
-                        Vases & Accents
-                    </button>
+                    <!-- Populated dynamically via JS from categories list -->
                 </div>
 
-                <div class="flex flex-wrap items-center justify-between sm:justify-end gap-3">
+                <div class="flex flex-wrap items-center justify-between sm:justify-end gap-3 shrink-0">
                     <span id="product-count-label" class="text-xs font-medium text-gray-500">Showing 8 products</span>
                     <div class="flex items-center gap-2">
                         <label for="sort-select" class="text-xs font-semibold text-forest">Sort:</label>
@@ -455,7 +447,7 @@
             </div>
 
             <!-- Dynamic Product Grid -->
-            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7"></div>
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-7"></div>
 
             <!-- Empty Search State -->
             <div id="empty-catalog-state" class="modal-hidden text-center py-16 bg-sand/40 rounded-3xl border border-dashed border-sand my-4">
@@ -469,7 +461,7 @@
         </section>
 
         <!-- OUR STORY / WHY MINZO DECOR -->
-        <section id="about" class="py-16 bg-forest text-cream">
+        <section id="about" class="py-14 sm:py-16 bg-forest text-cream">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 <div class="lg:col-span-6 space-y-5">
                     <span class="text-xs uppercase tracking-[0.25em] text-gold font-semibold">The Minzo Studio Standard</span>
@@ -492,14 +484,14 @@
                 </div>
 
                 <div class="lg:col-span-6 grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=600&q=80" alt="Warm Lighting" class="rounded-2xl w-full h-64 object-cover border border-white/10">
-                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Minimalist Decor" class="rounded-2xl w-full h-64 object-cover border border-white/10 mt-6">
+                    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=600&q=80" alt="Warm Lighting" class="rounded-2xl w-full aspect-[4/5] object-cover border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Minimalist Decor" class="rounded-2xl w-full aspect-[4/5] object-cover border border-white/10 mt-6">
                 </div>
             </div>
         </section>
 
         <!-- FAQ SECTION -->
-        <section id="faq" class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="faq" class="py-14 sm:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
                 <span class="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">Delivery & Care</span>
                 <h2 class="font-serif text-3xl sm:text-4xl font-bold text-forest mt-1">Frequently Asked Questions</h2>
@@ -531,7 +523,7 @@
     <!-- ========================================== -->
     <!-- STORE MANAGER PORTAL & PHOTO STUDIO VIEW   -->
     <!-- ========================================== -->
-    <section id="admin-view" class="modal-hidden py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
+    <section id="admin-view" class="modal-hidden py-8 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
         <!-- Top Manager Banner -->
         <div class="bg-forest text-cream rounded-3xl p-6 sm:p-8 mb-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-lg border border-gold/30">
             <div>
@@ -548,16 +540,16 @@
                     </span>
                 </div>
                 <h1 class="font-serif text-3xl sm:text-4xl font-bold">Minzo Decor — Live Cloud Studio & Order Portal</h1>
-                <p class="text-xs sm:text-sm text-cream/75 mt-1">Real-time Cloud Sync across all devices + Automatic Google Sheets row logging & Instant WhatsApp invoices.</p>
+                <p class="text-xs sm:text-sm text-cream/75 mt-1">Manage Categories, Products, and Orders with permanent Cloud Tombstone Deletion & WhatsApp invoices.</p>
             </div>
             <div class="flex flex-wrap items-center gap-3">
                 <button type="button" onclick="window.pullFromCloudDatabase(true)" class="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-cream text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 cursor-pointer">
                     <i class="ph-bold ph-arrows-clockwise text-base"></i> Refresh Cloud Data
                 </button>
-                <button type="button" onclick="window.switchView('store')" class="px-5 py-2.5 rounded-full bg-cream text-forest hover:bg-sand text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-sm">
+                <button type="button" onclick="window.switchView('store')" class="px-5 py-2.5 rounded-full bg-cream text-forest hover:bg-sand text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-sm cursor-pointer">
                     <i class="ph ph-storefront text-base"></i> View Live Storefront
                 </button>
-                <button type="button" onclick="window.logoutAdmin()" class="px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-sm">
+                <button type="button" onclick="window.logoutAdmin()" class="px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-sm cursor-pointer">
                     <i class="ph-bold ph-sign-out text-base"></i> Lock & Logout
                 </button>
             </div>
@@ -566,7 +558,7 @@
         <!-- KPI Summary Row -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="bg-white p-5 rounded-2xl border border-sand shadow-soft">
-                <span class="text-xs text-gray-500 font-medium">Catalog Products</span>
+                <span class="text-xs text-gray-500 font-medium">Catalog Products & Categories</span>
                 <div id="admin-stat-products" class="font-serif text-3xl font-bold text-forest mt-1">8</div>
                 <span id="admin-stat-shades" class="text-[11px] text-emerald-700 font-medium">Multi-color enabled</span>
             </div>
@@ -589,147 +581,176 @@
 
         <!-- 3-Tab Navigation Bar -->
         <div class="flex flex-wrap items-center gap-2 border-b border-sand pb-4 mb-8">
-            <button type="button" onclick="window.switchAdminTab('inventory')" id="tab-btn-inventory" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-forest text-cream shadow-sm flex items-center gap-2">
-                <i class="ph-fill ph-palette text-gold text-base"></i> 1. Products & Multi-Color Photo Studio
+            <button type="button" onclick="window.switchAdminTab('inventory')" id="tab-btn-inventory" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-forest text-cream shadow-sm flex items-center gap-2 cursor-pointer">
+                <i class="ph-fill ph-palette text-gold text-base"></i> 1. Categories, Products & Photo Studio
             </button>
-            <button type="button" onclick="window.switchAdminTab('orders')" id="tab-btn-orders" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2">
-                <i class="ph-fill ph-shopping-bag-open text-terracotta text-base"></i> 2. Customer Orders (Cloud + Sheets)
+            <button type="button" onclick="window.switchAdminTab('orders')" id="tab-btn-orders" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2 cursor-pointer">
+                <i class="ph-fill ph-shopping-bag-open text-terracotta text-base"></i> 2. Customer Orders (Edit / Print / Delete)
             </button>
-            <button type="button" onclick="window.switchAdminTab('settings')" id="tab-btn-settings" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2">
+            <button type="button" onclick="window.switchAdminTab('settings')" id="tab-btn-settings" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2 cursor-pointer">
                 <i class="ph-fill ph-cloud-check text-forest text-base"></i> 3. Cloud Sync, Google Sheets & Security
             </button>
         </div>
 
-        <!-- TAB 1: PRODUCTS & MULTI-COLOR PHOTO STUDIO -->
-        <div id="admin-tab-inventory" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- TAB 1: CATEGORIES, PRODUCTS & MULTI-COLOR PHOTO STUDIO -->
+        <div id="admin-tab-inventory" class="space-y-8">
             
-            <!-- Left Column: Product & Multi-Color Gallery Builder -->
-            <div class="lg:col-span-5">
-                <div class="bg-white rounded-3xl border border-sand p-6 shadow-soft">
-                    <div class="flex items-center justify-between border-b border-sand pb-3 mb-4">
-                        <h3 id="admin-form-title" class="font-serif text-2xl font-bold text-forest">Add New Product</h3>
-                        <button type="button" onclick="window.resetAdminForm()" class="text-xs font-bold text-terracotta hover:underline">
-                            + Clear / New
-                        </button>
+            <!-- CATEGORY MANAGER STUDIO (Automatically updates Storefront!) -->
+            <div class="bg-white rounded-3xl border border-sand p-6 shadow-soft">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-sand pb-4 mb-5">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-terracotta">Dynamic Storefront Navigation</span>
+                        <h3 class="font-serif text-2xl font-bold text-forest">Storefront Category Manager</h3>
+                        <p class="text-xs text-gray-500">Add, rename, or remove categories here. New categories automatically appear on the front page filter tabs, header dropdown, and mobile menu.</p>
                     </div>
-
-                    <form id="admin-product-form" onsubmit="window.saveAdminProduct(event)" class="space-y-3.5 text-xs sm:text-sm">
-                        <input type="hidden" id="admin-prod-id">
-                        
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Product Name *</label>
-                            <input type="text" id="admin-prod-name" required placeholder="e.g. Vintage Pleated Table Lamp" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Category *</label>
-                                <select id="admin-prod-cat" required class="w-full px-3 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                                    <option value="Table Lamps">Table Lamps</option>
-                                    <option value="Candle Holders">Candle Holders</option>
-                                    <option value="Wall Decor">Wall Decor</option>
-                                    <option value="Vases & Accents">Vases & Accents</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Highlight Badge</label>
-                                <input type="text" id="admin-prod-badge" placeholder="Bestseller / 3 Shades" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-3 gap-2.5">
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Price (৳) *</label>
-                                <input type="number" id="admin-prod-price" required min="50" placeholder="1650" class="w-full px-3 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Old Price (৳)</label>
-                                <input type="number" id="admin-prod-oldprice" min="0" placeholder="2100" class="w-full px-3 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Stock Qty *</label>
-                                <input type="number" id="admin-prod-stock" required min="0" placeholder="18" class="w-full px-3 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Material</label>
-                                <input type="text" id="admin-prod-material" placeholder="Ceramic & Pleated Linen" class="w-full px-3 py-2 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Dimensions</label>
-                                <input type="text" id="admin-prod-dims" placeholder="33cm x 24cm" class="w-full px-3 py-2 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Product Description *</label>
-                            <textarea id="admin-prod-desc" rows="2" required placeholder="Describe the warm glow, finish, and styling..." class="w-full px-3.5 py-2 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta"></textarea>
-                        </div>
-
-                        <!-- MULTI-COLOR & MULTI-PHOTO BUILDER STUDIO -->
-                        <div class="p-4 rounded-2xl bg-cream border-2 border-gold/40 space-y-3">
-                            <div class="flex flex-wrap items-center justify-between gap-2">
-                                <div>
-                                    <span class="text-xs font-bold uppercase text-forest flex items-center gap-1.5">
-                                        <i class="ph-fill ph-palette text-terracotta text-base"></i> Color Variants & Multi-Photo Gallery
-                                    </span>
-                                    <p class="text-[11px] text-gray-500">Add multiple color shades, and attach multiple photos (URL or Upload from PC/Phone) for each color.</p>
-                                </div>
-                                <button type="button" onclick="window.addEditorVariant()" class="px-3.5 py-1.5 rounded-full bg-forest text-gold hover:bg-terracotta hover:text-white font-bold text-xs transition shadow-2xs cursor-pointer">
-                                    + Add Color Shade
-                                </button>
-                            </div>
-
-                            <div id="admin-variants-container" class="space-y-3.5 max-h-[420px] overflow-y-auto pr-1">
-                                <!-- Populated via JS -->
-                            </div>
-                        </div>
-
-                        <div class="flex gap-2 pt-2">
-                            <button type="submit" id="admin-save-prod-btn" class="flex-1 py-3.5 rounded-full bg-terracotta hover:bg-forest text-white font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer">
-                                Save & Sync Product Live
-                            </button>
-                            <button type="button" onclick="window.resetAdminForm()" class="px-4 py-3.5 rounded-full border border-sand text-gray-600 hover:bg-sand text-xs font-semibold transition">
-                                Reset
-                            </button>
-                        </div>
+                    <form onsubmit="window.handleAddCategory(event)" class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+                        <input 
+                            type="text" 
+                            id="new-category-input" 
+                            required 
+                            placeholder="New category name (e.g. Mirrors & Clocks)" 
+                            class="px-4 py-2.5 rounded-xl border border-sand bg-cream/60 text-xs sm:text-sm focus:outline-none focus:border-terracotta w-full sm:w-64"
+                        >
+                        <button type="submit" class="px-4 py-2.5 rounded-xl bg-forest hover:bg-terracotta text-cream text-xs font-bold uppercase tracking-wider transition shrink-0 cursor-pointer">
+                            + Add Category
+                        </button>
                     </form>
+                </div>
+
+                <div id="admin-categories-list" class="flex flex-wrap items-center gap-2.5">
+                    <!-- Populated via JS -->
                 </div>
             </div>
 
-            <!-- Right Column: Live Inventory List with Color Swatch Previews -->
-            <div class="lg:col-span-7 space-y-4">
-                <div class="bg-white rounded-3xl border border-sand p-6 shadow-soft">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-sand">
-                        <div>
-                            <h3 class="font-serif text-2xl font-bold text-forest">Live Catalog Inventory</h3>
-                            <p class="text-xs text-gray-500">Changes sync automatically to your Google Sheet Cloud DB and all customer devices.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Left Column: Product & Multi-Color Gallery Builder -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-3xl border border-sand p-6 shadow-soft">
+                        <div class="flex items-center justify-between border-b border-sand pb-3 mb-4">
+                            <h3 id="admin-form-title" class="font-serif text-2xl font-bold text-forest">Add New Product</h3>
+                            <button type="button" onclick="window.resetAdminForm()" class="text-xs font-bold text-terracotta hover:underline">
+                                + Clear / New
+                            </button>
                         </div>
-                        <button type="button" onclick="window.resetDemoData()" class="px-3.5 py-1.5 rounded-full border border-terracotta/40 text-terracotta hover:bg-terracotta hover:text-white text-xs font-bold transition">
-                            Restore Default 8 Products
-                        </button>
-                    </div>
 
-                    <div id="admin-inventory-list" class="space-y-3.5">
-                        <!-- Populated via JS -->
+                        <form id="admin-product-form" onsubmit="window.saveAdminProduct(event)" class="space-y-3.5 text-xs sm:text-sm">
+                            <input type="hidden" id="admin-prod-id">
+                            
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Product Name *</label>
+                                <input type="text" id="admin-prod-name" required placeholder="e.g. Vintage Pleated Table Lamp" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Category *</label>
+                                    <select id="admin-prod-cat" required class="w-full px-3 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                        <!-- Populated dynamically via JS from categories -->
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Highlight Badge</label>
+                                    <input type="text" id="admin-prod-badge" placeholder="Bestseller / 3 Shades" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-2.5">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Price (৳) *</label>
+                                    <input type="number" id="admin-prod-price" required min="50" placeholder="1650" class="w-full px-3 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Old Price (৳)</label>
+                                    <input type="number" id="admin-prod-oldprice" min="0" placeholder="2100" class="w-full px-3 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Stock Qty *</label>
+                                    <input type="number" id="admin-prod-stock" required min="0" placeholder="18" class="w-full px-3 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Material</label>
+                                    <input type="text" id="admin-prod-material" placeholder="Ceramic & Pleated Linen" class="w-full px-3 py-2 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Dimensions</label>
+                                    <input type="text" id="admin-prod-dims" placeholder="33cm x 24cm" class="w-full px-3 py-2 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Product Description *</label>
+                                <textarea id="admin-prod-desc" rows="2" required placeholder="Describe the warm glow, finish, and styling..." class="w-full px-3.5 py-2 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta"></textarea>
+                            </div>
+
+                            <!-- MULTI-COLOR & MULTI-PHOTO BUILDER STUDIO -->
+                            <div class="p-4 rounded-2xl bg-cream border-2 border-gold/40 space-y-3">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <div>
+                                        <span class="text-xs font-bold uppercase text-forest flex items-center gap-1.5">
+                                            <i class="ph-fill ph-palette text-terracotta text-base"></i> Color Variants & Multi-Photo Gallery
+                                        </span>
+                                        <p class="text-[11px] text-gray-500">Add multiple color shades, and attach multiple photos (URL or Upload from PC/Phone) for each color.</p>
+                                    </div>
+                                    <button type="button" onclick="window.addEditorVariant()" class="px-3.5 py-1.5 rounded-full bg-forest text-gold hover:bg-terracotta hover:text-white font-bold text-xs transition shadow-2xs cursor-pointer">
+                                        + Add Color Shade
+                                    </button>
+                                </div>
+
+                                <div id="admin-variants-container" class="space-y-3.5 max-h-[420px] overflow-y-auto pr-1">
+                                    <!-- Populated via JS -->
+                                </div>
+                            </div>
+
+                            <div class="flex gap-2 pt-2">
+                                <button type="submit" id="admin-save-prod-btn" class="flex-1 py-3.5 rounded-full bg-terracotta hover:bg-forest text-white font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer">
+                                    Save & Sync Product Live
+                                </button>
+                                <button type="button" onclick="window.resetAdminForm()" class="px-4 py-3.5 rounded-full border border-sand text-gray-600 hover:bg-sand text-xs font-semibold transition">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column: Live Inventory List with Color Swatch Previews -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="bg-white rounded-3xl border border-sand p-6 shadow-soft">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-sand">
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-forest">Live Catalog Inventory</h3>
+                                <p class="text-xs text-gray-500">Changes sync automatically to your Google Sheet Cloud DB and all customer devices.</p>
+                            </div>
+                            <button type="button" onclick="window.resetDemoData()" class="px-3.5 py-1.5 rounded-full border border-terracotta/40 text-terracotta hover:bg-terracotta hover:text-white text-xs font-bold transition">
+                                Restore Default 8 Products
+                            </button>
+                        </div>
+
+                        <div id="admin-inventory-list" class="space-y-3.5">
+                            <!-- Populated via JS -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 2: CUSTOMER ORDERS (Cloud Sync + CSV Export + WhatsApp) -->
+        <!-- TAB 2: CUSTOMER ORDERS (Cloud Sync + Print + Permanent Delete + Ghost Row Cleaner) -->
         <div id="admin-tab-orders" class="modal-hidden">
             <div class="bg-white rounded-3xl border border-sand p-6 sm:p-8 shadow-soft">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-4 border-b border-sand">
                     <div>
                         <h3 class="font-serif text-2xl sm:text-3xl font-bold text-forest">Customer Order Fulfillment (Real-Time Sync)</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Orders placed on any phone appear here automatically, log to Google Sheets, and can be exported to Excel/CSV.</p>
+                        <p class="text-xs text-gray-500 mt-0.5">Deleting an order permanently blacklists its ID in Cloud DB and removes it from your Google Sheet.</p>
                     </div>
-                    <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <button type="button" onclick="window.purgeCorruptedOrders()" class="px-3.5 py-2 rounded-xl bg-red-50 hover:bg-red-600 text-red-700 hover:text-white border border-red-200 text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 cursor-pointer" title="Clean any blank or ৳0 ghost rows from Web & Sheet">
+                            <i class="ph-bold ph-broom text-sm"></i> Purge Blank/Ghost Rows
+                        </button>
                         <button type="button" onclick="window.exportOrdersToCSV()" class="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-xs cursor-pointer">
-                            <i class="ph-bold ph-download-simple text-sm"></i> Export Orders to CSV / Excel
+                            <i class="ph-bold ph-download-simple text-sm"></i> Export CSV / Excel
                         </button>
                         <div class="flex items-center gap-2">
                             <label for="admin-order-filter" class="text-xs font-bold text-forest uppercase">Status:</label>
@@ -752,16 +773,16 @@
         <div id="admin-tab-settings" class="modal-hidden space-y-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
-                <!-- Left Column: Option A (Google Sheets Webhook + Auto-WhatsApp) & Security -->
+                <!-- Left Column: Google Sheets Webhook & Security -->
                 <div class="lg:col-span-7 space-y-6">
                     
-                    <!-- Option A Card: Google Sheets Webhook & Instant WhatsApp -->
+                    <!-- Option A+B Card: Google Sheets Webhook & Instant WhatsApp -->
                     <div class="bg-white rounded-3xl border border-sand p-6 sm:p-8 shadow-soft space-y-5">
                         <div class="flex items-start justify-between gap-4 border-b border-sand pb-4">
                             <div>
                                 <span class="text-[10px] font-bold uppercase tracking-widest text-terracotta">Option A + B • Full 2-Way Google Sheet Cloud Database</span>
                                 <h3 class="font-serif text-2xl font-bold text-forest mt-0.5">Google Sheets 2-Way Cloud DB & Instant WhatsApp</h3>
-                                <p class="text-xs text-gray-500 mt-1">Syncs both Products & Customer Orders across all devices using your hardcoded Google Sheet Web App URL.</p>
+                                <p class="text-xs text-gray-500 mt-1">Syncs Categories, Products, Customer Orders, and Permanent Order Deletions across all devices.</p>
                             </div>
                             <i class="ph-fill ph-google-logo text-3xl text-emerald-700 shrink-0"></i>
                         </div>
@@ -775,14 +796,15 @@
                                     placeholder="https://script.google.com/macros/s/AKfycb.../exec" 
                                     class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 text-xs font-mono focus:outline-none focus:border-terracotta"
                                 >
-                                <p class="text-[11px] text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-lg p-2 mt-1.5">
-                                    <strong>✅ Hardcoded & Active Across All Devices:</strong> Your Web App URL is permanently embedded in <code>LIVE_DATABASE_URL</code> so every customer's phone connects automatically!
-                                </p>
+                                <div class="text-[11px] text-amber-900 bg-amber-50 border border-amber-300 rounded-xl p-3 mt-2 space-y-1">
+                                    <p class="font-bold">⚠️ Why Deleted Rows Appeared in Your Google Sheet:</p>
+                                    <p>If your Google Sheet still has the old script, it treats <code>deleteOrder</code> as a blank new row. Click <strong>"1. Copy Updated 2-Way Apps Script Code"</strong> below, paste it into your Google Sheet (<strong>Extensions → Apps Script</strong>), and click <strong>Deploy → Manage Deployments → Edit (Pencil) → New Version → Deploy</strong>. Even before you do that, this web app now permanently filters out deleted &amp; blank <code>৳ 0</code> rows!</p>
+                                </div>
                             </div>
 
                             <div class="flex flex-wrap items-center gap-2 pt-1">
-                                <button type="button" onclick="window.copyGoogleAppsScriptCode()" class="px-3.5 py-2 rounded-xl bg-sand hover:bg-forest hover:text-cream text-forest font-bold text-xs transition flex items-center gap-1.5 cursor-pointer">
-                                    <i class="ph-bold ph-copy"></i> 1. Copy 2-Way Database Apps Script Code
+                                <button type="button" onclick="window.copyGoogleAppsScriptCode()" class="px-3.5 py-2 rounded-xl bg-forest hover:bg-terracotta text-gold hover:text-white font-bold text-xs transition flex items-center gap-1.5 cursor-pointer">
+                                    <i class="ph-bold ph-copy"></i> 1. Copy Updated 2-Way Apps Script Code (With Delete Fix)
                                 </button>
                                 <button type="button" onclick="window.testGoogleSheetWebhook()" class="px-3.5 py-2 rounded-xl border border-emerald-700 text-emerald-800 hover:bg-emerald-700 hover:text-white font-bold text-xs transition flex items-center gap-1.5 cursor-pointer">
                                     <i class="ph-bold ph-paper-plane-tilt"></i> 2. Send Test Row to Google Sheet
@@ -792,14 +814,14 @@
                             <div class="pt-3 border-t border-sand space-y-3">
                                 <div>
                                     <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Store WhatsApp Number (Country Code 880) *</label>
-                                    <input type="text" id="set-whatsapp" required placeholder="8801711009988" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                    <input type="text" id="set-whatsapp" required placeholder="8801967232742" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
                                 </div>
 
                                 <label class="flex items-center gap-3 p-3.5 rounded-2xl bg-cream border border-sand cursor-pointer">
                                     <input type="checkbox" id="set-auto-whatsapp" class="w-4 h-4 accent-forest rounded">
                                     <div>
                                         <span class="text-xs font-bold text-forest block">Auto-Launch WhatsApp Invoice on Customer Order Submit</span>
-                                        <span class="text-[11px] text-gray-500">Automatically opens WhatsApp with the pre-filled order invoice as soon as the customer clicks Confirm Order.</span>
+                                        <span class="text-[11px] text-gray-500">Automatically opens WhatsApp (+880 1967-232742) with the pre-filled order invoice when a customer confirms their order.</span>
                                     </div>
                                 </label>
                             </div>
@@ -818,7 +840,7 @@
                         <form onsubmit="window.saveManagerSettings(event)" class="space-y-4 text-sm">
                             <div>
                                 <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Current Manager Password *</label>
-                                <input type="password" id="set-curr-pass" required placeholder="Enter current password (default: Minzo@2026)" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                <input type="password" id="set-curr-pass" required placeholder="Enter current password" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-sand">
@@ -828,7 +850,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold uppercase text-gray-500 mb-1">New Manager Password *</label>
-                                    <input type="text" id="set-new-pass" required minlength="4" placeholder="Minzo@2026" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
+                                    <input type="text" id="set-new-pass" required minlength="4" placeholder="Enter new password" class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 focus:outline-none focus:border-terracotta">
                                 </div>
                             </div>
 
@@ -851,7 +873,7 @@
                         </div>
 
                         <p class="text-xs text-gray-600 leading-relaxed">
-                            Your store syncs Products, Color Galleries, Stock Levels, and Customer Orders via your <strong>Google Sheets 2-Way Cloud Database</strong> across all phones and computers.
+                            Your store syncs Categories, Products, Color Galleries, Stock Levels, Customer Orders, and Deleted Order Tombstones via your <strong>Google Sheets 2-Way Cloud Database</strong>.
                         </p>
 
                         <div class="p-3.5 rounded-2xl bg-cream border border-sand text-xs space-y-1.5">
@@ -866,7 +888,7 @@
                                 Pull Latest from Cloud Now
                             </button>
                             <button type="button" onclick="window.pushCatalogToCloudDatabase(false)" class="px-4 py-2.5 rounded-full border border-forest text-forest hover:bg-forest hover:text-cream text-xs font-bold uppercase tracking-wider transition cursor-pointer">
-                                Force Push Catalog to Cloud
+                                Force Push Catalog & Categories
                             </button>
                         </div>
                     </div>
@@ -874,10 +896,10 @@
                     <div class="bg-sand/70 rounded-3xl border border-sand p-6 space-y-3">
                         <div class="flex items-center gap-2 text-forest font-serif text-xl font-bold">
                             <i class="ph-fill ph-arrows-counter-clockwise text-terracotta text-2xl"></i>
-                            <span>Restore Default 8 Products</span>
+                            <span>Restore Default Catalog & Categories</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">
-                            Restores all 8 signature Minzo Decor products with their multi-color photo galleries both locally and in the cloud database.
+                            Restores all 8 signature Minzo Decor products and the 4 default categories both locally and in the cloud database.
                         </p>
                         <button type="button" onclick="window.resetDemoData()" class="px-5 py-2.5 rounded-full bg-terracotta hover:bg-terracottaDark text-white text-xs font-bold uppercase tracking-wider transition cursor-pointer">
                             Restore Default Catalog Now
@@ -907,17 +929,14 @@
                     </p>
                     <div class="text-xs text-cream/80 space-y-1 pt-1">
                         <p><i class="ph-fill ph-map-pin text-gold mr-1.5"></i> Road 11, Banani, Dhaka-1213, Bangladesh</p>
-                        <p><i class="ph-fill ph-phone text-gold mr-1.5"></i> Hotline / WhatsApp: +880 1711-009988</p>
+                        <p><i class="ph-fill ph-phone text-gold mr-1.5"></i> Hotline / WhatsApp: <a href="https://wa.me/8801967232742" target="_blank" class="text-gold hover:underline font-semibold">+880 1967-232742</a></p>
                     </div>
                 </div>
 
                 <div class="lg:col-span-3 space-y-2.5">
                     <h4 class="font-serif text-lg font-bold text-gold">Collections</h4>
-                    <ul class="space-y-1.5 text-xs text-cream/75">
-                        <li><button type="button" onclick="window.switchView('store'); window.filterByCategory('Table Lamps')" class="hover:text-white transition">Ambient Table Lamps</button></li>
-                        <li><button type="button" onclick="window.switchView('store'); window.filterByCategory('Candle Holders')" class="hover:text-white transition">European Candle Holders</button></li>
-                        <li><button type="button" onclick="window.switchView('store'); window.filterByCategory('Wall Decor')" class="hover:text-white transition">Ginkgo & Macrame Wall Art</button></li>
-                        <li><button type="button" onclick="window.switchView('store'); window.filterByCategory('Vases & Accents')" class="hover:text-white transition">Nordic Ceramic Vases</button></li>
+                    <ul id="footer-category-links" class="space-y-1.5 text-xs text-cream/75">
+                        <!-- Populated dynamically via JS -->
                     </ul>
                 </div>
 
@@ -1116,7 +1135,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Phone Number (BD) *</label>
-                            <input type="tel" id="chk-phone" required placeholder="017XXXXXXXX" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-white text-sm focus:outline-none focus:border-terracotta">
+                            <input type="tel" id="chk-phone" required placeholder="01XXXXXXXXX" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-white text-sm focus:outline-none focus:border-terracotta">
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase text-gray-500 mb-1">District / City *</label>
@@ -1175,7 +1194,7 @@
                         </div>
 
                         <div id="mobile-pay-box" class="modal-hidden mt-3 p-3.5 rounded-2xl bg-sand/70 border border-sand space-y-2 text-xs">
-                            <p class="font-medium text-forest">Send Money / Merchant Payment to: <strong class="text-terracotta">01711-009988</strong></p>
+                            <p class="font-medium text-forest">Send Money / Payment to: <strong class="text-terracotta">+880 1967-232742</strong></p>
                             <input type="text" id="chk-trxid" placeholder="Optional: Enter bKash/Nagad TrxID" class="w-full px-3 py-2 rounded-xl border border-sand bg-white text-xs uppercase focus:outline-none">
                         </div>
                     </div>
@@ -1208,7 +1227,7 @@
             </form>
 
             <!-- STEP 2: PRINTABLE ORDER RECEIPT -->
-            <div id="checkout-receipt-step" class="modal-hidden p-6 sm:p-8">
+            <div id="checkout-receipt-step" class="modal-hidden p-6 sm:p-8 max-h-[84vh] overflow-y-auto">
                 <div id="printable-receipt" class="bg-white p-6 rounded-2xl border border-sand space-y-5">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-sand pb-4">
                         <div>
@@ -1265,14 +1284,14 @@
 
                 <div class="flex flex-wrap items-center justify-between gap-3 mt-6">
                     <div class="flex flex-wrap items-center gap-2">
-                        <button type="button" onclick="window.print()" class="px-4 py-2.5 rounded-full border border-forest text-forest hover:bg-forest hover:text-cream text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5">
-                            <i class="ph ph-printer"></i> Print Receipt
+                        <button type="button" onclick="window.printCurrentReceipt()" class="px-4 py-2.5 rounded-full border border-forest text-forest hover:bg-forest hover:text-cream text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 cursor-pointer">
+                            <i class="ph ph-printer"></i> Print Official 1-Page Receipt
                         </button>
-                        <button id="rcpt-whatsapp-btn" type="button" class="px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#1ebe57] text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-sm">
+                        <button id="rcpt-whatsapp-btn" type="button" class="px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#1ebe57] text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-sm cursor-pointer">
                             <i class="ph-fill ph-whatsapp-logo text-base"></i> Send Instant Invoice to WhatsApp
                         </button>
                     </div>
-                    <button type="button" onclick="window.closeCheckoutModal()" class="px-6 py-2.5 rounded-full bg-terracotta text-white text-xs font-bold uppercase tracking-wider">
+                    <button type="button" onclick="window.closeCheckoutModal()" class="px-6 py-2.5 rounded-full bg-terracotta text-white text-xs font-bold uppercase tracking-wider cursor-pointer">
                         Continue Shopping
                     </button>
                 </div>
@@ -1293,7 +1312,7 @@
             </div>
             <p class="text-xs text-gray-600 mb-4">Enter your Order ID (e.g. <code class="font-mono font-bold text-forest">MZ-84920</code>) or your 11-digit BD mobile number.</p>
             <form onsubmit="window.handleTrackOrder(event)" class="flex gap-2 mb-4">
-                <input type="text" id="track-input" required placeholder="MZ-84920 or 017XXXXXXXX" class="flex-1 px-4 py-2.5 rounded-xl border border-sand bg-white text-xs sm:text-sm focus:outline-none focus:border-terracotta">
+                <input type="text" id="track-input" required placeholder="MZ-84920 or 01XXXXXXXXX" class="flex-1 px-4 py-2.5 rounded-xl border border-sand bg-white text-xs sm:text-sm focus:outline-none focus:border-terracotta">
                 <button type="submit" class="px-5 py-2.5 rounded-xl bg-forest text-cream text-xs font-bold uppercase tracking-wider hover:bg-terracotta transition">
                     Search
                 </button>
@@ -1303,7 +1322,7 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- STORE MANAGER LOGIN MODAL                  -->
+    <!-- STORE MANAGER LOGIN MODAL (Secured)        -->
     <!-- ========================================== -->
     <div id="manager-login-modal" class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs">
         <div class="bg-cream rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-gold/40 animate-fade-in">
@@ -1314,7 +1333,7 @@
                     </div>
                     <div>
                         <h3 class="font-serif text-2xl font-bold leading-none">Store Manager Portal</h3>
-                        <p class="text-[11px] text-cream/70 mt-1">Multi-Color Photo Studio & Order Fulfillment</p>
+                        <p class="text-[11px] text-cream/70 mt-1">Authorized Personnel Only</p>
                     </div>
                 </div>
                 <button type="button" onclick="window.closeAdminLoginModal()" class="p-1.5 rounded-full hover:bg-white/10 text-cream transition">
@@ -1329,23 +1348,12 @@
 
                 <div>
                     <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Manager Username or Email *</label>
-                    <input type="text" id="mgr-login-user" required placeholder="admin@minzodecor.com or mahfuz" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-white text-sm focus:outline-none focus:border-terracotta">
+                    <input type="text" id="mgr-login-user" required autocomplete="username" placeholder="Enter manager username or email" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-white text-sm focus:outline-none focus:border-terracotta">
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Manager Password *</label>
-                    <input type="password" id="mgr-login-pass" required placeholder="••••••••••" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-white text-sm focus:outline-none focus:border-terracotta">
-                </div>
-
-                <div class="p-3.5 rounded-2xl bg-sand/80 border border-sand text-xs space-y-1.5">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-forest">Default Owner Login:</span>
-                        <button type="button" onclick="window.quickFillManagerCredentials()" class="px-2.5 py-1 rounded-lg bg-forest text-gold hover:bg-terracotta hover:text-white font-bold text-[11px] transition cursor-pointer">
-                            ⚡ One-Click Auto-Fill Default Login
-                        </button>
-                    </div>
-                    <p>User: <code class="font-mono font-bold text-forest">admin@minzodecor.com</code> or <code class="font-mono font-bold text-forest">mahfuz</code></p>
-                    <p>Pass: <code class="font-mono font-bold text-terracotta">Minzo@2026</code></p>
+                    <input type="password" id="mgr-login-pass" required autocomplete="current-password" placeholder="Enter manager password" class="w-full px-4 py-2.5 rounded-xl border border-sand bg-white text-sm focus:outline-none focus:border-terracotta">
                 </div>
 
                 <button type="submit" class="w-full py-3.5 rounded-full bg-forest hover:bg-terracotta text-cream font-bold text-xs uppercase tracking-widest transition shadow-lg cursor-pointer">
@@ -1364,9 +1372,16 @@
     <script>
         // =========================================================================
         // ✅ PERMANENTLY EMBEDDED LIVE GOOGLE SHEETS 2-WAY CLOUD DATABASE URL
-        // Every phone & laptop automatically syncs Products & Orders via this URL!
         // =========================================================================
         const LIVE_DATABASE_URL = "https://script.google.com/macros/s/AKfycbwfnsphkEFYC6TOrppEE2du7Z-1VNMFEwLhXDyCnoepbkOKHT-LF8eCYyICAezt9NHn/exec";
+
+        // Default Categories
+        const DEFAULT_CATEGORIES = [
+            'Table Lamps',
+            'Candle Holders',
+            'Wall Decor',
+            'Vases & Accents'
+        ];
 
         // --- 1. PRE-POPULATED SIGNATURE CATALOG WITH MULTI-COLOR SWATCHES & MULTI-PHOTO GALLERIES ---
         const DEFAULT_PRODUCTS = [
@@ -1637,25 +1652,26 @@
             }
         ];
 
-        // --- 2. GLOBAL STATE & STORAGE INITIALIZATION ---
+        // --- 2. GLOBAL STATE & PERMANENT TOMBSTONE REGISTRY ---
+        let categories = [];
         let products = [];
         let cart = [];
         let wishlist = [];
         let orders = [];
+        // Permanent Tombstone list of deleted Order IDs so deleted orders NEVER come back from Cloud/Sheet
+        let deletedOrderIds = [];
+        let lastConfirmedOrder = null;
         let activeCategory = 'All';
         let activeSort = 'featured';
         let searchQuery = '';
 
-        // Tracks active color variant index per product card on storefront
         let cardVariantSelection = {};
 
-        // Quick-View Modal state
         let qvProductId = null;
         let qvVariantIdx = 0;
         let qvImageIdx = 0;
         let qvQty = 1;
 
-        // Store Manager Multi-Color Editor state
         let editorVariants = [];
         let isManagerAuthenticated = false;
         let adminOrderStatusFilter = 'All';
@@ -1664,7 +1680,7 @@
             username: 'admin@minzodecor.com',
             altUsername: 'mahfuz',
             password: 'Minzo@2026',
-            whatsapp: '8801711009988',
+            whatsapp: '8801967232742',
             sheetsWebhookUrl: LIVE_DATABASE_URL
         };
         let managerConfig = { ...DEFAULT_MANAGER_CONFIG };
@@ -1677,7 +1693,36 @@
             return '৳ ' + Number(amount || 0).toLocaleString('en-IN');
         };
 
-        // Ensure any product object always has a valid `variants` array with `images[]`
+        // =========================================================================
+        // ORDER SANITIZER: Filters out Deleted Order IDs & Blank `৳ 0` Ghost Rows!
+        // =========================================================================
+        window.isOrderValidAndActive = function(o) {
+            if (!o || !o.orderId) return false;
+            const normId = String(o.orderId).trim().toUpperCase();
+            // 1. Reject if in permanent deleted tombstone list
+            if (deletedOrderIds.includes(normId)) return false;
+            // 2. Reject corrupted ghost rows created by old Google Apps Script (empty customer AND 0 total)
+            const hasCustomer = o.customer && String(o.customer).trim().length > 0 && String(o.customer).trim() !== 'undefined';
+            const hasTotal = Number(o.total || 0) > 0;
+            const hasItems = Array.isArray(o.items) && o.items.length > 0;
+            if (!hasCustomer && !hasTotal && !hasItems) return false;
+            return true;
+        };
+
+        window.cleanAndDedupeOrders = function(rawOrders) {
+            if (!Array.isArray(rawOrders)) return [];
+            const seen = new Set();
+            const result = [];
+            rawOrders.forEach(function(o) {
+                if (!window.isOrderValidAndActive(o)) return;
+                const normId = String(o.orderId).trim().toUpperCase();
+                if (seen.has(normId)) return;
+                seen.add(normId);
+                result.push(o);
+            });
+            return result;
+        };
+
         window.normalizeProduct = function(p) {
             if (!p.variants || !Array.isArray(p.variants) || p.variants.length === 0) {
                 const imgs = (Array.isArray(p.altImages) && p.altImages.length > 0)
@@ -1702,8 +1747,190 @@
             return p;
         };
 
+        window.syncCategoriesWithProducts = function() {
+            products.forEach(function(p) {
+                if (p.category && !categories.includes(p.category)) {
+                    categories.push(p.category);
+                }
+            });
+            localStorage.setItem('minzo_categories_v3', JSON.stringify(categories));
+        };
+
         // =========================================================================
-        // 2-WAY CLOUD DATABASE SYNC ENGINE (GOOGLE SHEETS + ALL DEVICES)
+        // DYNAMIC CATEGORY RENDERING (Updates Header, Mobile Menu, Tabs, Admin, Footer)
+        // =========================================================================
+        window.renderCategoryNavigation = function() {
+            // 1. Storefront Filter Tabs
+            const tabsEl = document.getElementById('category-tabs');
+            if (tabsEl) {
+                const allBtns = ['All'].concat(categories);
+                tabsEl.innerHTML = allBtns.map(function(cat) {
+                    const isActive = activeCategory === cat;
+                    const label = cat === 'All' ? 'All Pieces' : cat;
+                    return `
+                        <button type="button" onclick="window.filterByCategory('${cat.replace(/'/g, "\\'")}')" data-cat="${cat}" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm ${isActive ? 'font-semibold bg-forest text-cream shadow-sm' : 'font-medium bg-cream text-charcoal hover:bg-white'} transition whitespace-nowrap cursor-pointer">
+                            ${label}
+                        </button>
+                    `;
+                }).join('');
+            }
+
+            // 2. Desktop Header Dropdown
+            const dropEl = document.getElementById('desktop-category-dropdown');
+            if (dropEl) {
+                dropEl.innerHTML = categories.map(function(cat) {
+                    const count = products.filter(function(p) { return p.category === cat; }).length;
+                    return `
+                        <button type="button" onclick="window.switchView('store'); window.filterByCategory('${cat.replace(/'/g, "\\'")}')" class="w-full text-left px-4 py-2.5 text-sm hover:bg-cream hover:text-terracotta flex items-center justify-between transition cursor-pointer">
+                            <span><i class="ph ph-sparkle mr-2 text-terracotta"></i>${cat}</span>
+                            <span class="text-xs text-gray-400">${count}</span>
+                        </button>
+                    `;
+                }).join('');
+            }
+
+            // 3. Mobile Menu Category Grid
+            const mobGrid = document.getElementById('mobile-category-grid');
+            if (mobGrid) {
+                mobGrid.innerHTML = categories.map(function(cat) {
+                    return `
+                        <button type="button" onclick="window.toggleMobileMenu(); window.switchView('store'); window.filterByCategory('${cat.replace(/'/g, "\\'")}')" class="text-left p-2.5 rounded-xl bg-sand/70 hover:bg-sand text-sm font-medium truncate">
+                            ✨ ${cat}
+                        </button>
+                    `;
+                }).join('');
+            }
+
+            // 4. Footer Collections Links
+            const footerLinks = document.getElementById('footer-category-links');
+            if (footerLinks) {
+                footerLinks.innerHTML = categories.map(function(cat) {
+                    return `
+                        <li>
+                            <button type="button" onclick="window.switchView('store'); window.filterByCategory('${cat.replace(/'/g, "\\'")}')" class="hover:text-white transition cursor-pointer">
+                                ${cat}
+                            </button>
+                        </li>
+                    `;
+                }).join('');
+            }
+
+            // 5. Admin Product Form Category Select Dropdown
+            const adminCatSelect = document.getElementById('admin-prod-cat');
+            if (adminCatSelect) {
+                const currentVal = adminCatSelect.value;
+                adminCatSelect.innerHTML = categories.map(function(cat) {
+                    return `<option value="${cat}">${cat}</option>`;
+                }).join('');
+                if (currentVal && categories.includes(currentVal)) {
+                    adminCatSelect.value = currentVal;
+                }
+            }
+
+            // 6. Admin Category Manager Pills
+            const adminCatList = document.getElementById('admin-categories-list');
+            if (adminCatList) {
+                adminCatList.innerHTML = categories.map(function(cat, idx) {
+                    const count = products.filter(function(p) { return p.category === cat; }).length;
+                    return `
+                        <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-cream border border-sand text-xs font-semibold text-forest shadow-2xs">
+                            <span>${cat}</span>
+                            <span class="px-2 py-0.5 rounded-full bg-sand text-[10px] text-gray-600">${count} items</span>
+                            <button type="button" onclick="window.handleRenameCategory(${idx})" class="text-forest hover:text-terracotta p-1 cursor-pointer" title="Rename Category">
+                                <i class="ph-bold ph-pencil-simple"></i>
+                            </button>
+                            ${categories.length > 1 ? `
+                                <button type="button" onclick="window.handleDeleteCategory(${idx})" class="text-red-500 hover:text-red-700 p-1 cursor-pointer" title="Delete Category">
+                                    <i class="ph-bold ph-trash"></i>
+                                </button>
+                            ` : ''}
+                        </div>
+                    `;
+                }).join('');
+            }
+        };
+
+        window.handleAddCategory = async function(e) {
+            e.preventDefault();
+            const input = document.getElementById('new-category-input');
+            const newCat = (input.value || '').trim();
+            if (!newCat) return;
+
+            if (categories.some(function(c) { return c.toLowerCase() === newCat.toLowerCase(); })) {
+                window.showToast('Category "' + newCat + '" already exists!', 'error');
+                return;
+            }
+
+            categories.push(newCat);
+            localStorage.setItem('minzo_categories_v3', JSON.stringify(categories));
+            input.value = '';
+            window.renderCategoryNavigation();
+            window.renderAdminPortal();
+            window.showToast('Added category "' + newCat + '" to Storefront & Cloud!');
+            await window.pushCatalogToCloudDatabase(true);
+        };
+
+        window.handleRenameCategory = async function(idx) {
+            const oldName = categories[idx];
+            if (!oldName) return;
+            const updatedName = prompt('Rename category "' + oldName + '" to:', oldName);
+            if (!updatedName || !updatedName.trim() || updatedName.trim() === oldName) return;
+
+            const cleanName = updatedName.trim();
+            categories[idx] = cleanName;
+
+            products.forEach(function(p) {
+                if (p.category === oldName) {
+                    p.category = cleanName;
+                }
+            });
+
+            if (activeCategory === oldName) activeCategory = cleanName;
+
+            localStorage.setItem('minzo_categories_v3', JSON.stringify(categories));
+            localStorage.setItem('minzo_products_v3', JSON.stringify(products));
+            window.renderCategoryNavigation();
+            window.renderCatalog();
+            window.renderAdminPortal();
+            window.showToast('Renamed category to "' + cleanName + '"!');
+            await window.pushCatalogToCloudDatabase(true);
+        };
+
+        window.handleDeleteCategory = async function(idx) {
+            if (categories.length <= 1) {
+                window.showToast('At least 1 category is required.', 'error');
+                return;
+            }
+            const targetCat = categories[idx];
+            const affectedProducts = products.filter(function(p) { return p.category === targetCat; });
+            const fallbackCat = categories.find(function(c, i) { return i !== idx; }) || 'Table Lamps';
+
+            const confirmMsg = affectedProducts.length > 0
+                ? 'Delete category "' + targetCat + '"? (' + affectedProducts.length + ' products in this category will be moved to "' + fallbackCat + '").'
+                : 'Delete category "' + targetCat + '" from storefront?';
+
+            if (!confirm(confirmMsg)) return;
+
+            categories.splice(idx, 1);
+            products.forEach(function(p) {
+                if (p.category === targetCat) {
+                    p.category = fallbackCat;
+                }
+            });
+
+            if (activeCategory === targetCat) activeCategory = 'All';
+
+            localStorage.setItem('minzo_categories_v3', JSON.stringify(categories));
+            localStorage.setItem('minzo_products_v3', JSON.stringify(products));
+            window.renderCategoryNavigation();
+            window.renderCatalog();
+            window.renderAdminPortal();
+            window.showToast('Deleted category "' + targetCat + '"');
+            await window.pushCatalogToCloudDatabase(true);
+        };
+
+        // =========================================================================
+        // 2-WAY CLOUD DATABASE SYNC ENGINE (GOOGLE SHEETS + TOMBSTONE FILTER)
         // =========================================================================
         window.pullFromCloudDatabase = async function(showToastMsg) {
             const dbUrl = window.getActiveDatabaseUrl();
@@ -1717,29 +1944,46 @@
                 const res = await fetch(dbUrl + '?action=syncAll&t=' + Date.now());
                 const data = await res.json();
                 if (data && (data.result === 'success' || data.status === 'success')) {
+                    // Merge Cloud Deleted Order Tombstones with Local Tombstones
+                    if (Array.isArray(data.deletedOrderIds)) {
+                        data.deletedOrderIds.forEach(function(id) {
+                            const norm = String(id).trim().toUpperCase();
+                            if (norm && !deletedOrderIds.includes(norm)) {
+                                deletedOrderIds.push(norm);
+                            }
+                        });
+                        localStorage.setItem('minzo_deleted_orders_v3', JSON.stringify(deletedOrderIds));
+                    }
+
+                    if (Array.isArray(data.categories) && data.categories.length > 0) {
+                        categories = data.categories;
+                        localStorage.setItem('minzo_categories_v3', JSON.stringify(categories));
+                    }
+
                     if (Array.isArray(data.products) && data.products.length > 0) {
                         products = data.products.map(window.normalizeProduct);
                         localStorage.setItem('minzo_products_v3', JSON.stringify(products));
+                        window.syncCategoriesWithProducts();
+                        window.renderCategoryNavigation();
                         window.renderCatalog();
                     } else {
-                        // First run: Seed the 8 default products into the Google Sheet Catalog_DB automatically!
                         await window.pushCatalogToCloudDatabase(true);
                     }
 
-                    if (Array.isArray(data.orders) && data.orders.length > 0) {
-                        orders = data.orders;
+                    if (Array.isArray(data.orders)) {
+                        orders = window.cleanAndDedupeOrders(data.orders);
                         localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
                     }
                     if (dot) dot.className = 'w-2 h-2 rounded-full bg-emerald-400';
                     if (text) text.textContent = '🟢 Live Google Sheet DB Connected';
                     if (settingsStatus) settingsStatus.textContent = '🟢 Connected & Synced Across All Devices';
                     if (isManagerAuthenticated) window.renderAdminPortal();
-                    if (showToastMsg) window.showToast('Pulled latest Products & Orders from Cloud DB!');
+                    if (showToastMsg) window.showToast('Synced latest Categories, Products & Clean Orders!');
                     return true;
                 }
             } catch (err) {
                 console.warn('Cloud DB pull warning:', err);
-                if (showToastMsg) window.showToast('Synced locally. Make sure Apps Script has doGet() deployed.', 'info');
+                if (showToastMsg) window.showToast('Synced locally.', 'info');
             }
             return false;
         };
@@ -1754,10 +1998,12 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({
                         action: 'saveCatalog',
-                        products: products
+                        products: products,
+                        categories: categories,
+                        deletedOrderIds: deletedOrderIds
                     })
                 });
-                if (!silent) window.showToast('Catalog synced live to Google Sheet Cloud DB across all devices!');
+                if (!silent) window.showToast('Catalog, Categories & Deleted List synced to Cloud DB!');
                 return true;
             } catch (err) {
                 console.warn('Cloud catalog push warning:', err);
@@ -1767,6 +2013,21 @@
 
         window.initStore = async function() {
             try {
+                const savedDel = localStorage.getItem('minzo_deleted_orders_v3');
+                if (savedDel) {
+                    const parsedDel = JSON.parse(savedDel);
+                    deletedOrderIds = Array.isArray(parsedDel) ? parsedDel : [];
+                }
+
+                const savedCats = localStorage.getItem('minzo_categories_v3');
+                if (savedCats) {
+                    const parsedCats = JSON.parse(savedCats);
+                    categories = Array.isArray(parsedCats) && parsedCats.length > 0 ? parsedCats : [...DEFAULT_CATEGORIES];
+                } else {
+                    categories = [...DEFAULT_CATEGORIES];
+                    localStorage.setItem('minzo_categories_v3', JSON.stringify(categories));
+                }
+
                 const savedProds = localStorage.getItem('minzo_products_v3');
                 if (savedProds) {
                     const parsed = JSON.parse(savedProds);
@@ -1775,6 +2036,8 @@
                     products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS)).map(window.normalizeProduct);
                     localStorage.setItem('minzo_products_v3', JSON.stringify(products));
                 }
+
+                window.syncCategoriesWithProducts();
 
                 const savedCart = localStorage.getItem('minzo_cart_v3');
                 cart = savedCart ? JSON.parse(savedCart) : [];
@@ -1786,38 +2049,22 @@
                 if (savedMgr) {
                     managerConfig = { ...DEFAULT_MANAGER_CONFIG, ...JSON.parse(savedMgr) };
                 }
+                if (!managerConfig.whatsapp || managerConfig.whatsapp === '8801711009988') {
+                    managerConfig.whatsapp = '8801967232742';
+                }
                 managerConfig.sheetsWebhookUrl = LIVE_DATABASE_URL;
+                localStorage.setItem('minzo_manager_config', JSON.stringify(managerConfig));
 
                 isManagerAuthenticated = sessionStorage.getItem('minzo_mgr_session') === 'authenticated';
 
                 const savedOrders = localStorage.getItem('minzo_orders_v3');
                 if (savedOrders) {
-                    orders = JSON.parse(savedOrders);
+                    orders = window.cleanAndDedupeOrders(JSON.parse(savedOrders));
                 } else {
-                    orders = [
-                        {
-                            orderId: 'MZ-84920',
-                            date: '18 Oct 2026, 7:30 PM',
-                            customer: 'Tasnim Rahman',
-                            phone: '01712345678',
-                            city: 'Dhaka',
-                            address: 'House 22, Road 7A, Dhanmondi',
-                            zone: 'Inside Dhaka (৳70)',
-                            paymentMethod: 'Cash on Delivery',
-                            trxId: 'N/A',
-                            items: [
-                                { name: 'Vintage Pleated Table Lamp', colorName: 'Warm Cream', qty: 1, price: 1650 },
-                                { name: 'Ceramic Nordic Vase', colorName: 'Terracotta Clay', qty: 1, price: 1150 }
-                            ],
-                            subtotal: 2800,
-                            shipping: 70,
-                            total: 2870,
-                            status: 'Confirmed'
-                        }
-                    ];
-                    localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
+                    orders = [];
                 }
             } catch (e) {
+                categories = [...DEFAULT_CATEGORIES];
                 products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS)).map(window.normalizeProduct);
                 cart = [];
                 wishlist = [];
@@ -1825,21 +2072,19 @@
             }
 
             window.updateManagerHeaderBadge();
+            window.renderCategoryNavigation();
             window.renderCatalog();
             window.updateCartUI();
             window.updateWishlistUI();
             window.resetAdminForm();
 
-            // Automatically pull live Products & Orders from Google Sheet DB on every device load!
             await window.pullFromCloudDatabase(false);
 
-            // Auto-refresh Cloud Data every 25 seconds so new orders or product edits appear automatically
             setInterval(function() {
                 window.pullFromCloudDatabase(false);
             }, 25000);
         };
 
-        // Keyboard Shortcut Ctrl + Shift + M for Store Manager Portal
         window.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
                 e.preventDefault();
@@ -1847,7 +2092,7 @@
             }
         });
 
-        // --- 3. STOREFRONT CATALOG RENDERING (With Interactive Color Swatches) ---
+        // --- 3. STOREFRONT CATALOG RENDERING (Balanced Aspect Ratio Cards) ---
         window.renderCatalog = function() {
             const grid = document.getElementById('product-grid');
             const emptyState = document.getElementById('empty-catalog-state');
@@ -1898,19 +2143,19 @@
                 return `
                 <div class="product-card bg-white rounded-3xl border border-sand overflow-hidden shadow-soft hover:shadow-floating transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <!-- Image Box -->
-                        <div class="relative aspect-square overflow-hidden bg-sand/40 cursor-pointer" onclick="window.openQuickView('${prod.id}', ${vIdx})">
+                        <!-- Image Box with Uniform 4:5 Portrait Aspect Ratio -->
+                        <div class="relative aspect-square sm:aspect-[4/5] overflow-hidden bg-sand/40 cursor-pointer" onclick="window.openQuickView('${prod.id}', ${vIdx})">
                             <img 
                                 src="${coverImg}" 
                                 alt="${prod.name} - ${activeVariant.colorName}" 
-                                onerror="this.src='https://placehold.co/600x600/F0EAE1/1E352F?text=Minzo+Decor'"
+                                onerror="this.src='https://placehold.co/600x750/F0EAE1/1E352F?text=Minzo+Decor'"
                                 class="product-img w-full h-full object-cover"
                             >
                             ${prod.badge ? `<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-forest/90 text-gold text-[10px] font-bold uppercase tracking-wider shadow-xs">${prod.badge}</span>` : ''}
 
                             <!-- Multi-Photo & Active Shade Pill -->
-                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full bg-black/70 text-white text-[10px] font-semibold backdrop-blur-xs flex items-center gap-1">
-                                <i class="ph-fill ph-images text-gold"></i> ${photoCount} ${photoCount > 1 ? 'Photos' : 'Photo'} • ${activeVariant.colorName}
+                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full bg-black/70 text-white text-[10px] font-semibold backdrop-blur-xs flex items-center gap-1 max-w-[85%] truncate">
+                                <i class="ph-fill ph-images text-gold shrink-0"></i> ${photoCount} ${photoCount > 1 ? 'Photos' : 'Photo'} • ${activeVariant.colorName}
                             </span>
 
                             <!-- Wishlist Heart -->
@@ -1927,8 +2172,8 @@
                         <!-- Info & Color Swatch Picker -->
                         <div class="p-5 pb-3 space-y-2.5">
                             <div class="flex items-center justify-between text-[11px] text-gray-400 uppercase tracking-wider font-semibold">
-                                <span>${prod.category}</span>
-                                <span class="${outOfStock ? 'text-red-500' : 'text-emerald-700'}">${outOfStock ? 'Out of Stock' : prod.stock + ' in stock'}</span>
+                                <span class="truncate pr-2">${prod.category}</span>
+                                <span class="shrink-0 ${outOfStock ? 'text-red-500' : 'text-emerald-700'}">${outOfStock ? 'Out of Stock' : prod.stock + ' in stock'}</span>
                             </div>
 
                             <h3 onclick="window.openQuickView('${prod.id}', ${vIdx})" class="font-serif text-xl font-bold text-forest hover:text-terracotta cursor-pointer transition line-clamp-1">
@@ -1938,8 +2183,8 @@
                             <!-- Interactive Color Swatches -->
                             <div class="pt-1">
                                 <div class="flex items-center justify-between text-[11px] mb-1.5">
-                                    <span class="text-gray-500">Color: <strong class="text-charcoal">${activeVariant.colorName}</strong></span>
-                                    <span class="text-[10px] font-bold text-terracotta">${prod.variants.length} ${prod.variants.length > 1 ? 'Shades' : 'Shade'}</span>
+                                    <span class="text-gray-500 truncate pr-2">Color: <strong class="text-charcoal">${activeVariant.colorName}</strong></span>
+                                    <span class="text-[10px] font-bold text-terracotta shrink-0">${prod.variants.length} ${prod.variants.length > 1 ? 'Shades' : 'Shade'}</span>
                                 </div>
                                 <div class="flex flex-wrap items-center gap-2">
                                     ${prod.variants.map(function(v, idx) {
@@ -1959,16 +2204,16 @@
                     </div>
 
                     <!-- Price & Add to Bag Footer -->
-                    <div class="px-5 pb-5 pt-3 flex items-center justify-between border-t border-sand/70 mt-2">
-                        <div>
+                    <div class="px-5 pb-5 pt-3 flex items-center justify-between border-t border-sand/70 mt-2 gap-2">
+                        <div class="whitespace-nowrap">
                             <span class="text-lg font-bold text-forest">${window.formatBDT(prod.price)}</span>
                             ${prod.oldPrice ? `<span class="text-xs text-gray-400 line-through ml-1">${window.formatBDT(prod.oldPrice)}</span>` : ''}
                         </div>
-                        <div class="flex items-center gap-1.5">
+                        <div class="flex items-center gap-1.5 shrink-0">
                             <button 
                                 type="button"
                                 onclick="window.openQuickView('${prod.id}', ${vIdx})"
-                                class="px-3 py-2 rounded-full bg-sand hover:bg-forest hover:text-cream text-charcoal text-xs font-semibold transition"
+                                class="px-3 py-2 rounded-full bg-sand hover:bg-forest hover:text-cream text-charcoal text-xs font-semibold transition cursor-pointer"
                                 title="Inspect All Photos & Angles"
                             >
                                 Gallery
@@ -1977,7 +2222,7 @@
                                 type="button"
                                 onclick="window.addToCart('${prod.id}', 1, ${vIdx})" 
                                 ${outOfStock ? 'disabled' : ''}
-                                class="px-3.5 py-2 rounded-full ${outOfStock ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-forest hover:bg-terracotta text-cream'} text-xs font-bold uppercase tracking-wider transition"
+                                class="px-3.5 py-2 rounded-full ${outOfStock ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-forest hover:bg-terracotta text-cream cursor-pointer'} text-xs font-bold uppercase tracking-wider transition"
                             >
                                 + Add
                             </button>
@@ -1995,13 +2240,7 @@
 
         window.filterByCategory = function(category) {
             activeCategory = category;
-            document.querySelectorAll('.cat-btn').forEach(function(btn) {
-                if (btn.dataset.cat === category) {
-                    btn.className = 'cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-forest text-cream shadow-sm';
-                } else {
-                    btn.className = 'cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition whitespace-nowrap bg-cream text-charcoal hover:bg-white';
-                }
-            });
+            window.renderCategoryNavigation();
             window.renderCatalog();
         };
 
@@ -2074,7 +2313,6 @@
                 stockEl.className = 'text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700';
             }
 
-            // Render Color Swatch Buttons
             const swatchesContainer = document.getElementById('qv-color-swatches');
             swatchesContainer.innerHTML = prod.variants.map(function(v, idx) {
                 const isSelected = idx === qvVariantIdx;
@@ -2091,7 +2329,6 @@
                 `;
             }).join('');
 
-            // Render Thumbnails for Selected Color
             const thumbsContainer = document.getElementById('qv-thumbnails');
             thumbsContainer.innerHTML = photos.map(function(imgUrl, idx) {
                 const isActive = idx === qvImageIdx;
@@ -2235,7 +2472,7 @@
             container.innerHTML = cart.map(function(item) {
                 return `
                     <div class="flex gap-3.5 bg-white p-3.5 rounded-2xl border border-sand shadow-2xs">
-                        <img src="${item.image}" alt="${item.name}" class="w-18 h-18 w-16 h-16 rounded-xl object-cover bg-sand shrink-0 border border-sand">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover bg-sand shrink-0 border border-sand">
                         <div class="flex-1 min-w-0">
                             <div class="flex items-start justify-between gap-2">
                                 <h4 class="font-serif font-bold text-forest text-base truncate">${item.name}</h4>
@@ -2350,7 +2587,7 @@
             }
         };
 
-        // --- 6. BANGLADESH CHECKOUT, RECEIPT & ORDER TRACKING ---
+        // --- 6. BANGLADESH CHECKOUT, SINGLE-PAGE PRINTABLE RECEIPT & ORDER TRACKING ---
         window.openCheckoutModal = function() {
             if (cart.length === 0) {
                 window.showToast('Your shopping bag is empty!', 'info');
@@ -2424,6 +2661,112 @@
             }
         };
 
+        // =========================================================================
+        // DEDICATED 1-PAGE INVOICE GENERATOR (Fixes 7-Page Blank Print Issue)
+        // =========================================================================
+        window.printOrderInvoice = function(orderObj) {
+            if (!orderObj) return;
+            const printArea = document.getElementById('dedicated-print-area');
+            if (!printArea) return;
+
+            const rowsHtml = (orderObj.items || []).map(function(i, index) {
+                const lineTotal = Number(i.price || 0) * Number(i.qty || 1);
+                return `
+                    <tr style="border-bottom: 1px solid #e5e0d8;">
+                        <td style="padding: 10px 8px; font-size: 13px; color: #232323;">${index + 1}. <strong>${i.name}</strong> <span style="color: #666;">(Shade: ${i.colorName || 'Signature'})</span></td>
+                        <td style="padding: 10px 8px; text-align: center; font-size: 13px; color: #232323;">${i.qty}</td>
+                        <td style="padding: 10px 8px; text-align: right; font-size: 13px; color: #232323;">${window.formatBDT(i.price)}</td>
+                        <td style="padding: 10px 8px; text-align: right; font-size: 13px; font-weight: 700; color: #1E352F;">${window.formatBDT(lineTotal)}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            printArea.innerHTML = `
+                <div style="max-width: 720px; margin: 0 auto; padding: 28px; border: 2px solid #1E352F; border-radius: 16px; font-family: 'Plus Jakarta Sans', sans-serif; color: #232323; background: #ffffff;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #1E352F; padding-bottom: 16px; margin-bottom: 20px;">
+                        <div>
+                            <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; font-weight: 700; color: #1E352F; letter-spacing: 0.04em;">MINZO DECOR</div>
+                            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: #C86D51; font-weight: 700; margin-top: 2px;">Dhaka • Artisanal Home Decor & Lighting</div>
+                            <div style="font-size: 12px; color: #555; margin-top: 6px;">Road 11, Banani, Dhaka-1213, Bangladesh</div>
+                            <div style="font-size: 12px; color: #555;">Hotline / WhatsApp: <strong>+880 1967-232742</strong> | minzodecor.com</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="display: inline-block; background: #1E352F; color: #FAF7F2; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase;">Official Order Invoice</span>
+                            <div style="font-size: 16px; font-weight: 700; color: #C86D51; margin-top: 8px; font-family: monospace;">${orderObj.orderId}</div>
+                            <div style="font-size: 12px; color: #666; margin-top: 2px;">Date: ${orderObj.date}</div>
+                            <div style="font-size: 12px; font-weight: 600; color: #1E352F; margin-top: 2px;">Status: ${orderObj.status || 'Confirmed'}</div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; background: #FAF7F2; padding: 14px 18px; border-radius: 12px; border: 1px solid #F0EAE1; margin-bottom: 20px; font-size: 12px;">
+                        <div>
+                            <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #888; margin-bottom: 4px;">Billed & Shipped To:</div>
+                            <div style="font-size: 14px; font-weight: 700; color: #1E352F;">${orderObj.customer}</div>
+                            <div style="margin-top: 2px;">Phone: <strong>${orderObj.phone}</strong></div>
+                            <div style="margin-top: 2px;">Address: ${orderObj.address}, ${orderObj.city || ''}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #888; margin-bottom: 4px;">Payment & Delivery Details:</div>
+                            <div style="font-size: 13px; font-weight: 700; color: #1E352F;">Method: ${orderObj.paymentMethod}</div>
+                            ${orderObj.trxId && orderObj.trxId !== 'N/A' ? `<div style="margin-top: 2px;">TrxID: <strong>${orderObj.trxId}</strong></div>` : ''}
+                            <div style="margin-top: 2px;">Delivery Zone: ${orderObj.zone}</div>
+                        </div>
+                    </div>
+
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                        <thead>
+                            <tr style="background: #1E352F; color: #FAF7F2; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;">
+                                <th style="padding: 10px 8px; text-align: left;">Product Description & Shade</th>
+                                <th style="padding: 10px 8px; text-align: center;">Qty</th>
+                                <th style="padding: 10px 8px; text-align: right;">Unit Price</th>
+                                <th style="padding: 10px 8px; text-align: right;">Line Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rowsHtml}
+                        </tbody>
+                    </table>
+
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 16px;">
+                        <div style="font-size: 11px; color: #666; max-width: 340px; line-height: 1.5;">
+                            <strong>100% Break-Proof Guarantee:</strong> Please inspect your parcel in front of the delivery rider upon arrival. For any assistance, reach us on WhatsApp at <strong>+880 1967-232742</strong>.
+                        </div>
+                        <div style="width: 240px; border-top: 2px solid #1E352F; padding-top: 10px; font-size: 13px;">
+                            <div style="display: flex; justify-content: space-between; padding: 3px 0;">
+                                <span>Subtotal:</span>
+                                <strong>${window.formatBDT(orderObj.subtotal)}</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 3px 0;">
+                                <span>Delivery Charge:</span>
+                                <strong>${window.formatBDT(orderObj.shipping)}</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 8px 0 0 0; margin-top: 6px; border-top: 1px solid #ccc; font-size: 16px; font-weight: 700; color: #C86D51;">
+                                <span>Total Payable:</span>
+                                <span>${window.formatBDT(orderObj.total)}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            window.print();
+        };
+
+        window.printCurrentReceipt = function() {
+            if (lastConfirmedOrder) {
+                window.printOrderInvoice(lastConfirmedOrder);
+            } else {
+                window.print();
+            }
+        };
+
+        window.printOrderById = function(orderId) {
+            const ord = orders.find(function(o) { return o.orderId === orderId; });
+            if (ord) {
+                window.printOrderInvoice(ord);
+            }
+        };
+
         window.openTrackOrderModal = function() {
             document.getElementById('track-modal').classList.remove('modal-hidden');
             document.getElementById('track-result-box').classList.add('modal-hidden');
@@ -2467,6 +2810,8 @@
             if (isManagerAuthenticated) {
                 window.switchView('admin');
             } else {
+                document.getElementById('mgr-login-user').value = '';
+                document.getElementById('mgr-login-pass').value = '';
                 document.getElementById('manager-login-error').classList.add('modal-hidden');
                 document.getElementById('manager-login-modal').classList.remove('modal-hidden');
             }
@@ -2476,19 +2821,13 @@
             document.getElementById('manager-login-modal').classList.add('modal-hidden');
         };
 
-        window.quickFillManagerCredentials = function() {
-            document.getElementById('mgr-login-user').value = managerConfig.username || 'admin@minzodecor.com';
-            document.getElementById('mgr-login-pass').value = managerConfig.password || 'Minzo@2026';
-            document.getElementById('manager-login-error').classList.add('modal-hidden');
-        };
-
         window.handleAdminLoginSubmit = function(e) {
             e.preventDefault();
             const u = document.getElementById('mgr-login-user').value.trim().toLowerCase();
             const p = document.getElementById('mgr-login-pass').value.trim();
 
             const validUser = (u === (managerConfig.username || '').toLowerCase() || u === 'admin@minzodecor.com' || u === 'mahfuz');
-            const validPass = (p === managerConfig.password || p === 'Minzo@2026');
+            const validPass = (p === managerConfig.password);
 
             if (validUser && validPass) {
                 isManagerAuthenticated = true;
@@ -2547,10 +2886,10 @@
                 const btn = document.getElementById('tab-btn-' + t);
                 if (t === tabName) {
                     panel.classList.remove('modal-hidden');
-                    btn.className = 'px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-forest text-cream shadow-sm flex items-center gap-2';
+                    btn.className = 'px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-forest text-cream shadow-sm flex items-center gap-2 cursor-pointer';
                 } else {
                     panel.classList.add('modal-hidden');
-                    btn.className = 'px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2';
+                    btn.className = 'px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2 cursor-pointer';
                 }
             });
 
@@ -2558,7 +2897,7 @@
                 document.getElementById('set-curr-pass').value = '';
                 document.getElementById('set-new-user').value = managerConfig.username || 'admin@minzodecor.com';
                 document.getElementById('set-new-pass').value = managerConfig.password || 'Minzo@2026';
-                document.getElementById('set-whatsapp').value = managerConfig.whatsapp || '8801711009988';
+                document.getElementById('set-whatsapp').value = managerConfig.whatsapp || '8801967232742';
                 document.getElementById('set-sheets-url').value = window.getActiveDatabaseUrl();
                 document.getElementById('set-auto-whatsapp').checked = Boolean(managerConfig.autoLaunchWhatsApp);
             }
@@ -2688,7 +3027,6 @@
             window.renderEditorVariants();
         };
 
-        // Compress uploaded image via Canvas so Google Sheet cell (50,000 char limit) never overflows
         window.handleLocalPhotoUpload = function(event, vIdx) {
             const files = Array.from(event.target.files || []);
             if (files.length === 0) return;
@@ -2737,6 +3075,8 @@
             const idEl = document.getElementById('admin-prod-id');
             if (idEl) idEl.value = '';
 
+            window.renderCategoryNavigation();
+
             editorVariants = [
                 {
                     colorName: 'Warm Cream',
@@ -2752,6 +3092,7 @@
             if (!prod) return;
 
             window.switchAdminTab('inventory');
+            window.renderCategoryNavigation();
             document.getElementById('admin-form-title').textContent = 'Edit: ' + prod.name;
             document.getElementById('admin-prod-id').value = prod.id;
             document.getElementById('admin-prod-name').value = prod.name;
@@ -2787,10 +3128,16 @@
                 return;
             }
 
+            const chosenCategory = document.getElementById('admin-prod-cat').value.trim();
+            if (chosenCategory && !categories.includes(chosenCategory)) {
+                categories.push(chosenCategory);
+                localStorage.setItem('minzo_categories_v3', JSON.stringify(categories));
+            }
+
             const newProd = {
                 id: editId || ('minzo-' + Date.now()),
                 name: document.getElementById('admin-prod-name').value.trim(),
-                category: document.getElementById('admin-prod-cat').value,
+                category: chosenCategory,
                 badge: document.getElementById('admin-prod-badge').value.trim(),
                 price: Number(document.getElementById('admin-prod-price').value) || 0,
                 oldPrice: Number(document.getElementById('admin-prod-oldprice').value) || null,
@@ -2811,26 +3158,100 @@
 
             localStorage.setItem('minzo_products_v3', JSON.stringify(products));
             window.resetAdminForm();
+            window.renderCategoryNavigation();
             window.renderCatalog();
             window.renderAdminPortal();
 
-            // Sync to Google Sheet 2-Way Cloud DB
             await window.pushCatalogToCloudDatabase(false);
         };
 
         window.deleteAdminProduct = async function(productId) {
+            if (!confirm('Are you sure you want to delete this product from the catalog?')) return;
             products = products.filter(function(p) { return p.id !== productId; });
             localStorage.setItem('minzo_products_v3', JSON.stringify(products));
+            window.renderCategoryNavigation();
             window.renderCatalog();
             window.renderAdminPortal();
             await window.pushCatalogToCloudDatabase(false);
+        };
+
+        // =========================================================================
+        // PERMANENT ORDER DELETION (Tombstone Registry + Google Sheet Row Deletion)
+        // =========================================================================
+        window.deleteAdminOrder = async function(orderId) {
+            if (!orderId) return;
+            const normId = String(orderId).trim().toUpperCase();
+            if (!confirm('Permanently delete Order ' + orderId + ' from everywhere (Web Portal + Cloud + Google Sheet)?')) {
+                return;
+            }
+
+            // 1. Add to permanent tombstone blacklist so it NEVER returns even if Sheet script is old
+            if (!deletedOrderIds.includes(normId)) {
+                deletedOrderIds.push(normId);
+                localStorage.setItem('minzo_deleted_orders_v3', JSON.stringify(deletedOrderIds));
+            }
+
+            // 2. Remove immediately from local orders array
+            orders = orders.filter(function(o) {
+                return String(o.orderId || '').trim().toUpperCase() !== normId;
+            });
+            localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
+            window.renderAdminPortal();
+
+            // 3. Persist tombstone list in Catalog_DB (works even on old Google Apps Script!)
+            await window.pushCatalogToCloudDatabase(true);
+
+            // 4. Also send deleteOrder command to remove the physical row in Google Sheets (works on updated Apps Script)
+            const dbUrl = window.getActiveDatabaseUrl();
+            if (dbUrl) {
+                try {
+                    await fetch(dbUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify({
+                            action: 'deleteOrder',
+                            orderId: orderId,
+                            deletedOrderIds: deletedOrderIds
+                        })
+                    });
+                } catch (err) {
+                    console.warn('Order delete cloud sync warning:', err);
+                }
+            }
+            window.showToast('Order ' + orderId + ' permanently deleted from everywhere!');
+        };
+
+        window.purgeCorruptedOrders = async function() {
+            orders = window.cleanAndDedupeOrders(orders);
+            localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
+            window.renderAdminPortal();
+
+            const dbUrl = window.getActiveDatabaseUrl();
+            if (dbUrl) {
+                try {
+                    await fetch(dbUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify({
+                            action: 'purgeGhostOrders',
+                            deletedOrderIds: deletedOrderIds
+                        })
+                    });
+                } catch (e) {}
+            }
+            window.showToast('Purged all blank/৳0 ghost rows!');
         };
 
         window.renderAdminPortal = function() {
             if (!isManagerAuthenticated) return;
 
+            window.renderCategoryNavigation();
+            orders = window.cleanAndDedupeOrders(orders);
+
             const totalShades = products.reduce(function(sum, p) { return sum + p.variants.length; }, 0);
-            document.getElementById('admin-stat-products').textContent = products.length;
+            document.getElementById('admin-stat-products').textContent = products.length + ' (' + categories.length + ' Cats)';
             document.getElementById('admin-stat-shades').textContent = totalShades + ' total color shades live';
             document.getElementById('admin-stat-orders').textContent = orders.length;
 
@@ -2877,7 +3298,7 @@
                             <button type="button" onclick="window.editAdminProduct('${prod.id}')" class="px-3.5 py-2 rounded-xl bg-forest text-gold hover:bg-terracotta hover:text-white text-xs font-bold transition cursor-pointer">
                                 Edit Colors & Photos
                             </button>
-                            <button type="button" onclick="window.deleteAdminProduct('${prod.id}')" class="p-2 rounded-xl bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition">
+                            <button type="button" onclick="window.deleteAdminProduct('${prod.id}')" class="p-2 rounded-xl bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition cursor-pointer" title="Delete Product">
                                 <i class="ph ph-trash text-sm"></i>
                             </button>
                         </div>
@@ -2892,7 +3313,7 @@
                 .filter(function(o) { return adminOrderStatusFilter === 'All' || o.status === adminOrderStatusFilter; });
 
             if (filteredOrders.length === 0) {
-                ordersContainer.innerHTML = '<p class="text-xs text-gray-400 text-center py-8">No orders matching "' + adminOrderStatusFilter + '".</p>';
+                ordersContainer.innerHTML = '<p class="text-xs text-gray-400 text-center py-8">No active orders matching "' + adminOrderStatusFilter + '".</p>';
             } else {
                 ordersContainer.innerHTML = filteredOrders.map(function(o) {
                     const cleanPhone = (o.phone || '').replace(/[^0-9]/g, '');
@@ -2917,7 +3338,10 @@
                             </div>
                             <div class="flex flex-wrap md:flex-col items-center md:items-end justify-between gap-2 shrink-0">
                                 <div class="text-base font-bold text-forest">${window.formatBDT(o.total)}</div>
-                                <div class="flex items-center gap-2">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <button type="button" onclick="window.printOrderById('${o.orderId}')" class="px-3 py-1.5 rounded-lg border border-forest text-forest hover:bg-forest hover:text-cream font-bold flex items-center gap-1 transition cursor-pointer" title="Print 1-Page Invoice">
+                                        <i class="ph ph-printer"></i> Print
+                                    </button>
                                     <a href="https://wa.me/${waPhone}?text=${waMsg}" target="_blank" class="px-3 py-1.5 rounded-lg bg-[#25D366] text-white font-bold flex items-center gap-1">
                                         <i class="ph-fill ph-whatsapp-logo"></i> WhatsApp
                                     </a>
@@ -2926,6 +3350,9 @@
                                             return `<option value="${s}" ${o.status === s ? 'selected' : ''}>${s}</option>`;
                                         }).join('')}
                                     </select>
+                                    <button type="button" onclick="window.deleteAdminOrder('${o.orderId}')" class="px-2.5 py-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-600 hover:text-white font-bold flex items-center gap-1 transition cursor-pointer" title="Permanently Delete Order from Web & Google Sheet">
+                                        <i class="ph ph-trash text-sm"></i> Delete
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -2988,7 +3415,9 @@
                     shipping: orderObj.shipping,
                     total: orderObj.total,
                     status: orderObj.status,
-                    products: products
+                    products: products,
+                    categories: categories,
+                    deletedOrderIds: deletedOrderIds
                 };
 
                 await fetch(dbUrl, {
@@ -3049,35 +3478,48 @@
 
         window.copyGoogleAppsScriptCode = function() {
             const scriptCode = [
-                "// MINZO DECOR — FULL 2-WAY CLOUD DATABASE (PRODUCTS + ORDERS)",
+                "// MINZO DECOR — FULL 2-WAY CLOUD DATABASE (CATEGORIES + PRODUCTS + ORDERS + PERMANENT DELETE + GHOST ROW CLEANER)",
                 "function doGet(e) {",
                 "  var ss = SpreadsheetApp.getActiveSpreadsheet();",
                 "  var orderSheet = ss.getSheetByName('Orders') || ss.getSheets()[0];",
                 "  orderSheet.setName('Orders');",
                 "  ensureOrderHeaders(orderSheet);",
+                "  var products = [];",
+                "  var categories = [];",
+                "  var deletedOrderIds = [];",
+                "  var catSheet = ss.getSheetByName('Catalog_DB');",
+                "  if (catSheet && catSheet.getLastRow() > 0) {",
+                "    try { products = JSON.parse(catSheet.getRange(1,1).getValue() || '[]'); } catch(ex) {}",
+                "    try { categories = JSON.parse(catSheet.getRange(2,1).getValue() || '[]'); } catch(ex) {}",
+                "    try { deletedOrderIds = JSON.parse(catSheet.getRange(3,1).getValue() || '[]'); } catch(ex) {}",
+                "  }",
                 "  var rows = orderSheet.getDataRange().getValues();",
                 "  var orders = [];",
                 "  for (var i = 1; i < rows.length; i++) {",
-                "    var r = rows[i]; if (!r[0]) continue;",
+                "    var r = rows[i];",
+                "    var idStr = String(r[0] || '').trim();",
+                "    var custStr = String(r[2] || '').trim();",
+                "    var totNum = Number(r[12]) || 0;",
+                "    if (!idStr || (!custStr && totNum === 0)) continue;",
+                "    if (deletedOrderIds.indexOf(idStr.toUpperCase()) !== -1) continue;",
                 "    var items = []; try { items = JSON.parse(r[14] || '[]'); } catch(ex) {}",
-                "    orders.unshift({ orderId: String(r[0]), date: String(r[1]), customer: String(r[2]), phone: String(r[3]).replace(/^'/,''), city: String(r[4]), address: String(r[5]), zone: String(r[6]), paymentMethod: String(r[7]), trxId: String(r[8]), items: items, subtotal: Number(r[10])||0, shipping: Number(r[11])||0, total: Number(r[12])||0, status: String(r[13])||'Pending', syncedToCloud: true });",
+                "    orders.unshift({ orderId: idStr, date: String(r[1]), customer: custStr, phone: String(r[3]).replace(/^'/,''), city: String(r[4]), address: String(r[5]), zone: String(r[6]), paymentMethod: String(r[7]), trxId: String(r[8]), items: items, subtotal: Number(r[10])||0, shipping: Number(r[11])||0, total: totNum, status: String(r[13])||'Pending', syncedToCloud: true });",
                 "  }",
-                "  var products = [];",
-                "  var catSheet = ss.getSheetByName('Catalog_DB');",
-                "  if (catSheet && catSheet.getLastRow() > 0) {",
-                "    try { products = JSON.parse(catSheet.getRange(1,1).getValue()); } catch(ex) {}",
-                "  }",
-                "  return ContentService.createTextOutput(JSON.stringify({ result: 'success', orders: orders, products: products })).setMimeType(ContentService.MimeType.JSON);",
+                "  return ContentService.createTextOutput(JSON.stringify({ result: 'success', orders: orders, products: products, categories: categories, deletedOrderIds: deletedOrderIds })).setMimeType(ContentService.MimeType.JSON);",
                 "}",
                 "function doPost(e) {",
                 "  var ss = SpreadsheetApp.getActiveSpreadsheet();",
                 "  var orderSheet = ss.getSheetByName('Orders') || ss.getSheets()[0];",
                 "  orderSheet.setName('Orders');",
                 "  ensureOrderHeaders(orderSheet);",
+                "  var catSheet = ss.getSheetByName('Catalog_DB') || ss.insertSheet('Catalog_DB');",
                 "  var data = JSON.parse(e.postData.contents);",
+                "  if (Array.isArray(data.deletedOrderIds)) {",
+                "    catSheet.getRange(3,1).setValue(JSON.stringify(data.deletedOrderIds));",
+                "  }",
                 "  if (data.action === 'saveCatalog') {",
-                "    var catSheet = ss.getSheetByName('Catalog_DB') || ss.insertSheet('Catalog_DB');",
-                "    catSheet.clear(); catSheet.getRange(1,1).setValue(JSON.stringify(data.products || []));",
+                "    catSheet.getRange(1,1).setValue(JSON.stringify(data.products || []));",
+                "    if (Array.isArray(data.categories)) { catSheet.getRange(2,1).setValue(JSON.stringify(data.categories)); }",
                 "    return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);",
                 "  }",
                 "  if (data.action === 'updateOrderStatus') {",
@@ -3085,14 +3527,29 @@
                 "    for (var i = 1; i < rows.length; i++) {",
                 "      if (String(rows[i][0]).trim().toUpperCase() === String(data.orderId).trim().toUpperCase()) {",
                 "        orderSheet.getRange(i + 1, 14).setValue(data.status);",
-                "        return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);",
                 "      }",
                 "    }",
+                "    return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);",
                 "  }",
-                "  orderSheet.appendRow([data.orderId, data.date, data.customer, \"'\" + data.phone, data.city, data.address, data.zone, data.paymentMethod, data.trxId, data.itemsSummary, data.subtotal, data.shipping, data.total, data.status, JSON.stringify(data.items || [])]);",
+                "  if (data.action === 'deleteOrder' || data.action === 'purgeGhostOrders') {",
+                "    var delRows = orderSheet.getDataRange().getValues();",
+                "    var targetId = String(data.orderId || '').trim().toUpperCase();",
+                "    for (var d = delRows.length - 1; d >= 1; d--) {",
+                "      var rowId = String(delRows[d][0] || '').trim().toUpperCase();",
+                "      var rowCust = String(delRows[d][2] || '').trim();",
+                "      var rowTot = Number(delRows[d][12]) || 0;",
+                "      if ((targetId && rowId === targetId) || (!rowCust && rowTot === 0)) {",
+                "        orderSheet.deleteRow(d + 1);",
+                "      }",
+                "    }",
+                "    return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);",
+                "  }",
+                "  if (data.action === 'newOrder' && data.customer && Number(data.total) > 0) {",
+                "    orderSheet.appendRow([data.orderId, data.date, data.customer, \"'\" + data.phone, data.city, data.address, data.zone, data.paymentMethod, data.trxId, data.itemsSummary, data.subtotal, data.shipping, data.total, data.status, JSON.stringify(data.items || [])]);",
+                "  }",
                 "  if (Array.isArray(data.products) && data.products.length > 0) {",
-                "    var cSheet = ss.getSheetByName('Catalog_DB') || ss.insertSheet('Catalog_DB');",
-                "    cSheet.clear(); cSheet.getRange(1,1).setValue(JSON.stringify(data.products));",
+                "    catSheet.getRange(1,1).setValue(JSON.stringify(data.products));",
+                "    if (Array.isArray(data.categories)) { catSheet.getRange(2,1).setValue(JSON.stringify(data.categories)); }",
                 "  }",
                 "  return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);",
                 "}",
@@ -3104,7 +3561,7 @@
             ].join('\n');
 
             navigator.clipboard.writeText(scriptCode);
-            window.showToast('Copied 2-Way Cloud Database Apps Script code!');
+            window.showToast('Copied Updated Apps Script! Paste in Google Sheets > Apps Script > Deploy New Version.');
         };
 
         window.testGoogleSheetWebhook = async function() {
@@ -3112,7 +3569,7 @@
                 orderId: 'MZ-TEST-' + Math.floor(100 + Math.random() * 900),
                 date: new Date().toLocaleString('en-GB'),
                 customer: 'Test Customer (Minzo Decor)',
-                phone: '01711009988',
+                phone: '01967232742',
                 city: 'Dhaka',
                 address: 'Road 11, Banani',
                 zone: 'Inside Dhaka (৳70)',
@@ -3132,7 +3589,7 @@
         window.saveIntegrationSettings = async function(e) {
             e.preventDefault();
             managerConfig.sheetsWebhookUrl = document.getElementById('set-sheets-url').value.trim() || LIVE_DATABASE_URL;
-            managerConfig.whatsapp = document.getElementById('set-whatsapp').value.trim() || '8801711009988';
+            managerConfig.whatsapp = document.getElementById('set-whatsapp').value.trim() || '8801967232742';
             managerConfig.autoLaunchWhatsApp = document.getElementById('set-auto-whatsapp').checked;
             localStorage.setItem('minzo_manager_config', JSON.stringify(managerConfig));
             await window.pushCatalogToCloudDatabase(true);
@@ -3143,7 +3600,7 @@
         window.saveManagerSettings = function(e) {
             e.preventDefault();
             const curr = document.getElementById('set-curr-pass').value.trim();
-            if (curr !== managerConfig.password && curr !== 'Minzo@2026') {
+            if (curr !== managerConfig.password) {
                 window.showToast('Current password is incorrect!', 'error');
                 return;
             }
@@ -3155,9 +3612,14 @@
         };
 
         window.resetDemoData = async function() {
+            if (!confirm('Restore all 8 default products and 4 default categories?')) return;
             localStorage.removeItem('minzo_products_v3');
+            localStorage.removeItem('minzo_categories_v3');
+            categories = [...DEFAULT_CATEGORIES];
             products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS)).map(window.normalizeProduct);
+            localStorage.setItem('minzo_categories_v3', JSON.stringify(categories));
             localStorage.setItem('minzo_products_v3', JSON.stringify(products));
+            window.renderCategoryNavigation();
             window.renderCatalog();
             if (isManagerAuthenticated) window.renderAdminPortal();
             await window.pushCatalogToCloudDatabase(false);
@@ -3221,11 +3683,11 @@
                 syncedToCloud: true
             };
 
+            lastConfirmedOrder = newOrder;
             orders.unshift(newOrder);
             localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
             localStorage.setItem('minzo_products_v3', JSON.stringify(products));
 
-            // Push Order + Updated Product Stock to Google Sheets Cloud DB
             const sheetsOk = await window.postOrderToGoogleSheets(newOrder);
 
             cart = [];
@@ -3275,7 +3737,7 @@
                     return '• ' + i.name + ' [' + i.colorName + '] x' + i.qty + ' = ৳' + (i.price * i.qty);
                 }).join('%0A');
                 const text = '*New Minzo Decor Order ' + orderId + '*%0A*Customer:* ' + name + '%0A*Phone:* ' + phone + '%0A*Address:* ' + address + ', ' + city + '%0A*Zone:* ' + zoneLabel + '%0A*Payment:* ' + paymentMethod + '%0A*Items:*%0A' + itemsLines + '%0A*Total Payable:* ৳' + total;
-                return 'https://wa.me/' + managerConfig.whatsapp + '?text=' + text;
+                return 'https://wa.me/' + (managerConfig.whatsapp || '8801967232742') + '?text=' + text;
             };
 
             const waBtn = document.getElementById('rcpt-whatsapp-btn');
