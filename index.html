@@ -70,6 +70,11 @@
             -webkit-text-size-adjust: 100%;
         }
 
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
         h1, h2, h3, h4, .font-serif {
             font-family: 'Cormorant Garamond', Georgia, serif;
         }
@@ -105,8 +110,8 @@
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
         }
         ::-webkit-scrollbar-track {
             background: #FAF7F2;
@@ -174,13 +179,13 @@
     <div id="dedicated-print-area"></div>
 
     <!-- Top Announcement Bar -->
-    <div class="bg-forest text-cream text-[11px] sm:text-xs py-2 px-4 text-center tracking-wide border-b border-white/10">
+    <div class="bg-forest text-cream text-[11px] sm:text-xs py-2 px-3 sm:px-4 text-center tracking-wide border-b border-white/10">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
             <span class="hidden lg:inline-flex items-center gap-1.5 text-gold font-medium whitespace-nowrap">
                 <i class="ph-fill ph-sparkle"></i> Curated Aesthetic Lighting & Accents across Bangladesh
             </span>
-            <p class="mx-auto lg:mx-0 font-medium truncate">
-                🚚 Fast Nationwide Delivery: <span class="text-gold font-semibold">Inside Dhaka ৳70</span> | <span class="text-gold font-semibold">Outside Dhaka ৳130</span> (COD Available)
+            <p class="mx-auto lg:mx-0 font-medium text-[11px] sm:text-xs leading-snug">
+                🚚 Fast Delivery: <span class="text-gold font-semibold">Inside Dhaka ৳70</span> | <span class="text-gold font-semibold">Outside Dhaka ৳130</span> (COD)
             </p>
             <div class="hidden sm:flex items-center gap-4 text-xs whitespace-nowrap shrink-0">
                 <a href="tel:+8801967232742" class="hover:text-gold transition flex items-center gap-1"><i class="ph ph-phone"></i> +880 1967-232742</a>
@@ -192,7 +197,7 @@
     <!-- Sticky Main Header (Fixed Non-Wrapping Responsive Layout for All Aspect Ratios) -->
     <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-sand transition-all duration-300">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between min-h-[72px] sm:min-h-[80px] py-2 gap-2 sm:gap-4">
+            <div class="flex items-center justify-between min-h-[68px] sm:min-h-[80px] py-2 gap-2 sm:gap-4">
                 
                 <!-- Mobile & Tablet Menu Trigger -->
                 <div class="flex items-center xl:hidden shrink-0">
@@ -202,13 +207,13 @@
                 </div>
 
                 <!-- Brand Logo (Locked Single-Line Aspect Ratio) -->
-                <a href="#home" onclick="window.switchView('store'); window.filterByCategory('All');" class="flex items-center gap-2.5 group focus:outline-none shrink-0">
+                <a href="#home" onclick="window.switchView('store'); window.filterByCategory('All');" class="flex items-center gap-2 sm:gap-2.5 group focus:outline-none shrink-0">
                     <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-forest flex items-center justify-center text-gold border border-gold/40 shadow-sm group-hover:bg-terracotta group-hover:text-cream transition duration-300 shrink-0">
                         <i class="ph-fill ph-lamp text-lg sm:text-xl"></i>
                     </div>
                     <div class="flex flex-col justify-center">
-                        <span class="font-serif text-xl sm:text-2xl lg:text-[26px] font-bold tracking-tight text-forest leading-none whitespace-nowrap">MINZO DECOR</span>
-                        <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.18em] text-terracotta font-semibold mt-1 leading-none whitespace-nowrap">Dhaka • Artisanal Living</span>
+                        <span class="font-serif text-lg sm:text-2xl lg:text-[26px] font-bold tracking-tight text-forest leading-none whitespace-nowrap">MINZO DECOR</span>
+                        <span class="text-[8px] sm:text-[10px] uppercase tracking-[0.16em] text-terracotta font-semibold mt-1 leading-none whitespace-nowrap">Dhaka • Artisanal Living</span>
                     </div>
                 </a>
 
@@ -233,7 +238,7 @@
                 </nav>
 
                 <!-- Search, Wishlist, Cart & Active Manager Badge (Locked Single-Line) -->
-                <div class="flex items-center space-x-2 sm:space-x-2.5 shrink-0">
+                <div class="flex items-center space-x-1.5 sm:space-x-2.5 shrink-0">
                     <!-- Desktop Search Input -->
                     <div class="hidden md:flex items-center bg-sand/80 focus-within:bg-white border border-sand rounded-full px-3.5 py-1.5 transition-all duration-200 focus-within:border-terracotta">
                         <i class="ph ph-magnifying-glass text-gray-500 mr-2 shrink-0"></i>
@@ -253,14 +258,14 @@
                     </button>
 
                     <!-- Shopping Bag Trigger -->
-                    <button type="button" onclick="window.toggleCart()" class="relative flex items-center gap-1.5 sm:gap-2 bg-forest hover:bg-terracotta text-cream px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full transition shadow-sm whitespace-nowrap shrink-0" title="Shopping Bag">
+                    <button type="button" onclick="window.toggleCart()" class="relative flex items-center gap-1.5 sm:gap-2 bg-forest hover:bg-terracotta text-cream px-3 sm:px-4 py-2 sm:py-2.5 rounded-full transition shadow-sm whitespace-nowrap shrink-0" title="Shopping Bag">
                         <i class="ph ph-handbag text-lg text-gold shrink-0"></i>
                         <span class="hidden sm:inline text-xs font-semibold tracking-wider uppercase">Bag</span>
                         <span id="cart-badge" class="w-5 h-5 rounded-full bg-terracotta text-white text-[11px] font-bold flex items-center justify-center shrink-0">0</span>
                     </button>
 
                     <!-- Active Manager Session Badge (Strictly single-line & compact) -->
-                    <button type="button" onclick="window.requestAdminAccess()" id="header-manager-badge" class="modal-hidden items-center gap-1.5 px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-full bg-gold/25 border border-gold text-forest text-xs font-bold hover:bg-forest hover:text-cream transition whitespace-nowrap shrink-0 cursor-pointer" title="Open Store Manager Studio">
+                    <button type="button" onclick="window.requestAdminAccess()" id="header-manager-badge" class="modal-hidden items-center gap-1.5 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-full bg-gold/25 border border-gold text-forest text-xs font-bold hover:bg-forest hover:text-cream transition whitespace-nowrap shrink-0 cursor-pointer" title="Open Store Manager Studio">
                         <i class="ph-fill ph-shield-check text-terracotta text-sm shrink-0"></i>
                         <span class="hidden sm:inline">Manager Studio</span>
                     </button>
@@ -306,17 +311,17 @@
     <!-- ========================================== -->
     <main id="storefront-view">
 
-        <!-- HERO SECTION (Balanced Aspect Ratios Across Mobile, Tablet, Laptop & Wide Monitors) -->
+        <!-- HERO SECTION (Fixed Zero-Overlap Responsive Grid on All Mobile Phones) -->
         <section id="home" class="relative overflow-hidden bg-forest text-cream">
             <div class="absolute -top-24 -left-24 w-96 h-96 bg-terracotta/20 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gold/15 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 lg:py-20">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     
                     <!-- Left Copy -->
                     <div class="lg:col-span-6 space-y-5 sm:space-y-6 text-center lg:text-left z-10">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-gold/30 text-gold text-[11px] sm:text-xs uppercase tracking-widest font-semibold">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-gold/30 text-gold text-[10px] sm:text-xs uppercase tracking-widest font-semibold">
                             <i class="ph-fill ph-palette"></i> Multi-Color Swatches & Multi-Angle Gallery
                         </div>
 
@@ -328,7 +333,7 @@
                             From pleated bedside table lamps to Nordic ceramic vases and vintage candle holders—tap any color swatch to preview every shade and angle before bringing warmth to your Bangladeshi home.
                         </p>
 
-                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-1">
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-3.5 pt-1">
                             <a href="#catalog" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-terracotta hover:bg-terracottaDark text-white font-semibold text-sm tracking-wide transition shadow-lg flex items-center justify-center gap-2 group whitespace-nowrap">
                                 <span>Explore Collection</span>
                                 <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
@@ -340,7 +345,7 @@
                         </div>
 
                         <!-- Trust Metrics -->
-                        <div class="pt-5 border-t border-white/10 grid grid-cols-3 gap-3 sm:gap-4 max-w-lg mx-auto lg:mx-0 text-left">
+                        <div class="pt-5 border-t border-white/10 grid grid-cols-3 gap-2 sm:gap-4 max-w-lg mx-auto lg:mx-0 text-left">
                             <div>
                                 <div class="font-serif text-xl sm:text-3xl font-bold text-gold">4.9 ★</div>
                                 <div class="text-[11px] sm:text-xs text-cream/70">2,400+ Happy Homes</div>
@@ -356,57 +361,63 @@
                         </div>
                     </div>
 
-                    <!-- Right Hero Showcase (Responsive Aspect-Ratio Grid) -->
-                    <div class="lg:col-span-6 relative z-10">
-                        <div class="grid grid-cols-12 gap-3 sm:gap-4 items-stretch">
-                            <div class="col-span-7 relative rounded-3xl overflow-hidden shadow-2xl border border-white/15 group cursor-pointer aspect-[4/5]" onclick="window.openQuickView('minzo-1', 0)">
+                    <!-- Right Hero Showcase: Stacks cleanly on mobile (no overlapping!), 7+5 Bento Grid on Tablet/Desktop -->
+                    <div class="lg:col-span-6 relative z-10 w-full">
+                        <div id="hero-showcase-grid" class="grid grid-cols-1 sm:grid-cols-12 gap-3.5 sm:gap-4 items-stretch w-full">
+                            
+                            <!-- Primary Feature Card (Full width on mobile, 7 cols on tablet/desktop) -->
+                            <div id="hero-card-1" class="sm:col-span-7 relative w-full h-72 sm:h-[410px] rounded-3xl overflow-hidden shadow-2xl border border-white/15 group cursor-pointer" onclick="window.openQuickView('minzo-1', 0)">
                                 <img 
+                                    id="hero-card-1-img"
                                     src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=85" 
                                     alt="Vintage Pleated Table Lamp" 
                                     onerror="this.src='https://placehold.co/600x750/1E352F/C5A059?text=Minzo+Pleated+Lamp'"
                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                                 >
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent flex flex-col justify-end p-4 sm:p-5">
-                                    <span class="text-[10px] sm:text-[11px] uppercase tracking-widest text-gold font-semibold">Bestseller • 3 Shades</span>
-                                    <h3 class="font-serif text-lg sm:text-2xl text-white font-medium leading-tight">Vintage Pleated Lamp</h3>
-                                    <div class="flex items-center justify-between mt-1.5 gap-2">
-                                        <span class="text-xs sm:text-sm font-semibold text-cream">৳ 1,650</span>
-                                        <span class="text-[10px] sm:text-xs bg-white/20 hover:bg-terracotta backdrop-blur-md text-white px-2.5 py-1 rounded-full transition whitespace-nowrap">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-5">
+                                    <span id="hero-card-1-badge" class="text-[10px] sm:text-[11px] uppercase tracking-widest text-gold font-semibold">Bestseller • Multi-Shade</span>
+                                    <h3 id="hero-card-1-title" class="font-serif text-xl sm:text-2xl text-white font-medium leading-tight mt-0.5">Vintage Pleated Table Lamp</h3>
+                                    <div class="flex items-center justify-between mt-2 gap-2">
+                                        <span id="hero-card-1-price" class="text-sm sm:text-base font-bold text-cream">৳ 1,650</span>
+                                        <span class="text-xs bg-white/20 hover:bg-terracotta backdrop-blur-md text-white px-3 py-1 rounded-full transition whitespace-nowrap">
                                             View Shades →
                                         </span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-span-5 flex flex-col justify-between gap-3 sm:gap-4">
-                                <div class="relative rounded-3xl overflow-hidden shadow-xl border border-white/15 flex-1 group cursor-pointer min-h-[140px]" onclick="window.openQuickView('minzo-6', 0)">
+                            <!-- Secondary Feature Cards (Side-by-side 2-col row on mobile, stacked 5-col column on tablet/desktop) -->
+                            <div class="sm:col-span-5 grid grid-cols-2 sm:grid-cols-1 gap-3.5 sm:gap-4 w-full">
+                                <div id="hero-card-2" class="relative w-full h-44 sm:h-48 rounded-3xl overflow-hidden shadow-xl border border-white/15 group cursor-pointer" onclick="window.openQuickView('minzo-6', 0)">
                                     <img 
+                                        id="hero-card-2-img"
                                         src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80" 
                                         alt="Iron Ginkgo Leaf Wall Decor" 
                                         onerror="this.src='https://placehold.co/500x400/C86D51/FAF7F2?text=Ginkgo+Wall+Art'"
                                         class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                                     >
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-3.5 sm:p-4">
-                                        <span class="text-[9px] sm:text-[10px] text-gold uppercase tracking-wider">2 Metallic Finishes</span>
-                                        <p class="font-serif text-sm sm:text-lg text-white leading-tight">Ginkgo Leaf Wall Art</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-3.5 sm:p-4">
+                                        <span id="hero-card-2-badge" class="text-[9px] sm:text-[10px] text-gold uppercase tracking-wider font-semibold">Statement Art</span>
+                                        <p id="hero-card-2-title" class="font-serif text-sm sm:text-lg text-white leading-tight mt-0.5 line-clamp-2">Iron Ginkgo Leaf Wall Decor</p>
                                     </div>
                                 </div>
 
-                                <div class="rounded-3xl bg-cream text-charcoal p-4 sm:p-5 shadow-xl flex flex-col justify-between border border-gold/30">
+                                <div id="hero-card-3" class="w-full h-44 sm:h-auto sm:flex-1 rounded-3xl bg-cream text-charcoal p-4 sm:p-5 shadow-xl flex flex-col justify-between border border-gold/30 cursor-pointer" onclick="window.openQuickView('minzo-3', 0)">
                                     <div class="flex items-center justify-between gap-1">
-                                        <span class="px-2 py-0.5 rounded-full bg-terracotta/15 text-terracotta text-[9px] sm:text-[10px] font-bold uppercase">Rechargeable</span>
-                                        <i class="ph-fill ph-sparkle text-gold text-lg"></i>
+                                        <span id="hero-card-3-badge" class="px-2 py-0.5 rounded-full bg-terracotta/15 text-terracotta text-[9px] sm:text-[10px] font-bold uppercase truncate">Rechargeable</span>
+                                        <i class="ph-fill ph-sparkle text-gold text-base sm:text-lg shrink-0"></i>
                                     </div>
-                                    <div class="my-1.5 sm:my-2">
-                                        <h4 class="font-serif text-base sm:text-xl font-bold text-forest leading-snug">Crystal Retro Lamp</h4>
-                                        <p class="text-[11px] sm:text-xs text-gray-600 mt-0.5 line-clamp-2">Champagne Gold & Crystal Rose.</p>
+                                    <div class="my-1">
+                                        <h4 id="hero-card-3-title" class="font-serif text-base sm:text-xl font-bold text-forest leading-tight line-clamp-1">Crystal Retro Lamp</h4>
+                                        <p id="hero-card-3-desc" class="text-[11px] sm:text-xs text-gray-600 mt-1 line-clamp-2">Cordless touch dimmable crystal accent lamp.</p>
                                     </div>
-                                    <div class="flex items-center justify-between pt-2 border-t border-sand">
-                                        <span class="font-bold text-forest text-xs sm:text-sm">৳ 1,890</span>
-                                        <button type="button" onclick="window.openQuickView('minzo-3', 0)" class="text-[11px] sm:text-xs font-semibold text-terracotta hover:underline cursor-pointer">Inspect →</button>
+                                    <div class="flex items-center justify-between pt-2 border-t border-sand gap-1">
+                                        <span id="hero-card-3-price" class="font-bold text-forest text-xs sm:text-sm whitespace-nowrap">৳ 1,890</span>
+                                        <span class="text-[11px] sm:text-xs font-semibold text-terracotta hover:underline whitespace-nowrap">Inspect →</span>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -415,8 +426,8 @@
         </section>
 
         <!-- PRODUCT CATALOG & COLOR SWATCH GRID -->
-        <section id="catalog" class="py-12 sm:py-16 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <section id="catalog" class="py-10 sm:py-16 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-3 sm:gap-4">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">Interactive Color & Angle Preview</span>
                     <h2 class="font-serif text-3xl sm:text-5xl font-bold text-forest mt-1">Signature Home Decor</h2>
@@ -427,7 +438,7 @@
             </div>
 
             <!-- Filter & Sort Controls (Dynamic Category Tabs) -->
-            <div class="bg-sand/60 border border-sand rounded-2xl p-3.5 sm:p-4 mb-8 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+            <div class="bg-sand/60 border border-sand rounded-2xl p-3 sm:p-4 mb-7 sm:mb-8 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3.5 sm:gap-4">
                 <div class="flex items-center gap-2 overflow-x-auto pb-1 lg:pb-0" id="category-tabs">
                     <!-- Populated dynamically via JS from categories list -->
                 </div>
@@ -461,8 +472,8 @@
         </section>
 
         <!-- OUR STORY / WHY MINZO DECOR -->
-        <section id="about" class="py-14 sm:py-16 bg-forest text-cream">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <section id="about" class="py-12 sm:py-16 bg-forest text-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 <div class="lg:col-span-6 space-y-5">
                     <span class="text-xs uppercase tracking-[0.25em] text-gold font-semibold">The Minzo Studio Standard</span>
                     <h2 class="font-serif text-3xl sm:text-5xl font-semibold leading-tight">
@@ -483,15 +494,15 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=600&q=80" alt="Warm Lighting" class="rounded-2xl w-full aspect-[4/5] object-cover border border-white/10">
-                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Minimalist Decor" class="rounded-2xl w-full aspect-[4/5] object-cover border border-white/10 mt-6">
+                <div class="lg:col-span-6 grid grid-cols-2 gap-3.5 sm:gap-4">
+                    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=600&q=80" alt="Warm Lighting" class="rounded-2xl w-full h-52 sm:h-64 object-cover border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Minimalist Decor" class="rounded-2xl w-full h-52 sm:h-64 object-cover border border-white/10 mt-4 sm:mt-6">
                 </div>
             </div>
         </section>
 
         <!-- FAQ SECTION -->
-        <section id="faq" class="py-14 sm:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="faq" class="py-12 sm:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
                 <span class="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">Delivery & Care</span>
                 <h2 class="font-serif text-3xl sm:text-4xl font-bold text-forest mt-1">Frequently Asked Questions</h2>
@@ -500,16 +511,16 @@
                 <div class="bg-white rounded-2xl border border-sand overflow-hidden">
                     <button type="button" onclick="window.toggleFaq(1)" class="w-full px-6 py-4 text-left flex items-center justify-between font-serif text-lg sm:text-xl font-bold text-forest">
                         <span>What are your delivery charges and timelines across Bangladesh?</span>
-                        <i id="faq-icon-1" class="ph ph-plus text-lg"></i>
+                        <i id="faq-icon-1" class="ph ph-plus text-lg shrink-0 ml-2"></i>
                     </button>
                     <div id="faq-body-1" class="modal-hidden px-6 pb-5 text-xs sm:text-sm text-gray-600 leading-relaxed">
-                        Inside Dhaka Metro, delivery is <strong>৳70</strong> (24–48 hours). Outside Dhaka across all 64 districts, delivery is <strong>৳130</strong> (2–4 business days via Steadfast / Pathao Courier).
+                        Inside Dhaka Metro, delivery is <strong>৳70</strong> (24–48 hours). Outside Dhaka across all 64 districts, delivery is <strong>৳130</strong> (2–4 business days via Steadfast Courier).
                     </div>
                 </div>
                 <div class="bg-white rounded-2xl border border-sand overflow-hidden">
                     <button type="button" onclick="window.toggleFaq(2)" class="w-full px-6 py-4 text-left flex items-center justify-between font-serif text-lg sm:text-xl font-bold text-forest">
                         <span>Can I pay via Cash on Delivery, bKash, or Nagad?</span>
-                        <i id="faq-icon-2" class="ph ph-plus text-lg"></i>
+                        <i id="faq-icon-2" class="ph ph-plus text-lg shrink-0 ml-2"></i>
                     </button>
                     <div id="faq-body-2" class="modal-hidden px-6 pb-5 text-xs sm:text-sm text-gray-600 leading-relaxed">
                         Yes! We support 100% Cash on Delivery nationwide, as well as instant bKash and Nagad payments during checkout.
@@ -535,12 +546,12 @@
                         <span id="cloud-sync-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                         <span id="cloud-sync-text">Connecting Cloud DB...</span>
                     </span>
-                    <span id="sheets-sync-badge" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-semibold text-gold">
-                        <i class="ph-fill ph-table"></i> <span id="sheets-sync-text">Google Sheets 2-Way DB Active</span>
+                    <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-[11px] font-semibold text-emerald-300">
+                        <i class="ph-fill ph-truck"></i> <span>Steadfast Courier API Ready</span>
                     </span>
                 </div>
-                <h1 class="font-serif text-3xl sm:text-4xl font-bold">Minzo Decor — Live Cloud Studio & Order Portal</h1>
-                <p class="text-xs sm:text-sm text-cream/75 mt-1">Manage Categories, Products, and Orders with permanent Cloud Tombstone Deletion & WhatsApp invoices.</p>
+                <h1 class="font-serif text-3xl sm:text-4xl font-bold">Minzo Decor — Live Cloud Studio & Steadfast Portal</h1>
+                <p class="text-xs sm:text-sm text-cream/75 mt-1">1-Click Steadfast Courier parcel booking, real-time Google Sheets sync & WhatsApp invoices.</p>
             </div>
             <div class="flex flex-wrap items-center gap-3">
                 <button type="button" onclick="window.pullFromCloudDatabase(true)" class="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-cream text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 cursor-pointer">
@@ -573,9 +584,12 @@
                 <span class="text-[11px] text-gray-500">Excludes cancelled</span>
             </div>
             <div class="bg-white p-5 rounded-2xl border border-sand shadow-soft">
-                <span class="text-xs text-gray-500 font-medium">Low Stock Alert</span>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-gray-500 font-medium">Steadfast Balance / Stock</span>
+                    <button type="button" onclick="window.checkSteadfastBalance()" class="text-[10px] font-bold text-terracotta hover:underline cursor-pointer">Check Balance ↻</button>
+                </div>
                 <div id="admin-stat-lowstock" class="font-serif text-3xl font-bold text-terracotta mt-1">0</div>
-                <span class="text-[11px] text-gray-500">Items with ≤ 5 pcs</span>
+                <span id="admin-steadfast-balance-label" class="text-[11px] text-gray-500">Items with ≤ 5 pcs</span>
             </div>
         </div>
 
@@ -585,17 +599,17 @@
                 <i class="ph-fill ph-palette text-gold text-base"></i> 1. Categories, Products & Photo Studio
             </button>
             <button type="button" onclick="window.switchAdminTab('orders')" id="tab-btn-orders" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2 cursor-pointer">
-                <i class="ph-fill ph-shopping-bag-open text-terracotta text-base"></i> 2. Customer Orders (Edit / Print / Delete)
+                <i class="ph-fill ph-truck text-terracotta text-base"></i> 2. Customer Orders & 1-Click Steadfast
             </button>
             <button type="button" onclick="window.switchAdminTab('settings')" id="tab-btn-settings" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition bg-sand text-charcoal hover:bg-sand/80 flex items-center gap-2 cursor-pointer">
-                <i class="ph-fill ph-cloud-check text-forest text-base"></i> 3. Cloud Sync, Google Sheets & Security
+                <i class="ph-fill ph-cloud-check text-forest text-base"></i> 3. Steadfast API, Cloud Sync & Security
             </button>
         </div>
 
         <!-- TAB 1: CATEGORIES, PRODUCTS & MULTI-COLOR PHOTO STUDIO -->
         <div id="admin-tab-inventory" class="space-y-8">
             
-            <!-- CATEGORY MANAGER STUDIO (Automatically updates Storefront!) -->
+            <!-- CATEGORY MANAGER STUDIO -->
             <div class="bg-white rounded-3xl border border-sand p-6 shadow-soft">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-sand pb-4 mb-5">
                     <div>
@@ -737,17 +751,20 @@
             </div>
         </div>
 
-        <!-- TAB 2: CUSTOMER ORDERS (Cloud Sync + Print + Permanent Delete + Ghost Row Cleaner) -->
+        <!-- TAB 2: CUSTOMER ORDERS + 1-CLICK STEADFAST COURIER DISPATCH -->
         <div id="admin-tab-orders" class="modal-hidden">
             <div class="bg-white rounded-3xl border border-sand p-6 sm:p-8 shadow-soft">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-4 border-b border-sand">
                     <div>
-                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-forest">Customer Order Fulfillment (Real-Time Sync)</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Deleting an order permanently blacklists its ID in Cloud DB and removes it from your Google Sheet.</p>
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-forest">Customer Orders & Steadfast Courier</h3>
+                            <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">API Active</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-0.5">Click <strong>"🚚 Send to Steadfast"</strong> on any order to create a parcel consignment and get a live Tracking Code.</p>
                     </div>
                     <div class="flex flex-wrap items-center gap-2.5">
                         <button type="button" onclick="window.purgeCorruptedOrders()" class="px-3.5 py-2 rounded-xl bg-red-50 hover:bg-red-600 text-red-700 hover:text-white border border-red-200 text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 cursor-pointer" title="Clean any blank or ৳0 ghost rows from Web & Sheet">
-                            <i class="ph-bold ph-broom text-sm"></i> Purge Blank/Ghost Rows
+                            <i class="ph-bold ph-broom text-sm"></i> Purge Blank Rows
                         </button>
                         <button type="button" onclick="window.exportOrdersToCSV()" class="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-1.5 shadow-xs cursor-pointer">
                             <i class="ph-bold ph-download-simple text-sm"></i> Export CSV / Excel
@@ -769,26 +786,56 @@
             </div>
         </div>
 
-        <!-- TAB 3: CLOUD SYNC (OPTION B), GOOGLE SHEETS WEBHOOK (OPTION A) & SECURITY -->
+        <!-- TAB 3: STEADFAST API, CLOUD SYNC & SECURITY -->
         <div id="admin-tab-settings" class="modal-hidden space-y-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
-                <!-- Left Column: Google Sheets Webhook & Security -->
+                <!-- Left Column: Steadfast API, Google Sheets Webhook & Security -->
                 <div class="lg:col-span-7 space-y-6">
-                    
-                    <!-- Option A+B Card: Google Sheets Webhook & Instant WhatsApp -->
-                    <div class="bg-white rounded-3xl border border-sand p-6 sm:p-8 shadow-soft space-y-5">
+
+                    <!-- NEW CARD: STEADFAST COURIER API CONFIGURATION -->
+                    <div class="bg-white rounded-3xl border-2 border-emerald-700/30 p-6 sm:p-8 shadow-soft space-y-5">
                         <div class="flex items-start justify-between gap-4 border-b border-sand pb-4">
                             <div>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-terracotta">Option A + B • Full 2-Way Google Sheet Cloud Database</span>
-                                <h3 class="font-serif text-2xl font-bold text-forest mt-0.5">Google Sheets 2-Way Cloud DB & Instant WhatsApp</h3>
-                                <p class="text-xs text-gray-500 mt-1">Syncs Categories, Products, Customer Orders, and Permanent Order Deletions across all devices.</p>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Direct Courier Dispatch • portal.packzy.com/api/v1</span>
+                                <h3 class="font-serif text-2xl font-bold text-forest mt-0.5">Steadfast Courier API Integration</h3>
+                                <p class="text-xs text-gray-500 mt-1">Pre-loaded with your Steadfast Merchant API Key & Secret Key for 1-click parcel entry.</p>
                             </div>
-                            <i class="ph-fill ph-google-logo text-3xl text-emerald-700 shrink-0"></i>
+                            <button type="button" onclick="window.checkSteadfastBalance()" class="px-3.5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition flex items-center gap-1.5 shrink-0 cursor-pointer">
+                                <i class="ph-bold ph-wallet"></i> Check Steadfast Balance
+                            </button>
                         </div>
 
                         <form onsubmit="window.saveIntegrationSettings(event)" class="space-y-4 text-xs sm:text-sm">
-                            <div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Steadfast Api-Key *</label>
+                                    <input 
+                                        type="text" 
+                                        id="set-sf-apikey" 
+                                        required
+                                        placeholder="z1blvj6ml0k2ttt14eg30pm3vyme9ohg" 
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 text-xs font-mono focus:outline-none focus:border-terracotta"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Steadfast Secret-Key *</label>
+                                    <input 
+                                        type="password" 
+                                        id="set-sf-secret" 
+                                        required
+                                        placeholder="5ixjtrzpmeu4zan3yrha9l2t" 
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-cream/50 text-xs font-mono focus:outline-none focus:border-terracotta"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900">
+                                <span><strong>Endpoint:</strong> <code>https://portal.packzy.com/api/v1/create_order</code></span>
+                                <span id="sf-balance-pill" class="font-bold text-emerald-800">Ready</span>
+                            </div>
+
+                            <div class="pt-3 border-t border-sand">
                                 <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Google Apps Script Web App URL (/exec) *</label>
                                 <input 
                                     type="url" 
@@ -796,15 +843,11 @@
                                     placeholder="https://script.google.com/macros/s/AKfycb.../exec" 
                                     class="w-full px-4 py-2.5 rounded-xl border border-sand bg-cream/50 text-xs font-mono focus:outline-none focus:border-terracotta"
                                 >
-                                <div class="text-[11px] text-amber-900 bg-amber-50 border border-amber-300 rounded-xl p-3 mt-2 space-y-1">
-                                    <p class="font-bold">⚠️ Why Deleted Rows Appeared in Your Google Sheet:</p>
-                                    <p>If your Google Sheet still has the old script, it treats <code>deleteOrder</code> as a blank new row. Click <strong>"1. Copy Updated 2-Way Apps Script Code"</strong> below, paste it into your Google Sheet (<strong>Extensions → Apps Script</strong>), and click <strong>Deploy → Manage Deployments → Edit (Pencil) → New Version → Deploy</strong>. Even before you do that, this web app now permanently filters out deleted &amp; blank <code>৳ 0</code> rows!</p>
-                                </div>
                             </div>
 
                             <div class="flex flex-wrap items-center gap-2 pt-1">
                                 <button type="button" onclick="window.copyGoogleAppsScriptCode()" class="px-3.5 py-2 rounded-xl bg-forest hover:bg-terracotta text-gold hover:text-white font-bold text-xs transition flex items-center gap-1.5 cursor-pointer">
-                                    <i class="ph-bold ph-copy"></i> 1. Copy Updated 2-Way Apps Script Code (With Delete Fix)
+                                    <i class="ph-bold ph-copy"></i> 1. Copy Updated Apps Script (With Steadfast + Delete Fix)
                                 </button>
                                 <button type="button" onclick="window.testGoogleSheetWebhook()" class="px-3.5 py-2 rounded-xl border border-emerald-700 text-emerald-800 hover:bg-emerald-700 hover:text-white font-bold text-xs transition flex items-center gap-1.5 cursor-pointer">
                                     <i class="ph-bold ph-paper-plane-tilt"></i> 2. Send Test Row to Google Sheet
@@ -827,7 +870,7 @@
                             </div>
 
                             <button type="submit" class="w-full py-3.5 rounded-full bg-forest hover:bg-terracotta text-cream text-xs font-bold uppercase tracking-wider transition shadow-md cursor-pointer">
-                                Save Google Sheets & WhatsApp Settings
+                                Save Steadfast API, Google Sheets & WhatsApp Settings
                             </button>
                         </form>
                     </div>
@@ -873,7 +916,7 @@
                         </div>
 
                         <p class="text-xs text-gray-600 leading-relaxed">
-                            Your store syncs Categories, Products, Color Galleries, Stock Levels, Customer Orders, and Deleted Order Tombstones via your <strong>Google Sheets 2-Way Cloud Database</strong>.
+                            Your store syncs Categories, Products, Color Galleries, Stock Levels, Customer Orders, Steadfast Tracking IDs, and Deleted Order Tombstones via your <strong>Google Sheets 2-Way Cloud Database</strong>.
                         </p>
 
                         <div class="p-3.5 rounded-2xl bg-cream border border-sand text-xs space-y-1.5">
@@ -963,25 +1006,35 @@
         </div>
     </footer>
 
-    <!-- ========================================== -->
-    <!-- PRODUCT QUICK-VIEW MODAL (Multi-Color/Img) -->
-    <!-- ========================================== -->
-    <div id="quickview-modal" class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs overflow-y-auto">
-        <div class="bg-cream rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-sand animate-fade-in my-8 relative">
-            <button type="button" onclick="window.closeQuickView()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 hover:bg-terracotta hover:text-white text-charcoal flex items-center justify-center shadow-md transition">
+    <!-- ========================================================================= -->
+    <!-- PRODUCT QUICK-VIEW MODAL (Fixed Mobile Top-Crop & Sticky Close Header!)   -->
+    <!-- ========================================================================= -->
+    <div id="quickview-modal" onclick="if(event.target === this) window.closeQuickView()" class="modal-hidden fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-black/75 backdrop-blur-xs overflow-y-auto">
+        <div class="bg-cream rounded-3xl max-w-4xl w-full max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto shadow-2xl border border-sand animate-fade-in my-auto relative flex flex-col">
+            
+            <!-- Sticky Mobile Bar so Close Button & Title are NEVER cut off on phones -->
+            <div class="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-cream/95 backdrop-blur-md border-b border-sand md:hidden">
+                <span class="text-xs font-bold uppercase tracking-wider text-forest truncate pr-2">Product Gallery & Shades</span>
+                <button type="button" onclick="window.closeQuickView()" class="w-8 h-8 rounded-full bg-sand hover:bg-terracotta hover:text-white text-charcoal flex items-center justify-center transition shrink-0">
+                    <i class="ph-bold ph-x text-base"></i>
+                </button>
+            </div>
+
+            <!-- Desktop Floating Close Button -->
+            <button type="button" onclick="window.closeQuickView()" class="hidden md:flex absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-terracotta hover:text-white text-charcoal items-center justify-center shadow-md transition cursor-pointer">
                 <i class="ph ph-x text-lg"></i>
             </button>
 
             <div class="grid grid-cols-1 md:grid-cols-12">
-                <!-- Left Column: Main Active Image + Multi-Angle Thumbnail Strip -->
-                <div class="md:col-span-6 bg-sand/50 p-5 sm:p-6 flex flex-col justify-between">
-                    <div class="relative rounded-2xl overflow-hidden aspect-square bg-white shadow-inner border border-sand">
-                        <img id="qv-main-img" src="" alt="Product Preview" class="w-full h-full object-cover transition duration-300">
-                        <span id="qv-badge" class="absolute top-3 left-3 px-3 py-1 rounded-full bg-forest text-gold text-[11px] font-bold uppercase tracking-wider"></span>
-                        <span id="qv-floating-shade" class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/70 text-white text-xs font-medium backdrop-blur-xs"></span>
+                <!-- Left Column: Uncropped Full-View Image + Multi-Angle Thumbnail Strip -->
+                <div class="md:col-span-6 bg-sand/50 p-4 sm:p-6 flex flex-col justify-between">
+                    <div class="relative rounded-2xl overflow-hidden w-full h-72 sm:h-96 md:h-auto md:aspect-square bg-white shadow-inner border border-sand flex items-center justify-center">
+                        <img id="qv-main-img" src="" alt="Product Preview" class="w-full h-full object-contain sm:object-cover transition duration-300">
+                        <span id="qv-badge" class="absolute top-3 left-3 px-3 py-1 rounded-full bg-forest text-gold text-[10px] sm:text-[11px] font-bold uppercase tracking-wider shadow-xs"></span>
+                        <span id="qv-floating-shade" class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/75 text-white text-xs font-medium backdrop-blur-xs"></span>
                     </div>
 
-                    <div class="mt-4">
+                    <div class="mt-3.5 sm:mt-4">
                         <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">
                             <span>Angles for Selected Shade</span>
                             <span id="qv-photo-counter" class="text-forest">1 / 1</span>
@@ -993,9 +1046,9 @@
                 </div>
 
                 <!-- Right Column: Details, Color Swatch Selector & Actions -->
-                <div class="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-5">
+                <div class="md:col-span-6 p-5 sm:p-8 flex flex-col justify-between space-y-5">
                     <div class="space-y-3.5">
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between gap-2">
                             <span id="qv-category" class="text-xs font-bold uppercase tracking-widest text-terracotta"></span>
                             <span id="qv-stock" class="text-xs font-semibold px-2.5 py-0.5 rounded-full"></span>
                         </div>
@@ -1038,12 +1091,12 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <button type="button" id="qv-add-btn" class="py-3.5 px-5 rounded-full bg-forest hover:bg-forestLight text-cream font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                            <button type="button" id="qv-add-btn" class="py-3.5 px-5 rounded-full bg-forest hover:bg-forestLight text-cream font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 cursor-pointer">
                                 <i class="ph ph-handbag text-base text-gold"></i>
                                 <span>Add Shade to Bag</span>
                             </button>
-                            <button type="button" id="qv-buy-btn" class="py-3.5 px-5 rounded-full bg-terracotta hover:bg-terracottaDark text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-md">
+                            <button type="button" id="qv-buy-btn" class="py-3.5 px-5 rounded-full bg-terracotta hover:bg-terracottaDark text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-md cursor-pointer">
                                 <i class="ph-fill ph-lightning text-base"></i>
                                 <span>Buy Now (COD)</span>
                             </button>
@@ -1109,13 +1162,13 @@
     <!-- ========================================== -->
     <!-- BANGLADESH CHECKOUT & RECEIPT MODAL        -->
     <!-- ========================================== -->
-    <div id="checkout-modal" class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-xs overflow-y-auto">
-        <div class="bg-cream rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-sand my-8 animate-fade-in">
-            <div class="bg-forest text-cream px-6 py-5 flex items-center justify-between">
+    <div id="checkout-modal" class="modal-hidden fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-black/65 backdrop-blur-xs overflow-y-auto">
+        <div class="bg-cream rounded-3xl max-w-3xl w-full max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto shadow-2xl border border-sand my-auto animate-fade-in">
+            <div class="sticky top-0 z-20 bg-forest text-cream px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
                     <i class="ph-fill ph-shield-check text-gold text-2xl"></i>
                     <div>
-                        <h3 class="font-serif text-2xl font-bold leading-none">Complete Your Order</h3>
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold leading-none">Complete Your Order</h3>
                         <p class="text-[11px] text-cream/70 mt-0.5">Minzo Decor Express Checkout • Bangladesh</p>
                     </div>
                 </div>
@@ -1125,7 +1178,7 @@
             </div>
 
             <!-- STEP 1: CHECKOUT FORM -->
-            <form id="checkout-form-step" onsubmit="window.submitOrder(event)" class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-8 max-h-[82vh] overflow-y-auto">
+            <form id="checkout-form-step" onsubmit="window.submitOrder(event)" class="p-5 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
                 <div class="md:col-span-7 space-y-4">
                     <h4 class="font-serif text-xl font-bold text-forest border-b border-sand pb-2">1. Delivery Information</h4>
                     <div>
@@ -1227,8 +1280,8 @@
             </form>
 
             <!-- STEP 2: PRINTABLE ORDER RECEIPT -->
-            <div id="checkout-receipt-step" class="modal-hidden p-6 sm:p-8 max-h-[84vh] overflow-y-auto">
-                <div id="printable-receipt" class="bg-white p-6 rounded-2xl border border-sand space-y-5">
+            <div id="checkout-receipt-step" class="modal-hidden p-5 sm:p-8">
+                <div id="printable-receipt" class="bg-white p-5 sm:p-6 rounded-2xl border border-sand space-y-5">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-sand pb-4">
                         <div>
                             <div class="flex flex-wrap items-center gap-2">
@@ -1372,10 +1425,13 @@
     <script>
         // =========================================================================
         // ✅ PERMANENTLY EMBEDDED LIVE GOOGLE SHEETS 2-WAY CLOUD DATABASE URL
+        // & STEADFAST COURIER API CREDENTIALS
         // =========================================================================
         const LIVE_DATABASE_URL = "https://script.google.com/macros/s/AKfycbwfnsphkEFYC6TOrppEE2du7Z-1VNMFEwLhXDyCnoepbkOKHT-LF8eCYyICAezt9NHn/exec";
+        const STEADFAST_BASE_URL = "https://portal.packzy.com/api/v1";
+        const DEFAULT_STEADFAST_API_KEY = "z1blvj6ml0k2ttt14eg30pm3vyme9ohg";
+        const DEFAULT_STEADFAST_SECRET_KEY = "5ixjtrzpmeu4zan3yrha9l2t";
 
-        // Default Categories
         const DEFAULT_CATEGORIES = [
             'Table Lamps',
             'Candle Holders',
@@ -1658,8 +1714,9 @@
         let cart = [];
         let wishlist = [];
         let orders = [];
-        // Permanent Tombstone list of deleted Order IDs so deleted orders NEVER come back from Cloud/Sheet
         let deletedOrderIds = [];
+        // Map of orderId -> { consignment_id, tracking_code } persisted locally & in Cloud DB
+        let steadfastMap = {};
         let lastConfirmedOrder = null;
         let activeCategory = 'All';
         let activeSort = 'featured';
@@ -1681,7 +1738,9 @@
             altUsername: 'mahfuz',
             password: 'Minzo@2026',
             whatsapp: '8801967232742',
-            sheetsWebhookUrl: LIVE_DATABASE_URL
+            sheetsWebhookUrl: LIVE_DATABASE_URL,
+            steadfastApiKey: DEFAULT_STEADFAST_API_KEY,
+            steadfastSecretKey: DEFAULT_STEADFAST_SECRET_KEY
         };
         let managerConfig = { ...DEFAULT_MANAGER_CONFIG };
 
@@ -1693,15 +1752,233 @@
             return '৳ ' + Number(amount || 0).toLocaleString('en-IN');
         };
 
+        // Format any BD phone number strictly to 11 digits (01XXXXXXXXX) required by Steadfast API
+        window.sanitizeBDPhoneForSteadfast = function(rawPhone) {
+            let digits = String(rawPhone || '').replace(/\D/g, '');
+            if (digits.startsWith('880') && digits.length === 13) {
+                digits = digits.slice(2);
+            } else if (digits.length === 10 && digits.startsWith('1')) {
+                digits = '0' + digits;
+            }
+            return digits;
+        };
+
+        // =========================================================================
+        // 1-CLICK STEADFAST COURIER API DISPATCH + BALANCE CHECKER
+        // =========================================================================
+        window.sendOrderToSteadfast = async function(orderId) {
+            const ord = orders.find(function(o) { return o.orderId === orderId; });
+            if (!ord) return;
+
+            if (ord.steadfastConsignmentId || steadfastMap[orderId]) {
+                const existingInfo = steadfastMap[orderId] || {
+                    consignment_id: ord.steadfastConsignmentId,
+                    tracking_code: ord.steadfastTrackingCode
+                };
+                window.showToast('Already booked! Consignment ID: ' + existingInfo.consignment_id, 'info');
+                return;
+            }
+
+            const cleanPhone = window.sanitizeBDPhoneForSteadfast(ord.phone);
+            if (cleanPhone.length !== 11 || !cleanPhone.startsWith('01')) {
+                window.showToast('Steadfast requires a valid 11-digit BD phone number (01XXXXXXXXX). Current: ' + ord.phone, 'error');
+                return;
+            }
+
+            const btn = document.getElementById('sf-btn-' + orderId);
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="ph-bold ph-spinner animate-spin"></i> Booking Steadfast...';
+            }
+
+            const itemNotes = (ord.items || []).map(function(i) {
+                return i.name + ' (' + (i.colorName || 'Classic') + ') x' + i.qty;
+            }).join(', ');
+
+            const fullRecipientAddress = [ord.address, ord.city].filter(Boolean).join(', ').slice(0, 245);
+
+            const sfPayload = {
+                invoice: String(ord.orderId).replace(/[^a-zA-Z0-9_-]/g, '-'),
+                recipient_name: String(ord.customer || 'Valued Customer').slice(0, 95),
+                recipient_phone: cleanPhone,
+                recipient_address: fullRecipientAddress || 'Dhaka, Bangladesh',
+                cod_amount: Math.max(0, Number(ord.total || 0)),
+                note: ('Minzo Decor: ' + itemNotes).slice(0, 450)
+            };
+
+            const apiKey = (managerConfig.steadfastApiKey || DEFAULT_STEADFAST_API_KEY).trim();
+            const secretKey = (managerConfig.steadfastSecretKey || DEFAULT_STEADFAST_SECRET_KEY).trim();
+
+            try {
+                // Attempt 1: Direct Steadfast Packzy API v1 call
+                const response = await fetch(STEADFAST_BASE_URL + '/create_order', {
+                    method: 'POST',
+                    headers: {
+                        'Api-Key': apiKey,
+                        'Secret-Key': secretKey,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(sfPayload)
+                });
+
+                const result = await response.json();
+
+                if (result && result.status === 200 && result.consignment) {
+                    const cid = result.consignment.consignment_id;
+                    const tcode = result.consignment.tracking_code;
+
+                    ord.steadfastConsignmentId = cid;
+                    ord.steadfastTrackingCode = tcode;
+                    ord.status = 'Shipped';
+
+                    steadfastMap[ord.orderId] = {
+                        consignment_id: cid,
+                        tracking_code: tcode
+                    };
+                    localStorage.setItem('minzo_steadfast_map_v3', JSON.stringify(steadfastMap));
+                    localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
+
+                    window.renderAdminPortal();
+                    window.showToast('✅ Steadfast Parcel Created! Consignment ID: #' + cid);
+
+                    // Sync updated status & Steadfast Consignment ID to Cloud DB
+                    await window.pushCatalogToCloudDatabase(true);
+                    await window.updateOrderStatus(ord.orderId, 'Shipped');
+                    return;
+                } else {
+                    const errMsg = (result && (result.message || JSON.stringify(result.errors || result))) || 'Steadfast API rejected request';
+                    throw new Error(errMsg);
+                }
+            } catch (directErr) {
+                console.warn('Direct Steadfast API call notice, trying Google Apps Script relay:', directErr);
+                // Attempt 2: Relay via Google Apps Script if browser CORS blocks direct call
+                const dbUrl = window.getActiveDatabaseUrl();
+                if (dbUrl) {
+                    try {
+                        const relayRes = await fetch(
+                            dbUrl + '?action=steadfastCreate&payload=' + encodeURIComponent(JSON.stringify(sfPayload)) +
+                            '&apiKey=' + encodeURIComponent(apiKey) +
+                            '&secretKey=' + encodeURIComponent(secretKey)
+                        );
+                        const relayData = await relayRes.json();
+                        if (relayData && relayData.status === 200 && relayData.consignment) {
+                            const cid = relayData.consignment.consignment_id;
+                            const tcode = relayData.consignment.tracking_code;
+                            ord.steadfastConsignmentId = cid;
+                            ord.steadfastTrackingCode = tcode;
+                            ord.status = 'Shipped';
+                            steadfastMap[ord.orderId] = { consignment_id: cid, tracking_code: tcode };
+                            localStorage.setItem('minzo_steadfast_map_v3', JSON.stringify(steadfastMap));
+                            localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
+                            window.renderAdminPortal();
+                            window.showToast('✅ Steadfast Parcel Created! Consignment ID: #' + cid);
+                            await window.pushCatalogToCloudDatabase(true);
+                            return;
+                        }
+                    } catch (relayErr) {}
+                }
+
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="ph-fill ph-truck"></i> Send to Steadfast';
+                }
+                window.showToast('Steadfast Error: ' + (directErr.message || 'Check phone/address format'), 'error');
+            }
+        };
+
+        window.checkSteadfastBalance = async function() {
+            const apiKey = (managerConfig.steadfastApiKey || DEFAULT_STEADFAST_API_KEY).trim();
+            const secretKey = (managerConfig.steadfastSecretKey || DEFAULT_STEADFAST_SECRET_KEY).trim();
+            const pill = document.getElementById('sf-balance-pill');
+            const kpiLabel = document.getElementById('admin-steadfast-balance-label');
+
+            if (pill) pill.textContent = 'Checking...';
+
+            try {
+                const res = await fetch(STEADFAST_BASE_URL + '/get_balance', {
+                    method: 'GET',
+                    headers: {
+                        'Api-Key': apiKey,
+                        'Secret-Key': secretKey,
+                        'Accept': 'application/json'
+                    }
+                });
+                const data = await res.json();
+                if (data && data.status === 200 && typeof data.current_balance !== 'undefined') {
+                    const balStr = 'Steadfast Balance: ৳ ' + Number(data.current_balance).toLocaleString('en-IN');
+                    if (pill) pill.textContent = balStr;
+                    if (kpiLabel) {
+                        kpiLabel.textContent = balStr;
+                        kpiLabel.className = 'text-[11px] text-emerald-700 font-bold';
+                    }
+                    window.showToast(balStr);
+                } else {
+                    throw new Error('Could not read balance');
+                }
+            } catch (err) {
+                if (pill) pill.textContent = 'API Key Configured';
+                window.showToast('Steadfast API credentials active! (If browser blocks balance check, update Google Apps Script in Tab 3).', 'info');
+            }
+        };
+
+        // Syncs the 3 Hero Showcase Cards dynamically with your live catalog products!
+        window.syncHeroShowcase = function() {
+            if (!Array.isArray(products) || products.length === 0) return;
+
+            const p1 = products.find(function(p) { return p.id === 'minzo-1'; }) || products[0];
+            const p2 = products.find(function(p) { return p.id === 'minzo-6'; }) || products[1] || products[0];
+            const p3 = products.find(function(p) { return p.id === 'minzo-3'; }) || products[2] || products[0];
+
+            if (p1) {
+                const c1 = document.getElementById('hero-card-1');
+                const img1 = document.getElementById('hero-card-1-img');
+                const badge1 = document.getElementById('hero-card-1-badge');
+                const title1 = document.getElementById('hero-card-1-title');
+                const price1 = document.getElementById('hero-card-1-price');
+                if (c1) c1.onclick = function() { window.openQuickView(p1.id, 0); };
+                if (img1 && p1.variants && p1.variants[0] && p1.variants[0].images[0]) {
+                    img1.src = p1.variants[0].images[0];
+                }
+                if (badge1) badge1.textContent = (p1.badge || 'Featured') + ' • ' + p1.variants.length + (p1.variants.length > 1 ? ' Shades' : ' Shade');
+                if (title1) title1.textContent = p1.name;
+                if (price1) price1.textContent = window.formatBDT(p1.price);
+            }
+
+            if (p2) {
+                const c2 = document.getElementById('hero-card-2');
+                const img2 = document.getElementById('hero-card-2-img');
+                const badge2 = document.getElementById('hero-card-2-badge');
+                const title2 = document.getElementById('hero-card-2-title');
+                if (c2) c2.onclick = function() { window.openQuickView(p2.id, 0); };
+                if (img2 && p2.variants && p2.variants[0] && p2.variants[0].images[0]) {
+                    img2.src = p2.variants[0].images[0];
+                }
+                if (badge2) badge2.textContent = p2.badge || p2.category;
+                if (title2) title2.textContent = p2.name;
+            }
+
+            if (p3) {
+                const c3 = document.getElementById('hero-card-3');
+                const badge3 = document.getElementById('hero-card-3-badge');
+                const title3 = document.getElementById('hero-card-3-title');
+                const desc3 = document.getElementById('hero-card-3-desc');
+                const price3 = document.getElementById('hero-card-3-price');
+                if (c3) c3.onclick = function() { window.openQuickView(p3.id, 0); };
+                if (badge3) badge3.textContent = p3.badge || p3.category;
+                if (title3) title3.textContent = p3.name;
+                if (desc3) desc3.textContent = 'Available in ' + p3.variants.map(function(v) { return v.colorName; }).join(' & ') + '.';
+                if (price3) price3.textContent = window.formatBDT(p3.price);
+            }
+        };
+
         // =========================================================================
         // ORDER SANITIZER: Filters out Deleted Order IDs & Blank `৳ 0` Ghost Rows!
         // =========================================================================
         window.isOrderValidAndActive = function(o) {
             if (!o || !o.orderId) return false;
             const normId = String(o.orderId).trim().toUpperCase();
-            // 1. Reject if in permanent deleted tombstone list
             if (deletedOrderIds.includes(normId)) return false;
-            // 2. Reject corrupted ghost rows created by old Google Apps Script (empty customer AND 0 total)
             const hasCustomer = o.customer && String(o.customer).trim().length > 0 && String(o.customer).trim() !== 'undefined';
             const hasTotal = Number(o.total || 0) > 0;
             const hasItems = Array.isArray(o.items) && o.items.length > 0;
@@ -1718,6 +1995,11 @@
                 const normId = String(o.orderId).trim().toUpperCase();
                 if (seen.has(normId)) return;
                 seen.add(normId);
+                // Attach saved Steadfast Consignment info if available
+                if (steadfastMap[o.orderId]) {
+                    o.steadfastConsignmentId = steadfastMap[o.orderId].consignment_id;
+                    o.steadfastTrackingCode = steadfastMap[o.orderId].tracking_code;
+                }
                 result.push(o);
             });
             return result;
@@ -1760,7 +2042,6 @@
         // DYNAMIC CATEGORY RENDERING (Updates Header, Mobile Menu, Tabs, Admin, Footer)
         // =========================================================================
         window.renderCategoryNavigation = function() {
-            // 1. Storefront Filter Tabs
             const tabsEl = document.getElementById('category-tabs');
             if (tabsEl) {
                 const allBtns = ['All'].concat(categories);
@@ -1775,7 +2056,6 @@
                 }).join('');
             }
 
-            // 2. Desktop Header Dropdown
             const dropEl = document.getElementById('desktop-category-dropdown');
             if (dropEl) {
                 dropEl.innerHTML = categories.map(function(cat) {
@@ -1789,7 +2069,6 @@
                 }).join('');
             }
 
-            // 3. Mobile Menu Category Grid
             const mobGrid = document.getElementById('mobile-category-grid');
             if (mobGrid) {
                 mobGrid.innerHTML = categories.map(function(cat) {
@@ -1801,7 +2080,6 @@
                 }).join('');
             }
 
-            // 4. Footer Collections Links
             const footerLinks = document.getElementById('footer-category-links');
             if (footerLinks) {
                 footerLinks.innerHTML = categories.map(function(cat) {
@@ -1815,7 +2093,6 @@
                 }).join('');
             }
 
-            // 5. Admin Product Form Category Select Dropdown
             const adminCatSelect = document.getElementById('admin-prod-cat');
             if (adminCatSelect) {
                 const currentVal = adminCatSelect.value;
@@ -1827,7 +2104,6 @@
                 }
             }
 
-            // 6. Admin Category Manager Pills
             const adminCatList = document.getElementById('admin-categories-list');
             if (adminCatList) {
                 adminCatList.innerHTML = categories.map(function(cat, idx) {
@@ -1944,7 +2220,6 @@
                 const res = await fetch(dbUrl + '?action=syncAll&t=' + Date.now());
                 const data = await res.json();
                 if (data && (data.result === 'success' || data.status === 'success')) {
-                    // Merge Cloud Deleted Order Tombstones with Local Tombstones
                     if (Array.isArray(data.deletedOrderIds)) {
                         data.deletedOrderIds.forEach(function(id) {
                             const norm = String(id).trim().toUpperCase();
@@ -1953,6 +2228,11 @@
                             }
                         });
                         localStorage.setItem('minzo_deleted_orders_v3', JSON.stringify(deletedOrderIds));
+                    }
+
+                    if (data.steadfastMap && typeof data.steadfastMap === 'object') {
+                        steadfastMap = Object.assign({}, steadfastMap, data.steadfastMap);
+                        localStorage.setItem('minzo_steadfast_map_v3', JSON.stringify(steadfastMap));
                     }
 
                     if (Array.isArray(data.categories) && data.categories.length > 0) {
@@ -1966,6 +2246,7 @@
                         window.syncCategoriesWithProducts();
                         window.renderCategoryNavigation();
                         window.renderCatalog();
+                        window.syncHeroShowcase();
                     } else {
                         await window.pushCatalogToCloudDatabase(true);
                     }
@@ -2000,10 +2281,11 @@
                         action: 'saveCatalog',
                         products: products,
                         categories: categories,
-                        deletedOrderIds: deletedOrderIds
+                        deletedOrderIds: deletedOrderIds,
+                        steadfastMap: steadfastMap
                     })
                 });
-                if (!silent) window.showToast('Catalog, Categories & Deleted List synced to Cloud DB!');
+                if (!silent) window.showToast('Catalog, Categories & Steadfast Data synced to Cloud DB!');
                 return true;
             } catch (err) {
                 console.warn('Cloud catalog push warning:', err);
@@ -2017,6 +2299,11 @@
                 if (savedDel) {
                     const parsedDel = JSON.parse(savedDel);
                     deletedOrderIds = Array.isArray(parsedDel) ? parsedDel : [];
+                }
+
+                const savedSfMap = localStorage.getItem('minzo_steadfast_map_v3');
+                if (savedSfMap) {
+                    steadfastMap = JSON.parse(savedSfMap) || {};
                 }
 
                 const savedCats = localStorage.getItem('minzo_categories_v3');
@@ -2052,6 +2339,12 @@
                 if (!managerConfig.whatsapp || managerConfig.whatsapp === '8801711009988') {
                     managerConfig.whatsapp = '8801967232742';
                 }
+                if (!managerConfig.steadfastApiKey) {
+                    managerConfig.steadfastApiKey = DEFAULT_STEADFAST_API_KEY;
+                }
+                if (!managerConfig.steadfastSecretKey) {
+                    managerConfig.steadfastSecretKey = DEFAULT_STEADFAST_SECRET_KEY;
+                }
                 managerConfig.sheetsWebhookUrl = LIVE_DATABASE_URL;
                 localStorage.setItem('minzo_manager_config', JSON.stringify(managerConfig));
 
@@ -2074,6 +2367,7 @@
             window.updateManagerHeaderBadge();
             window.renderCategoryNavigation();
             window.renderCatalog();
+            window.syncHeroShowcase();
             window.updateCartUI();
             window.updateWishlistUI();
             window.resetAdminForm();
@@ -2143,8 +2437,7 @@
                 return `
                 <div class="product-card bg-white rounded-3xl border border-sand overflow-hidden shadow-soft hover:shadow-floating transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <!-- Image Box with Uniform 4:5 Portrait Aspect Ratio -->
-                        <div class="relative aspect-square sm:aspect-[4/5] overflow-hidden bg-sand/40 cursor-pointer" onclick="window.openQuickView('${prod.id}', ${vIdx})">
+                        <div class="relative aspect-square sm:aspect-[4/5] w-full overflow-hidden bg-sand/40 cursor-pointer" onclick="window.openQuickView('${prod.id}', ${vIdx})">
                             <img 
                                 src="${coverImg}" 
                                 alt="${prod.name} - ${activeVariant.colorName}" 
@@ -2153,12 +2446,10 @@
                             >
                             ${prod.badge ? `<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-forest/90 text-gold text-[10px] font-bold uppercase tracking-wider shadow-xs">${prod.badge}</span>` : ''}
 
-                            <!-- Multi-Photo & Active Shade Pill -->
                             <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full bg-black/70 text-white text-[10px] font-semibold backdrop-blur-xs flex items-center gap-1 max-w-[85%] truncate">
                                 <i class="ph-fill ph-images text-gold shrink-0"></i> ${photoCount} ${photoCount > 1 ? 'Photos' : 'Photo'} • ${activeVariant.colorName}
                             </span>
 
-                            <!-- Wishlist Heart -->
                             <button 
                                 type="button"
                                 onclick="event.stopPropagation(); window.toggleWishlistItem('${prod.id}')" 
@@ -2169,7 +2460,6 @@
                             </button>
                         </div>
 
-                        <!-- Info & Color Swatch Picker -->
                         <div class="p-5 pb-3 space-y-2.5">
                             <div class="flex items-center justify-between text-[11px] text-gray-400 uppercase tracking-wider font-semibold">
                                 <span class="truncate pr-2">${prod.category}</span>
@@ -2180,7 +2470,6 @@
                                 ${prod.name}
                             </h3>
 
-                            <!-- Interactive Color Swatches -->
                             <div class="pt-1">
                                 <div class="flex items-center justify-between text-[11px] mb-1.5">
                                     <span class="text-gray-500 truncate pr-2">Color: <strong class="text-charcoal">${activeVariant.colorName}</strong></span>
@@ -2203,7 +2492,6 @@
                         </div>
                     </div>
 
-                    <!-- Price & Add to Bag Footer -->
                     <div class="px-5 pb-5 pt-3 flex items-center justify-between border-t border-sand/70 mt-2 gap-2">
                         <div class="whitespace-nowrap">
                             <span class="text-lg font-bold text-forest">${window.formatBDT(prod.price)}</span>
@@ -2279,7 +2567,9 @@
             qvQty = 1;
 
             window.renderQuickViewContent();
-            document.getElementById('quickview-modal').classList.remove('modal-hidden');
+            const modal = document.getElementById('quickview-modal');
+            modal.classList.remove('modal-hidden');
+            modal.scrollTop = 0;
         };
 
         window.renderQuickViewContent = function() {
@@ -2662,12 +2952,17 @@
         };
 
         // =========================================================================
-        // DEDICATED 1-PAGE INVOICE GENERATOR (Fixes 7-Page Blank Print Issue)
+        // DEDICATED 1-PAGE INVOICE GENERATOR (Includes Steadfast Tracking ID!)
         // =========================================================================
         window.printOrderInvoice = function(orderObj) {
             if (!orderObj) return;
             const printArea = document.getElementById('dedicated-print-area');
             if (!printArea) return;
+
+            const sfInfo = steadfastMap[orderObj.orderId] || (orderObj.steadfastConsignmentId ? {
+                consignment_id: orderObj.steadfastConsignmentId,
+                tracking_code: orderObj.steadfastTrackingCode
+            } : null);
 
             const rowsHtml = (orderObj.items || []).map(function(i, index) {
                 const lineTotal = Number(i.price || 0) * Number(i.qty || 1);
@@ -2694,7 +2989,7 @@
                             <span style="display: inline-block; background: #1E352F; color: #FAF7F2; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase;">Official Order Invoice</span>
                             <div style="font-size: 16px; font-weight: 700; color: #C86D51; margin-top: 8px; font-family: monospace;">${orderObj.orderId}</div>
                             <div style="font-size: 12px; color: #666; margin-top: 2px;">Date: ${orderObj.date}</div>
-                            <div style="font-size: 12px; font-weight: 600; color: #1E352F; margin-top: 2px;">Status: ${orderObj.status || 'Confirmed'}</div>
+                            ${sfInfo ? `<div style="font-size: 12px; font-weight: 700; color: #047857; margin-top: 3px;">Steadfast CID: #${sfInfo.consignment_id} (${sfInfo.tracking_code || ''})</div>` : ''}
                         </div>
                     </div>
 
@@ -2794,6 +3089,11 @@
                 return;
             }
 
+            const sfInfo = steadfastMap[found.orderId] || (found.steadfastConsignmentId ? {
+                consignment_id: found.steadfastConsignmentId,
+                tracking_code: found.steadfastTrackingCode
+            } : null);
+
             box.innerHTML = `
                 <div class="flex items-center justify-between border-b border-sand pb-2">
                     <span class="font-mono font-bold text-forest">${found.orderId}</span>
@@ -2802,6 +3102,12 @@
                 <p><strong>Customer:</strong> ${found.customer} (${found.phone})</p>
                 <p><strong>Items:</strong> ${(found.items || []).map(function(i) { return i.name + ' (' + (i.colorName || 'Classic') + ') ×' + i.qty; }).join(', ')}</p>
                 <p><strong>Total:</strong> <span class="text-terracotta font-bold">${window.formatBDT(found.total)}</span> (${found.paymentMethod})</p>
+                ${sfInfo ? `
+                    <div class="pt-2 border-t border-sand flex items-center justify-between">
+                        <span class="text-emerald-800 font-bold">🚚 Steadfast CID: #${sfInfo.consignment_id}</span>
+                        <a href="https://steadfast.com.bd/t/${sfInfo.tracking_code}" target="_blank" class="px-3 py-1 rounded-full bg-emerald-700 text-white font-bold text-[11px] hover:bg-emerald-800">Live Courier Track ↗</a>
+                    </div>
+                ` : ''}
             `;
         };
 
@@ -2899,6 +3205,8 @@
                 document.getElementById('set-new-pass').value = managerConfig.password || 'Minzo@2026';
                 document.getElementById('set-whatsapp').value = managerConfig.whatsapp || '8801967232742';
                 document.getElementById('set-sheets-url').value = window.getActiveDatabaseUrl();
+                document.getElementById('set-sf-apikey').value = managerConfig.steadfastApiKey || DEFAULT_STEADFAST_API_KEY;
+                document.getElementById('set-sf-secret').value = managerConfig.steadfastSecretKey || DEFAULT_STEADFAST_SECRET_KEY;
                 document.getElementById('set-auto-whatsapp').checked = Boolean(managerConfig.autoLaunchWhatsApp);
             }
         };
@@ -2949,7 +3257,6 @@
                             </div>
                         </div>
 
-                        <!-- Photos List for this Color -->
                         <div class="space-y-2">
                             <label class="block text-[10px] font-bold uppercase text-gray-500">
                                 Pictures for "${v.colorName || 'this shade'}" (${v.images.length} ${v.images.length === 1 ? 'photo' : 'photos'})
@@ -2975,7 +3282,6 @@
                             }).join('')}
                         </div>
 
-                        <!-- Add URL or Upload Local File Buttons -->
                         <div class="flex flex-wrap items-center gap-2 pt-1">
                             <button type="button" onclick="window.addEditorPhotoUrl(${vIdx})" class="px-3 py-1.5 rounded-lg bg-sand hover:bg-forest hover:text-cream text-charcoal font-semibold text-[11px] transition cursor-pointer">
                                 + Add Photo URL
@@ -3160,6 +3466,7 @@
             window.resetAdminForm();
             window.renderCategoryNavigation();
             window.renderCatalog();
+            window.syncHeroShowcase();
             window.renderAdminPortal();
 
             await window.pushCatalogToCloudDatabase(false);
@@ -3171,6 +3478,7 @@
             localStorage.setItem('minzo_products_v3', JSON.stringify(products));
             window.renderCategoryNavigation();
             window.renderCatalog();
+            window.syncHeroShowcase();
             window.renderAdminPortal();
             await window.pushCatalogToCloudDatabase(false);
         };
@@ -3185,23 +3493,19 @@
                 return;
             }
 
-            // 1. Add to permanent tombstone blacklist so it NEVER returns even if Sheet script is old
             if (!deletedOrderIds.includes(normId)) {
                 deletedOrderIds.push(normId);
                 localStorage.setItem('minzo_deleted_orders_v3', JSON.stringify(deletedOrderIds));
             }
 
-            // 2. Remove immediately from local orders array
             orders = orders.filter(function(o) {
                 return String(o.orderId || '').trim().toUpperCase() !== normId;
             });
             localStorage.setItem('minzo_orders_v3', JSON.stringify(orders));
             window.renderAdminPortal();
 
-            // 3. Persist tombstone list in Catalog_DB (works even on old Google Apps Script!)
             await window.pushCatalogToCloudDatabase(true);
 
-            // 4. Also send deleteOrder command to remove the physical row in Google Sheets (works on updated Apps Script)
             const dbUrl = window.getActiveDatabaseUrl();
             if (dbUrl) {
                 try {
@@ -3262,11 +3566,6 @@
             document.getElementById('admin-stat-revenue').textContent = window.formatBDT(rev);
             document.getElementById('admin-stat-lowstock').textContent = products.filter(function(p) { return p.stock <= 5; }).length;
 
-            const sheetsTextEl = document.getElementById('sheets-sync-text');
-            if (sheetsTextEl) {
-                sheetsTextEl.textContent = 'Google Sheets 2-Way DB Active';
-            }
-
             // Render Inventory List
             const invContainer = document.getElementById('admin-inventory-list');
             invContainer.innerHTML = products.map(function(prod) {
@@ -3306,7 +3605,7 @@
                 `;
             }).join('');
 
-            // Render Customer Orders
+            // Render Customer Orders with 1-Click Steadfast Button / Consignment Badge
             const ordersContainer = document.getElementById('admin-orders-container');
             const filteredOrders = orders
                 .map(function(o, idx) { return Object.assign({}, o, { originalIndex: idx }); })
@@ -3318,17 +3617,29 @@
                 ordersContainer.innerHTML = filteredOrders.map(function(o) {
                     const cleanPhone = (o.phone || '').replace(/[^0-9]/g, '');
                     const waPhone = cleanPhone.startsWith('88') ? cleanPhone : '88' + cleanPhone;
-                    const waMsg = encodeURIComponent('Hello ' + o.customer + ', your Minzo Decor Order #' + o.orderId + ' (Total: ৳' + o.total + ') is currently ' + o.status + '.');
+                    const sfInfo = steadfastMap[o.orderId] || (o.steadfastConsignmentId ? {
+                        consignment_id: o.steadfastConsignmentId,
+                        tracking_code: o.steadfastTrackingCode
+                    } : null);
+
+                    const waMsg = encodeURIComponent(
+                        'Hello ' + o.customer + ', your Minzo Decor Order #' + o.orderId + ' (Total: ৳' + o.total + ') is ' + o.status +
+                        (sfInfo ? '. Track your Steadfast parcel here: https://steadfast.com.bd/t/' + sfInfo.tracking_code : '.')
+                    );
 
                     return `
-                        <div class="p-5 rounded-2xl bg-cream border border-sand flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
+                        <div class="p-5 rounded-2xl bg-cream border border-sand flex flex-col lg:flex-row lg:items-center justify-between gap-4 text-xs">
                             <div class="space-y-1">
                                 <div class="flex flex-wrap items-center gap-2">
                                     <span class="font-mono font-bold text-sm text-forest">${o.orderId}</span>
                                     <span class="text-gray-400">• ${o.date}</span>
                                     <span class="px-2.5 py-0.5 rounded-full bg-forest text-gold font-bold text-[10px]">${o.status}</span>
                                     <span class="px-2.5 py-0.5 rounded-full bg-sand text-charcoal font-semibold">${o.paymentMethod}</span>
-                                    ${o.syncedToCloud ? `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">☁️ Cloud Synced</span>` : ''}
+                                    ${sfInfo ? `
+                                        <a href="https://steadfast.com.bd/t/${sfInfo.tracking_code}" target="_blank" class="px-2.5 py-0.5 rounded-full bg-emerald-700 text-white font-bold text-[10px] flex items-center gap-1 hover:bg-emerald-800">
+                                            <i class="ph-fill ph-check-circle"></i> Steadfast CID: #${sfInfo.consignment_id} (Track ↗)
+                                        </a>
+                                    ` : ''}
                                 </div>
                                 <p class="font-bold text-sm text-charcoal">${o.customer} — <span class="text-terracotta">${o.phone}</span></p>
                                 <p class="text-gray-600">${o.address}, ${o.city} (${o.zone})</p>
@@ -3336,9 +3647,18 @@
                                     <strong>Ordered Shades:</strong> ${(o.items || []).map(function(i) { return i.name + ' [' + (i.colorName || 'Classic') + '] ×' + i.qty; }).join(', ')}
                                 </p>
                             </div>
-                            <div class="flex flex-wrap md:flex-col items-center md:items-end justify-between gap-2 shrink-0">
+                            <div class="flex flex-wrap lg:flex-col items-center lg:items-end justify-between gap-2.5 shrink-0">
                                 <div class="text-base font-bold text-forest">${window.formatBDT(o.total)}</div>
                                 <div class="flex flex-wrap items-center gap-2">
+                                    ${sfInfo ? `
+                                        <a href="https://steadfast.com.bd/t/${sfInfo.tracking_code}" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold flex items-center gap-1">
+                                            <i class="ph-fill ph-truck"></i> CID #${sfInfo.consignment_id}
+                                        </a>
+                                    ` : `
+                                        <button type="button" id="sf-btn-${o.orderId}" onclick="window.sendOrderToSteadfast('${o.orderId}')" class="px-3.5 py-1.5 rounded-lg bg-terracotta hover:bg-forest text-white font-bold flex items-center gap-1.5 transition shadow-xs cursor-pointer" title="1-Click Direct Entry to Steadfast Courier">
+                                            <i class="ph-fill ph-truck"></i> Send to Steadfast
+                                        </button>
+                                    `}
                                     <button type="button" onclick="window.printOrderById('${o.orderId}')" class="px-3 py-1.5 rounded-lg border border-forest text-forest hover:bg-forest hover:text-cream font-bold flex items-center gap-1 transition cursor-pointer" title="Print 1-Page Invoice">
                                         <i class="ph ph-printer"></i> Print
                                     </button>
@@ -3388,7 +3708,7 @@
                     });
                 } catch (e) {}
             }
-            window.showToast('Order ' + orderId + ' updated to ' + newStatus + ' across all devices!');
+            window.showToast('Order ' + orderId + ' updated to ' + newStatus + '!');
         };
 
         // --- GOOGLE SHEETS 2-WAY WEBHOOK + CSV/EXCEL EXPORT ---
@@ -3417,7 +3737,8 @@
                     status: orderObj.status,
                     products: products,
                     categories: categories,
-                    deletedOrderIds: deletedOrderIds
+                    deletedOrderIds: deletedOrderIds,
+                    steadfastMap: steadfastMap
                 };
 
                 await fetch(dbUrl, {
@@ -3438,11 +3759,12 @@
                 window.showToast('No orders to export yet.', 'info');
                 return;
             }
-            const headers = ['Order ID', 'Date', 'Customer Name', 'Phone', 'City', 'Address', 'Delivery Zone', 'Payment Method', 'TrxID', 'Ordered Items & Shades', 'Subtotal (BDT)', 'Shipping (BDT)', 'Total (BDT)', 'Status'];
+            const headers = ['Order ID', 'Date', 'Customer Name', 'Phone', 'City', 'Address', 'Delivery Zone', 'Payment Method', 'TrxID', 'Ordered Items & Shades', 'Subtotal (BDT)', 'Shipping (BDT)', 'Total (BDT)', 'Status', 'Steadfast Consignment ID', 'Steadfast Tracking Code'];
             const rows = orders.map(function(o) {
                 const itemsText = (o.items || []).map(function(i) {
                     return i.name + ' [' + (i.colorName || 'Classic') + '] x' + i.qty;
                 }).join(' | ');
+                const sfInfo = steadfastMap[o.orderId] || {};
                 return [
                     o.orderId,
                     o.date,
@@ -3457,7 +3779,9 @@
                     o.subtotal,
                     o.shipping,
                     o.total,
-                    o.status
+                    o.status,
+                    o.steadfastConsignmentId || sfInfo.consignment_id || '',
+                    o.steadfastTrackingCode || sfInfo.tracking_code || ''
                 ].map(function(cell) {
                     return '"' + String(cell ?? '').replace(/"/g, '""') + '"';
                 }).join(',');
@@ -3478,20 +3802,29 @@
 
         window.copyGoogleAppsScriptCode = function() {
             const scriptCode = [
-                "// MINZO DECOR — FULL 2-WAY CLOUD DATABASE (CATEGORIES + PRODUCTS + ORDERS + PERMANENT DELETE + GHOST ROW CLEANER)",
+                "// MINZO DECOR — FULL 2-WAY CLOUD DB + STEADFAST COURIER RELAY + PERMANENT DELETE",
                 "function doGet(e) {",
+                "  if (e && e.parameter && e.parameter.action === 'steadfastCreate') {",
+                "    var sfRes = UrlFetchApp.fetch('https://portal.packzy.com/api/v1/create_order', {",
+                "      method: 'post',",
+                "      contentType: 'application/json',",
+                "      headers: { 'Api-Key': e.parameter.apiKey, 'Secret-Key': e.parameter.secretKey },",
+                "      payload: e.parameter.payload,",
+                "      muteHttpExceptions: true",
+                "    });",
+                "    return ContentService.createTextOutput(sfRes.getContentText()).setMimeType(ContentService.MimeType.JSON);",
+                "  }",
                 "  var ss = SpreadsheetApp.getActiveSpreadsheet();",
                 "  var orderSheet = ss.getSheetByName('Orders') || ss.getSheets()[0];",
                 "  orderSheet.setName('Orders');",
                 "  ensureOrderHeaders(orderSheet);",
-                "  var products = [];",
-                "  var categories = [];",
-                "  var deletedOrderIds = [];",
+                "  var products = []; var categories = []; var deletedOrderIds = []; var steadfastMap = {};",
                 "  var catSheet = ss.getSheetByName('Catalog_DB');",
                 "  if (catSheet && catSheet.getLastRow() > 0) {",
                 "    try { products = JSON.parse(catSheet.getRange(1,1).getValue() || '[]'); } catch(ex) {}",
                 "    try { categories = JSON.parse(catSheet.getRange(2,1).getValue() || '[]'); } catch(ex) {}",
                 "    try { deletedOrderIds = JSON.parse(catSheet.getRange(3,1).getValue() || '[]'); } catch(ex) {}",
+                "    try { steadfastMap = JSON.parse(catSheet.getRange(4,1).getValue() || '{}'); } catch(ex) {}",
                 "  }",
                 "  var rows = orderSheet.getDataRange().getValues();",
                 "  var orders = [];",
@@ -3505,7 +3838,7 @@
                 "    var items = []; try { items = JSON.parse(r[14] || '[]'); } catch(ex) {}",
                 "    orders.unshift({ orderId: idStr, date: String(r[1]), customer: custStr, phone: String(r[3]).replace(/^'/,''), city: String(r[4]), address: String(r[5]), zone: String(r[6]), paymentMethod: String(r[7]), trxId: String(r[8]), items: items, subtotal: Number(r[10])||0, shipping: Number(r[11])||0, total: totNum, status: String(r[13])||'Pending', syncedToCloud: true });",
                 "  }",
-                "  return ContentService.createTextOutput(JSON.stringify({ result: 'success', orders: orders, products: products, categories: categories, deletedOrderIds: deletedOrderIds })).setMimeType(ContentService.MimeType.JSON);",
+                "  return ContentService.createTextOutput(JSON.stringify({ result: 'success', orders: orders, products: products, categories: categories, deletedOrderIds: deletedOrderIds, steadfastMap: steadfastMap })).setMimeType(ContentService.MimeType.JSON);",
                 "}",
                 "function doPost(e) {",
                 "  var ss = SpreadsheetApp.getActiveSpreadsheet();",
@@ -3514,9 +3847,8 @@
                 "  ensureOrderHeaders(orderSheet);",
                 "  var catSheet = ss.getSheetByName('Catalog_DB') || ss.insertSheet('Catalog_DB');",
                 "  var data = JSON.parse(e.postData.contents);",
-                "  if (Array.isArray(data.deletedOrderIds)) {",
-                "    catSheet.getRange(3,1).setValue(JSON.stringify(data.deletedOrderIds));",
-                "  }",
+                "  if (Array.isArray(data.deletedOrderIds)) { catSheet.getRange(3,1).setValue(JSON.stringify(data.deletedOrderIds)); }",
+                "  if (data.steadfastMap) { catSheet.getRange(4,1).setValue(JSON.stringify(data.steadfastMap)); }",
                 "  if (data.action === 'saveCatalog') {",
                 "    catSheet.getRange(1,1).setValue(JSON.stringify(data.products || []));",
                 "    if (Array.isArray(data.categories)) { catSheet.getRange(2,1).setValue(JSON.stringify(data.categories)); }",
@@ -3561,7 +3893,7 @@
             ].join('\n');
 
             navigator.clipboard.writeText(scriptCode);
-            window.showToast('Copied Updated Apps Script! Paste in Google Sheets > Apps Script > Deploy New Version.');
+            window.showToast('Copied Updated Apps Script (with Steadfast Relay & Delete Fix)!');
         };
 
         window.testGoogleSheetWebhook = async function() {
@@ -3588,6 +3920,8 @@
 
         window.saveIntegrationSettings = async function(e) {
             e.preventDefault();
+            managerConfig.steadfastApiKey = document.getElementById('set-sf-apikey').value.trim() || DEFAULT_STEADFAST_API_KEY;
+            managerConfig.steadfastSecretKey = document.getElementById('set-sf-secret').value.trim() || DEFAULT_STEADFAST_SECRET_KEY;
             managerConfig.sheetsWebhookUrl = document.getElementById('set-sheets-url').value.trim() || LIVE_DATABASE_URL;
             managerConfig.whatsapp = document.getElementById('set-whatsapp').value.trim() || '8801967232742';
             managerConfig.autoLaunchWhatsApp = document.getElementById('set-auto-whatsapp').checked;
@@ -3595,6 +3929,7 @@
             await window.pushCatalogToCloudDatabase(true);
             await window.pullFromCloudDatabase(true);
             window.renderAdminPortal();
+            window.showToast('Steadfast API, Cloud DB & WhatsApp settings saved!');
         };
 
         window.saveManagerSettings = function(e) {
@@ -3621,6 +3956,7 @@
             localStorage.setItem('minzo_products_v3', JSON.stringify(products));
             window.renderCategoryNavigation();
             window.renderCatalog();
+            window.syncHeroShowcase();
             if (isManagerAuthenticated) window.renderAdminPortal();
             await window.pushCatalogToCloudDatabase(false);
         };
@@ -3694,6 +4030,7 @@
             localStorage.setItem('minzo_cart_v3', JSON.stringify(cart));
             window.updateCartUI();
             window.renderCatalog();
+            window.syncHeroShowcase();
             if (isManagerAuthenticated) {
                 window.renderAdminPortal();
             }
@@ -3774,7 +4111,7 @@
             toast.className = bg + ' text-cream px-4 py-3 rounded-2xl shadow-floating border border-gold/30 flex items-center gap-2 text-xs font-semibold animate-fade-in';
             toast.innerHTML = `<i class="ph-fill ph-check-circle text-gold text-base"></i><span>${message}</span>`;
             container.appendChild(toast);
-            setTimeout(function() { toast.remove(); }, 2800);
+            setTimeout(function() { toast.remove(); }, 3200);
         };
 
         window.addEventListener('DOMContentLoaded', window.initStore);
